@@ -1,1 +1,29 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日60秒看世界</title>
+    <style>
+        body {
+            background-image: url('https://t.mwm.moe/ycy');
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        .daily60s {
+            opacity: 0.7;
+            /*水平居中*/
+            text-align: center;
+            /*垂直居中*/
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="daily60s">
+        <img decoding="async" src="https://api.03c3.cn/api/zb" alt="每日60秒看世界" onerror="this.src='https://api.03c3.cn/api/zb?type=img'">
+    </div>
+</body>
+</html>
