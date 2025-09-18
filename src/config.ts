@@ -193,7 +193,7 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 		{
-			name: "关于",
+			name: "Mizuki",
 			url: "/content/",
 			icon: "material-symbols:info",
 			children: [LinkPreset.About, LinkPreset.Friends],
@@ -277,13 +277,14 @@ export const commentConfig: CommentConfig = {
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "Announcement", // 公告标题
-	content: "Welcome to my blog! This is a sample announcement.", // 公告内容
-	closable: false, // 允许用户关闭公告
+	title: "免责声明", // 公告标题
+	content:
+		"在您使用本网站前，请务必仔细阅读并理解以下免责声明。如果您不同意本声明的任何内容，请立即停止访问或使用本网站。", // 公告内容
+	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
 		text: "Learn More", // 链接文本
-		url: "/about/", // 链接 URL
+		url: "/announcement/", // 链接 URL
 		external: false, // 内部链接
 	},
 };
