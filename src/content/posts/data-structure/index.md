@@ -3,8 +3,8 @@ title: 数据结构资料
 published: 2025-09-18
 pinned: false
 description: 在学习数据结构课程中积累的资料.
-tags: [study, Blogging]
-category: Examples
+tags: [code, Blogging, study]
+category: Study
 licenseName: "Unlicensed"
 author: Luuton
 sourceLink: "https://github.com/luuton/Data-Structure-Laboratory-Assignment"
