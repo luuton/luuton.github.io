@@ -231,7 +231,10 @@
 &lt;li&gt;肉鸽&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;施工中............&lt;/p&gt;
+&lt;p&gt;施工中......
+bug反馈&lt;br /&gt;
+&lt;a href=&quot;mailto:hust_tungly@outlook.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Email-hust_tungly@outlook.com-blue&quot; alt=&quot;Email&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/luuton/luuton.github.io/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/luuton/luuton.github.io?logo=github&quot; alt=&quot;GitHub Issues&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&amp;lt;!-- &lt;img src=&quot;https://torappu.prts.wiki/assets/item_icon/voucher_skill_specialLevelMax_5.png&quot; alt=&quot;高级资深干员技巧集&quot; /&gt; --&amp;gt;&lt;/p&gt;
 </content:encoded></item><item><title>数据结构资料</title><link>https://luuton.github.io/posts/data-structure/</link><guid isPermaLink="true">https://luuton.github.io/posts/data-structure/</guid><description>在学习数据结构课程中积累的资料.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;数据结构&lt;/h1&gt;
