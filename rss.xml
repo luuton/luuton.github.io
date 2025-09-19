@@ -60,8 +60,76 @@
 &lt;hr /&gt;
 &lt;p&gt;&amp;lt;b&amp;gt;&amp;lt;center&amp;gt;&amp;lt;span style=&quot;color:#881144;font-size:3em&quot;&amp;gt;...欢迎来到 明日方舟 的&amp;lt;ruby&amp;gt;&amp;lt;rb data-id=&quot;template-ruby&quot;&amp;gt;世界&amp;lt;/rb&amp;gt;&amp;lt;rt style=&quot;font-size:0.5em&quot;&amp;gt;泰拉&amp;lt;/rt&amp;gt;&amp;lt;/ruby&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/b&amp;gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;施工中.....&lt;/p&gt;
+&lt;p&gt;施工中.....&lt;br /&gt;
+以下攻略仅为ldx带xdx的个人思路，纯主观desuwa
+推荐关注明日方舟官方账号，站在吃饼第一线 / 收藏prts.wiki，站在拉表第一线&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2&gt;一、了解UI界面&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;这里我就不给大家介绍ui界面了,可以到处点点看一下(特别是那些个红点点你不把它点掉不难受吗😡)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个正常萌新的主页应该是这样的
+&lt;img src=&quot;https://luuton.github.io/_astro/homepage.B_L2Nc1c_Z1b9575.webp&quot; alt=&quot;主页&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;二、干员获取方式&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在明日方舟中，干员获取方式大概可分为三种
+&lt;ol&gt;
+&lt;li&gt;干员寻访
+&lt;ul&gt;
+&lt;li&gt;就是俗称的“抽卡”，通过消耗合成玉招募干员&lt;/li&gt;
+&lt;li&gt;池子也可以分为三种，三种池子概率分别计算(抽卡次数分别累计)
+&lt;blockquote&gt;
+&lt;p&gt;对于60抽加概率等保底\吃井机制建议自行搜索&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;限定池
+&lt;ul&gt;
+&lt;li&gt;包含限定干员的池子，一般在周年、半周年、夏活、春节等大型活动推出(联动池抽数不累计)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;常驻池
+&lt;ul&gt;
+&lt;li&gt;新的非限定干员会加入这个池子，进行轮换up(还有进店什么的可以自己去看看)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;中坚池
+&lt;ul&gt;
+&lt;li&gt;这个池子实际上是因为干员太多了，分一部分老人出来组成的池子，跟常驻池机制差不多&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;公开招募&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;选时间、选tag、点开始，这个可以参考&lt;a href=&quot;https://prts.wiki/w/%E5%85%AC%E6%8B%9B%E8%AE%A1%E7%AE%97&quot;&gt;PRTS公招计算器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;活动赠送&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;就是活动会赠送干员，有些还挺强的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;卡池机制什么的可以看看这篇文章(无引流，刚好看到，我没看完)&lt;br /&gt;
+&amp;lt;a href=&quot;https://www.xiaoheihe.cn/app/bbs/link/6d0570e5e0b0&quot; target=&quot;_blank&quot;&amp;gt;[小黑盒]给Ave Mujica入坑的新博士讲解一下明日方舟卡池规则和后续规划&amp;lt;/a&amp;gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关于一些俗语缩写&lt;br /&gt;
+像是gxyy、174、52、42、粉毛、小猪、大姨、小姨、红蒂蓝蒂等等等...&lt;br /&gt;
+&lt;s&gt;太棒了学会这些你就可以做云玩家拉&lt;/s&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;三、关卡内容&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;明日方舟是一款塔防游戏
+&lt;img src=&quot;https://torappu.prts.wiki/assets/item_icon/voucher_skill_specialLevelMax_6.png&quot; alt=&quot;高级资深干员技巧集&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content:encoded></item><item><title>数据结构资料</title><link>https://luuton.github.io/posts/data-structure/</link><guid isPermaLink="true">https://luuton.github.io/posts/data-structure/</guid><description>在学习数据结构课程中积累的资料.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;数据结构&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;有空再写哈哈哈&lt;/li&gt;
