@@ -135,7 +135,10 @@ pubDate: 2025-09-19
 ### 乌尔饼干嘎嘣脆#6127的传奇开荒路
 
 - 肉鸽
->
-> 施工中............
+
+> 施工中......
+> bug反馈  
+> [![Email](https://img.shields.io/badge/Email-hust_tungly@outlook.com-blue)](mailto:hust_tungly@outlook.com)
+> [![GitHub Issues](https://img.shields.io/github/issues/luuton/luuton.github.io?logo=github)](https://github.com/luuton/luuton.github.io/issues)
 
 <!-- ![高级资深干员技巧集](https://torappu.prts.wiki/assets/item_icon/voucher_skill_specialLevelMax_5.png) -->
