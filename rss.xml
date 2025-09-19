@@ -37,6 +37,36 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;mailto:hust_tungly@outlook.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Email-hust_tungly@outlook.com-blue&quot; alt=&quot;Email&quot; /&gt;&lt;/a&gt;
 &lt;a href=&quot;https://github.com/luuton/luuton.github.io/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/luuton/luuton.github.io?logo=github&quot; alt=&quot;GitHub Issues&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>明日方舟退坑指北</title><link>https://luuton.github.io/posts/arknight-guide/</link><guid isPermaLink="true">https://luuton.github.io/posts/arknight-guide/</guid><description>不要玩明日方舟，会变得不幸.</description><pubDate>Fri, 19 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;最速退坑方案&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;萌新不熟悉ui？不要紧！一步一步跟着我做，别给自己的人生留下遗憾！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;主页面
+&lt;img src=&quot;https://luuton.github.io/_astro/delet-homepage.Wc8Iufz7_Z157oNG.webp&quot; alt=&quot;主界面&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;设置页面
+&lt;img src=&quot;https://luuton.github.io/_astro/delet-setting.CEkQgCof_Z53wcO.webp&quot; alt=&quot;设置页面&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;用户中心
+&lt;img src=&quot;https://luuton.github.io/_astro/delet-usercenter.DnVKjyx__153neu.webp&quot; alt=&quot;用户中心&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;游戏管理
+&lt;img src=&quot;https://luuton.github.io/_astro/game-ctrl.D-tm1Mc1_WnnNt.webp&quot; alt=&quot;游戏管理&quot; /&gt;&lt;/li&gt;
+&lt;li&gt;注销账号
+&lt;img src=&quot;https://luuton.github.io/_astro/delet-final.BgGCIgh-_5BPB1.webp&quot; alt=&quot;注销账号&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;至此，只要能忍住15天不上号，就可以完全脱离明日方舟苦海，跟海猫络合物彻底说拜拜&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;lt;h style=&quot;font-size:1.5em&quot;&amp;gt; &lt;strong&gt;如果说你没忍住&lt;/strong&gt; or &lt;strong&gt;决定要继续玩下去&lt;/strong&gt;...那么&amp;lt;/h&amp;gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&amp;lt;b&amp;gt;&amp;lt;center&amp;gt;&amp;lt;span style=&quot;color:#881144;font-size:3em&quot;&amp;gt;...欢迎来到 明日方舟 的&amp;lt;ruby&amp;gt;&amp;lt;rb data-id=&quot;template-ruby&quot;&amp;gt;世界&amp;lt;/rb&amp;gt;&amp;lt;rt style=&quot;font-size:0.5em&quot;&amp;gt;泰拉&amp;lt;/rt&amp;gt;&amp;lt;/ruby&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/b&amp;gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;施工中.....&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item><item><title>数据结构资料</title><link>https://luuton.github.io/posts/data-structure/</link><guid isPermaLink="true">https://luuton.github.io/posts/data-structure/</guid><description>在学习数据结构课程中积累的资料.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;数据结构&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;有空再写哈哈哈&lt;/li&gt;
+&lt;li&gt;先搞这个学期学的&lt;/li&gt;
+&lt;/ul&gt;
 </content:encoded></item><item><title>测试文章</title><link>https://luuton.github.io/posts/my-test-post/</link><guid isPermaLink="true">https://luuton.github.io/posts/my-test-post/</guid><description>这是一篇用来测试的文章.</description><pubDate>Wed, 17 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;测试文章&lt;/h1&gt;
 &lt;p&gt;这是一篇测试文章&lt;/p&gt;
 &lt;h2&gt;测试在哪？&lt;/h2&gt;
@@ -139,9 +169,4 @@ C @= D
 \end{CD}
 $$&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;#%E6%B5%8B%E8%AF%95%E5%9C%A8%E5%93%AA&quot;&gt;跳转到 测试在哪&lt;/a&gt;&lt;/p&gt;
-</content:encoded></item><item><title>数据结构资料</title><link>https://luuton.github.io/posts/data-structure/</link><guid isPermaLink="true">https://luuton.github.io/posts/data-structure/</guid><description>在学习数据结构课程中积累的资料.</description><pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;数据结构&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;有空再写哈哈哈&lt;/li&gt;
-&lt;li&gt;先搞这个学期学的&lt;/li&gt;
-&lt;/ul&gt;
 </content:encoded></item></channel></rss>
