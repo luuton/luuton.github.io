@@ -1,7 +1,7 @@
 ---
 title: 测试文章
 published: 2025-09-17
-pinned: true
+pinned: false
 description: 这是一篇用来测试的文章.
 tags: [test, Blogging]
 category: test
