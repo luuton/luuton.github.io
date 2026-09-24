@@ -137,7 +137,6 @@ html.is-animating .transition-swup-fade {
 /* 性能优化 */
 .transition-main,
 .transition-leaving,
-.onload-animation,
 .transition-slide-in,
 .card-animation {
     will-change: transform, opacity;
