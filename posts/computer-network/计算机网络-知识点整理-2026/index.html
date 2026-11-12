@@ -3137,7 +3137,7 @@ if (document.readyState === 'loading') {
 
 
 
-<table><thead><tr><th>状态</th><th>含义</th></tr></thead><tbody><tr><td>CLOSED</td><td>关闭</td></tr><tr><td>LISTEN</td><td>被动等待连接</td></tr><tr><td>SYN_SENT</td><td>已发 SYN，等待 SYNACK</td></tr><tr><td>SYN_RCVD</td><td>收到 SYN，已发 SYNACK</td></tr><tr><td>ESTABLISHED</td><td>连接建立，可传输数据</td></tr><tr><td>FIN_WAIT_1</td><td>已发 FIN，等待 ACK</td></tr><tr><td>FIN_WAIT_2</td><td>已收 FIN 的 ACK，等待对方 FIN</td></tr><tr><td>CLOSE_WAIT</td><td>收到对方 FIN，已回 ACK，等待本地关闭</td></tr><tr><td>CLOSING</td><td>双方同时关闭</td></tr><tr><td>LAST_ACK</td><td>已发 FIN，等待最后 ACK</td></tr><tr><td>TIME_WAIT</td><td>等待 2MSL 后关闭</td></tr></tbody></table><div class="mermaid-diagram-container"><div class="mermaid-wrapper" id="mermaid-1c2xzb"><div class="mermaid" data-mermaid-code="stateDiagram-v2
+<table><thead><tr><th>状态</th><th>含义</th></tr></thead><tbody><tr><td>CLOSED</td><td>关闭</td></tr><tr><td>LISTEN</td><td>被动等待连接</td></tr><tr><td>SYN_SENT</td><td>已发 SYN，等待 SYNACK</td></tr><tr><td>SYN_RCVD</td><td>收到 SYN，已发 SYNACK</td></tr><tr><td>ESTABLISHED</td><td>连接建立，可传输数据</td></tr><tr><td>FIN_WAIT_1</td><td>已发 FIN，等待 ACK</td></tr><tr><td>FIN_WAIT_2</td><td>已收 FIN 的 ACK，等待对方 FIN</td></tr><tr><td>CLOSE_WAIT</td><td>收到对方 FIN，已回 ACK，等待本地关闭</td></tr><tr><td>CLOSING</td><td>双方同时关闭</td></tr><tr><td>LAST_ACK</td><td>已发 FIN，等待最后 ACK</td></tr><tr><td>TIME_WAIT</td><td>等待 2MSL 后关闭</td></tr></tbody></table><div class="mermaid-diagram-container"><div class="mermaid-wrapper" id="mermaid-unozzn"><div class="mermaid" data-mermaid-code="stateDiagram-v2
     [*] --> CLOSED
     CLOSED --> LISTEN: 被动打开
     CLOSED --> SYN_SENT: 主动打开/发 SYN
