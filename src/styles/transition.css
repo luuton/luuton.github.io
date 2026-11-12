@@ -56,7 +56,7 @@ html.is-animating .transition-swup-fade {
     }
     to {
         opacity: 1;
-        transform: translateY(0) translateX(0);
+        transform: none;
     }
 }
 
@@ -107,7 +107,7 @@ html.is-animating .transition-swup-fade {
 
 .transition-slide-in.active {
     opacity: 1;
-    transform: translateY(0) translateX(0);
+    transform: none;
 }
 
 /* 卡片动画 */
@@ -119,7 +119,7 @@ html.is-animating .transition-swup-fade {
 
 .card-animation.visible {
     opacity: 1;
-    transform: translateY(0) translateX(0) scale(1);
+    transform: none;
 }
 
 /* 导航动画 */
@@ -131,17 +131,14 @@ html.is-animating .transition-swup-fade {
 
 .nav-animation.loaded {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
 }
 
-/* 性能优化 */
-.transition-main,
-.transition-leaving,
-.transition-slide-in,
-.card-animation {
+/* 性能优化：仅在实际过渡期间提升合成层，避免正文长期停留在 GPU 层导致文字发虚 */
+html.is-changing .transition-main,
+html.is-changing .transition-leaving,
+html.is-leaving .transition-main {
     will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
 }
 
 /* 响应式调整 */
