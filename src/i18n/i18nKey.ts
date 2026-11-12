@@ -54,8 +54,12 @@ enum I18nKey {
 	animeStatusWatching = "animeStatusWatching",
 	animeStatusCompleted = "animeStatusCompleted",
 	animeStatusPlanned = "animeStatusPlanned",
+	animeStatusOnHold = "animeStatusOnHold",
+	animeStatusDropped = "animeStatusDropped",
 	animeYear = "animeYear",
 	animeStudio = "animeStudio",
+	animeSource = "animeSource",
+	animeLastUpdated = "animeLastUpdated",
 
 	// 短文页面
 	diarySubtitle = "diarySubtitle",

@@ -34,3 +34,6 @@ yarn.lock
 
 # generated diagram sources (WebP is committed)
 public/images/computer-network/*.png
+
+# local Bangumi feed cache
+src/data/bangumi-feed.xml

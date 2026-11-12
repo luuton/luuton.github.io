@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+	<title>luuton的收藏</title>
+	<link>https://bgm.tv/user/luuton</link>
+	<description>用于本地测试 Bangumi 订阅解析的示例数据</description>
+	<item>
+		<title>在看 リコリス・リコイル</title>
+		<link>https://bgm.tv/subject/347578</link>
+		<description><![CDATA[
+			<p><img src="https://lain.bgm.tv/pic/cover/m/example-lycoris.jpg" /></p>
+			<p>评分: 9.8</p>
+			<p>看到第 8 话 / 全 12 话</p>
+			<p>动画制作: A-1 Pictures</p>
+			<p>类型: Action / Slice of Life</p>
+			<p>少女们的枪战日常。</p>
+		]]></description>
+		<pubDate>Mon, 10 Nov 2026 12:00:00 GMT</pubDate>
+		<guid>https://bgm.tv/subject/347578</guid>
+	</item>
+	<item>
+		<title>看过 ご注文はうさぎですか？</title>
+		<link>https://bgm.tv/subject/2762</link>
+		<description><![CDATA[
+			<p>我的评分：9.0</p>
+			<p>全 12 话</p>
+			<p>咖啡店里的温暖日常。</p>
+		]]></description>
+		<pubDate>Sun, 09 Nov 2026 12:00:00 GMT</pubDate>
+		<guid>https://bgm.tv/subject/2762</guid>
+	</item>
+	<item>
+		<title>想看 新番测试动画</title>
+		<link>https://bgm.tv/subject/999999</link>
+		<description><![CDATA[
+			<p>2027 年 1 月新番，用于测试没有本地封面的条目。</p>
+		]]></description>
+		<pubDate>Sat, 08 Nov 2026 12:00:00 GMT</pubDate>
+		<guid>https://bgm.tv/subject/999999</guid>
+	</item>
+</channel>
+</rss>

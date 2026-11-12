@@ -57,8 +57,12 @@ export const ja: Translation = {
 	[Key.animeStatusWatching]: "視聴中",
 	[Key.animeStatusCompleted]: "視聴済み",
 	[Key.animeStatusPlanned]: "予定",
+	[Key.animeStatusOnHold]: "保留",
+	[Key.animeStatusDropped]: "中止",
 	[Key.animeYear]: "年",
 	[Key.animeStudio]: "制作会社",
+	[Key.animeSource]: "データ提供",
+	[Key.animeLastUpdated]: "最終更新",
 
 	// 短文页面
 	[Key.diarySubtitle]: "いつでもどこでも、生活をシェア",

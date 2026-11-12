@@ -57,8 +57,12 @@ export const en: Translation = {
 	[Key.animeStatusWatching]: "Watching",
 	[Key.animeStatusCompleted]: "Completed",
 	[Key.animeStatusPlanned]: "Planned",
+	[Key.animeStatusOnHold]: "On hold",
+	[Key.animeStatusDropped]: "Dropped",
 	[Key.animeYear]: "Year",
 	[Key.animeStudio]: "Studio",
+	[Key.animeSource]: "Source",
+	[Key.animeLastUpdated]: "Last updated",
 
 	// 短文页面
 	[Key.diarySubtitle]: "Share life anytime, anywhere",

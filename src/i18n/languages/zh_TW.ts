@@ -57,8 +57,12 @@ export const zh_TW: Translation = {
 	[Key.animeStatusWatching]: "追番中",
 	[Key.animeStatusCompleted]: "已追完",
 	[Key.animeStatusPlanned]: "計劃中",
+	[Key.animeStatusOnHold]: "擱置",
+	[Key.animeStatusDropped]: "拋棄",
 	[Key.animeYear]: "年份",
 	[Key.animeStudio]: "製作",
+	[Key.animeSource]: "資料來源",
+	[Key.animeLastUpdated]: "最近更新",
 
 	// 短文頁面
 	[Key.diarySubtitle]: "隨時隨地，分享生活",
