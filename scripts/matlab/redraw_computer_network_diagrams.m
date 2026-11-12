@@ -3,6 +3,8 @@
 % 运行方式（仓库根目录）：
 %   matlab -batch "run('scripts/matlab/redraw_computer_network_diagrams.m')"
 % 输出目录：public/images/computer-network/
+% 生成 PNG 后执行以下命令转换为 WebP 并清理 PNG：
+%   node scripts/convert-webp.mjs
 
 clear; close all;
 
@@ -300,6 +302,51 @@ drawMessage(ax, S, 2.5, 7.5, 5.5, '连续请求所有引用对象', 'solid');
 drawMessage(ax, S, 7.5, 2.5, 4.6, '连续返回所有对象（共用 1 RTT）', 'dashed');
 drawNoteBox(ax, S, 1.0, 9.0, 3.5, {'连接保持，后续对象复用同一 TCP 连接'});
 saveFig(fig, OUTDIR, '13-http-persistent');
+%% 14. TCP 状态转换图
+W = 18.2; H = 17.8;
+[fig, ax] = newCanvas(W, H, S);
+% 状态框
+drawBox(ax, S, 2.0, 15.0, 3.4, 1.2, {'CLOSED'}, 'process', [0.940 0.940 0.950], [0.500 0.500 0.550]);
+drawBox(ax, S, 2.0, 12.0, 3.4, 1.2, {'LISTEN'}, 'process', [0.910 0.950 0.990], [0.300 0.500 0.720]);
+drawBox(ax, S, 6.5, 15.0, 3.4, 1.2, {'SYN_SENT'}, 'process', [0.910 0.950 0.990], [0.300 0.500 0.720]);
+drawBox(ax, S, 6.5, 12.0, 3.4, 1.2, {'SYN_RCVD'}, 'process', [0.910 0.950 0.990], [0.300 0.500 0.720]);
+drawBox(ax, S, 11.0, 12.0, 3.4, 1.2, {'ESTABLISHED'}, 'process', [0.900 0.960 0.920], [0.250 0.550 0.320]);
+drawBox(ax, S, 11.0, 9.0, 3.4, 1.2, {'FIN_WAIT_1'}, 'process', [1.000 0.950 0.880], [0.780 0.520 0.180]);
+drawBox(ax, S, 11.0, 6.0, 3.4, 1.2, {'CLOSE_WAIT'}, 'process', [1.000 0.950 0.880], [0.780 0.520 0.180]);
+drawBox(ax, S, 15.5, 12.0, 3.4, 1.2, {'FIN_WAIT_2'}, 'process', [1.000 0.950 0.880], [0.780 0.520 0.180]);
+drawBox(ax, S, 15.5, 9.0, 3.4, 1.2, {'TIME_WAIT'}, 'process', [1.000 0.980 0.860], [0.750 0.650 0.200]);
+drawBox(ax, S, 15.5, 6.0, 3.4, 1.2, {'LAST_ACK'}, 'process', [1.000 0.950 0.880], [0.780 0.520 0.180]);
+% 初始状态
+plot(ax, 1.2, 16.5, 'o', 'MarkerFaceColor', S.arrow, 'MarkerEdgeColor', S.arrow, 'MarkerSize', 8);
+drawArrow(ax, S, [1.2 16.35], [1.2 15.6]);
+% 状态转换
+drawArrow(ax, S, [2.0 14.4], [2.0 12.6]);
+drawArrow(ax, S, [3.7 15.0], [4.8 15.0]);
+drawArrow(ax, S, [3.7 12.0], [4.8 12.0]);
+drawPolyArrow(ax, S, [8.2 15.0; 9.0 15.0; 9.0 12.6; 11.0 12.6]);
+drawArrow(ax, S, [8.2 12.0], [9.3 12.0]);
+drawArrow(ax, S, [11.0 11.4], [11.0 9.6]);
+drawPolyArrow(ax, S, [9.3 11.45; 8.5 11.45; 8.5 6.0; 9.3 6.0]);
+drawPolyArrow(ax, S, [11.0 8.4; 11.0 7.5; 13.6 7.5; 13.6 12.0; 13.8 12.0]);
+drawArrow(ax, S, [15.5 11.4], [15.5 9.6]);
+drawPolyArrow(ax, S, [17.2 9.0; 17.5 9.0; 17.5 16.5; 2.8 16.5; 2.8 15.6]);
+drawArrow(ax, S, [12.7 6.0], [13.8 6.0]);
+drawPolyArrow(ax, S, [15.5 5.4; 15.5 1.5; 0.1 1.5; 0.1 15.0; 0.3 15.0]);
+% 转换条件
+label(ax, S, 2.25, 13.5, '被动打开', 'left');
+label(ax, S, 4.25, 14.75, '主动打开/发 SYN', 'center');
+label(ax, S, 4.25, 11.65, {'收 SYN', '发 SYNACK'}, 'center');
+label(ax, S, 10.0, 13.0, {'收 SYNACK', '发 ACK'}, 'center');
+label(ax, S, 8.75, 11.75, '收 ACK', 'center');
+label(ax, S, 11.25, 10.5, '关闭/发 FIN', 'left');
+label(ax, S, 8.4, 9.0, {'收 FIN', '发 ACK'}, 'right');
+label(ax, S, 12.4, 7.75, '收 ACK', 'center');
+label(ax, S, 15.75, 10.5, '收 FIN/发 ACK', 'left');
+label(ax, S, 10.0, 16.7, '2MSL 超时', 'center');
+label(ax, S, 13.25, 6.3, {'关闭', '发 FIN'}, 'center');
+label(ax, S, 8.0, 1.7, '收 ACK', 'center');
+saveFig(fig, OUTDIR, '14-tcp-state-machine');
+
 %% ===================== 局部函数 =====================
 function S = style()
     S.font = 'Microsoft YaHei';

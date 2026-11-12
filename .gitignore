@@ -31,3 +31,6 @@ yarn.lock
 *.iml
 .vscode/
 .claude/
+
+# generated diagram sources (WebP is committed)
+public/images/computer-network/*.png
