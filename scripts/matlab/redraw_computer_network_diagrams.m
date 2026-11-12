@@ -347,6 +347,88 @@ label(ax, S, 13.25, 6.3, {'关闭', '发 FIN'}, 'center');
 label(ax, S, 8.0, 1.7, '收 ACK', 'center');
 saveFig(fig, OUTDIR, '14-tcp-state-machine');
 
+%% 15. cwnd 变化示意：超时 vs 3 个重复 ACK
+fig = figure('Visible', 'off', 'Color', 'w', 'Units', 'inches', 'Position', [1 1 10 6.5]);
+ax = axes(fig, 'Position', [0.095 0.12 0.875 0.80]);
+hold(ax, 'on'); box(ax, 'on'); grid(ax, 'on');
+set(ax, 'GridAlpha', 0.15, 'GridLineStyle', ':', 'LineWidth', 0.9, ...
+    'FontName', S.font, 'FontSize', 11, 'TickDir', 'out');
+
+cCommon = [0.15 0.15 0.18];
+cTimeout = [0.82 0.29 0.26];
+cFast = [0.18 0.43 0.71];
+
+% 共同阶段：慢启动（指数） -> 拥塞避免（线性）
+tSS = 0:0.02:3;
+cSS = 2.^tSS;
+tCA = 3:0.02:12;
+cCA = 8 + (tCA-3)*(8/9);
+plot(ax, [tSS tCA(2:end)], [cSS cCA(2:end)], '-', 'Color', cCommon, ...
+     'LineWidth', 2.6, 'DisplayName', '拥塞前：慢启动 → 拥塞避免');
+
+% 超时：cwnd 直接降为 1，重新慢启动
+plot(ax, [12 12], [16 1], '-', 'Color', cTimeout, 'LineWidth', 2.2, 'HandleVisibility', 'off');
+tTO = 12:0.02:15;
+cTO = 2.^(tTO-12);
+plot(ax, tTO, cTO, '-', 'Color', cTimeout, 'LineWidth', 2.2, ...
+     'DisplayName', '超时：cwnd → 1，重新慢启动');
+tTOCA = 15:0.02:22;
+cTOCA = 8 + (tTOCA-15);
+plot(ax, tTOCA, cTOCA, '-', 'Color', cTimeout, 'LineWidth', 2.2, 'HandleVisibility', 'off');
+
+% 3 个重复 ACK：cwnd 减半，快速恢复后进入拥塞避免
+plot(ax, [12 12], [16 8], '-', 'Color', cFast, 'LineWidth', 2.2, 'HandleVisibility', 'off');
+tFR = 12:0.02:20;
+cFR = 8 + (tFR-12);
+plot(ax, tFR, cFR, '-', 'Color', cFast, 'LineWidth', 2.2, ...
+     'DisplayName', '3 个重复 ACK：cwnd 减半，快速恢复');
+
+% 关键点
+plot(ax, [0 3 12], [1 8 16], 'o', 'MarkerSize', 5.5, ...
+     'MarkerFaceColor', cCommon, 'MarkerEdgeColor', 'w', 'HandleVisibility', 'off');
+plot(ax, [12 15 22], [1 8 15], 'o', 'MarkerSize', 5.5, ...
+     'MarkerFaceColor', cTimeout, 'MarkerEdgeColor', 'w', 'HandleVisibility', 'off');
+plot(ax, [12 20], [8 16], 'o', 'MarkerSize', 5.5, ...
+     'MarkerFaceColor', cFast, 'MarkerEdgeColor', 'w', 'HandleVisibility', 'off');
+
+% 阶段条
+rectangle(ax, 'Position', [0 26.0 3 1.0], 'FaceColor', [0.86 0.92 1.00], 'EdgeColor', 'none');
+rectangle(ax, 'Position', [3 26.0 9 1.0], 'FaceColor', [0.88 0.95 0.89], 'EdgeColor', 'none');
+rectangle(ax, 'Position', [12 26.0 10 1.0], 'FaceColor', [1.00 0.93 0.86], 'EdgeColor', 'none');
+text(ax, 1.5, 26.5, '慢启动', 'FontName', S.font, 'FontSize', 9.5, ...
+     'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', 'Color', S.text);
+text(ax, 7.5, 26.5, '拥塞避免', 'FontName', S.font, 'FontSize', 9.5, ...
+     'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', 'Color', S.text);
+text(ax, 17.0, 26.5, '同一拥塞点：两种处理', 'FontName', S.font, 'FontSize', 9.5, ...
+     'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', 'Color', S.text);
+
+% 辅助线与注释
+plot(ax, [12 12], [0 16], '--', 'Color', [0.45 0.45 0.50], 'LineWidth', 1.1, 'HandleVisibility', 'off');
+plot(ax, [12 24], [8 8], '--', 'Color', [0.55 0.55 0.58], 'LineWidth', 1.0, 'HandleVisibility', 'off');
+text(ax, 23.8, 8.45, 'ssthresh=8', 'FontName', S.font, 'FontSize', 9, ...
+     'HorizontalAlignment', 'right', 'VerticalAlignment', 'bottom', 'Color', [0.40 0.40 0.44]);
+text(ax, 12.35, 17.0, '第 12 回合检测到拥塞', 'FontName', S.font, 'FontSize', 9.5, ...
+     'HorizontalAlignment', 'left', 'VerticalAlignment', 'middle', ...
+     'BackgroundColor', 'w', 'Margin', 2, 'Color', S.text);
+text(ax, 13.0, 3.5, '超时：ssthresh=8，cwnd=1', 'FontName', S.font, 'FontSize', 9.5, ...
+     'HorizontalAlignment', 'left', 'VerticalAlignment', 'middle', ...
+     'BackgroundColor', 'w', 'Margin', 2, 'Color', cTimeout);
+text(ax, 14.0, 15.5, {'3 个重复 ACK', 'ssthresh=8，cwnd=8'}, 'FontName', S.font, 'FontSize', 9.5, ...
+     'HorizontalAlignment', 'left', 'VerticalAlignment', 'middle', ...
+     'BackgroundColor', 'w', 'Margin', 2, 'Color', cFast);
+
+xlim(ax, [0 24]); ylim(ax, [-1 28.5]);
+xticks(ax, 0:2:24); yticks(ax, 0:4:24);
+xlabel(ax, '时间 / RTT', 'FontName', S.font, 'FontSize', 12);
+ylabel(ax, 'cwnd（MSS）', 'FontName', S.font, 'FontSize', 12);
+title(ax, 'cwnd 变化示意：超时 vs 3 个重复 ACK', 'FontName', S.font, ...
+      'FontSize', 14, 'FontWeight', 'bold');
+lg = legend(ax, 'Location', 'southeast');
+set(lg, 'FontName', S.font, 'FontSize', 9, 'Box', 'off');
+
+exportgraphics(fig, fullfile(OUTDIR, '15-cwnd-congestion-control.png'), 'Resolution', 240);
+close(fig);
+
 %% ===================== 局部函数 =====================
 function S = style()
     S.font = 'Microsoft YaHei';
