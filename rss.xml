@@ -42,7 +42,7 @@
 &lt;p&gt;依据：&lt;code&gt;netun2026/教学要求及考试说明-2026.pdf&lt;/code&gt;，并整合 &lt;code&gt;netun2026/&lt;/code&gt; 下 0–14 讲课件、习题课与作业答案。
 用途：期末复习提纲。文中“了解 / 理解 / 掌握”沿用考试说明的三级要求。
 阅读建议：先看第 0 章掌握考试要求，再按五大部分过知识点，最后用第 6 章计算专题和第 7 章对比表自测。
-图表说明：本文档中的流程图、时序图由 MATLAB 绘制（源码见 &lt;code&gt;scripts/matlab/redraw_computer_network_diagrams.m&lt;/code&gt;，图片位于 &lt;code&gt;public/images/computer-network/&lt;/code&gt;）；状态图使用 Mermaid 语法；公式使用 LaTeX 语法。&lt;/p&gt;
+图表说明：本文档中的流程图、时序图与状态转换图均由 MATLAB 绘制（源码见 &lt;code&gt;scripts/matlab/redraw_computer_network_diagrams.m&lt;/code&gt;，图片位于 &lt;code&gt;public/images/computer-network/&lt;/code&gt;，已统一转换为 WebP 格式以减小体积）；公式使用 LaTeX 语法。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;h2&gt;目录&lt;/h2&gt;
@@ -149,7 +149,7 @@
 &lt;/table&gt;
 &lt;p&gt;复习时对“掌握”级知识点要能做到：&lt;strong&gt;说清概念 → 讲清机制 → 会画图 → 会算&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;0.3 知识地图（自底向上）&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/01-knowledge-map.png&quot; alt=&quot;知识地图：自底向上的五层模型&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/01-knowledge-map.webp&quot; alt=&quot;知识地图：自底向上的五层模型&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;贯穿全课程的三条主线：&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;连通性&lt;/strong&gt;：直接连通（点对点、多路接入）→ 间接连通（交换网络）→ 网络互联（路由器）。&lt;/li&gt;
@@ -875,7 +875,7 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h4&gt;1.6.5 逐层封装&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/02-encapsulation.png&quot; alt=&quot;逐层封装：从应用数据到比特流&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/02-encapsulation.webp&quot; alt=&quot;逐层封装：从应用数据到比特流&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;发送方逐层添加首部；接收方逐层剥离首部并上交。&lt;/li&gt;
 &lt;li&gt;路由器通常只实现到网络层；交换机实现到数据链路层；集线器只实现物理层。&lt;/li&gt;
@@ -1466,7 +1466,7 @@
 &lt;li&gt;&lt;strong&gt;冲突检测（CD）&lt;/strong&gt;：发送过程中检测信号是否被其它帧干扰（比较发送与接收信号）。&lt;/li&gt;
 &lt;li&gt;检测到冲突后立即中止传输，减少信道浪费。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/03-csma-cd.png&quot; alt=&quot;CSMA/CD 发送流程&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/03-csma-cd.webp&quot; alt=&quot;CSMA/CD 发送流程&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1-坚持 CSMA/CD&lt;/strong&gt;：链路忙转闲时以概率 1 立即发送（p-坚持的特例）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;指数回退&lt;/strong&gt;：第 k 次冲突后，从 ${0,1,\dots,2^k-1}\times512$ bit 时间中等概率随机选择等待时间。
@@ -1537,7 +1537,7 @@
 &lt;/li&gt;
 &lt;li&gt;帧传输采用&lt;strong&gt;停止等待&lt;/strong&gt;：每发一帧都要等 ACK。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/04-csma-ca.png&quot; alt=&quot;CSMA/CA 发送流程&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/04-csma-ca.webp&quot; alt=&quot;CSMA/CA 发送流程&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;接收方：若帧校验无错，等待 &lt;strong&gt;SIFS&lt;/strong&gt; 后回复 ACK。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;DIFS&lt;/strong&gt;：分布式帧间间隔；&lt;strong&gt;SIFS&lt;/strong&gt;：短帧间间隔（SIFS &amp;lt; DIFS，保证 ACK 优先）。&lt;/li&gt;
@@ -1635,7 +1635,7 @@
 &lt;li&gt;为提高可靠性额外部署网桥会形成环路，导致：帧无限循环、广播风暴、MAC 地址漂移。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;生成树算法&lt;/strong&gt;：在保留连通性的前提下删除环路，使任意两节点之间只有一条路径。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/05-spanning-tree.png&quot; alt=&quot;有环拓扑与生成树对比&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/05-spanning-tree.webp&quot; alt=&quot;有环拓扑与生成树对比&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;生成树要点：
 &lt;ul&gt;
@@ -2235,7 +2235,7 @@ else
 &lt;li&gt;私有地址块：10.0.0.0/8、172.16.0.0/12、192.168.0.0/16。&lt;/li&gt;
 &lt;li&gt;NAT 路由器把“私有 IP + 端口”映射为“公网 IP + 端口”，维护 NAT 表。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/06-nat.png&quot; alt=&quot;NAT 地址转换过程&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/06-nat.webp&quot; alt=&quot;NAT 地址转换过程&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;出方向：替换源 IP/端口；入方向：根据 NAT 表替换目的 IP/端口。&lt;/li&gt;
 &lt;li&gt;问题：外网主机不能直接访问 NAT 后的服务器（地址不可见）。
@@ -2372,7 +2372,7 @@ while (M != N):
 &lt;li&gt;临时表空时结束，证实表即路由表。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;例：&lt;/strong&gt; 拓扑 A—B（5）、A—C（10）、B—C（3）、B—D（11）、C—D（2），以 D 为源：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/07-routing-graph.png&quot; alt=&quot;距离向量路由示例拓扑&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/07-routing-graph.webp&quot; alt=&quot;距离向量路由示例拓扑&quot; /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -2986,14 +2986,14 @@ while (M != N):
 &lt;li&gt;从主动连接方看，&lt;code&gt;&amp;lt;目的 IP, 协议, 端口&amp;gt;&lt;/code&gt; 对应 Socket API 中的 socket。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;4.3.4 三次握手（连接建立）&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/08-tcp-handshake.png&quot; alt=&quot;TCP 三次握手时序图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/08-tcp-handshake.webp&quot; alt=&quot;TCP 三次握手时序图&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;共交换三个报文段，双方把各自初始字节序号（随机生成）告知对方。&lt;/li&gt;
 &lt;li&gt;第三次握手的 ACK 可以携带客户机到服务器的数据。&lt;/li&gt;
 &lt;li&gt;为什么需要三次：确认双方“发送能力”和“接收能力”都正常，并同步初始序号。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;4.3.5 四次挥手（连接释放）&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/09-tcp-four-way-close.png&quot; alt=&quot;TCP 四次挥手指序图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/09-tcp-four-way-close.webp&quot; alt=&quot;TCP 四次挥手时序图&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP 连接是全双工的，两个方向需要分别终止，因此需要两轮握手、共四个报文段。&lt;/li&gt;
 &lt;li&gt;FIN 报文段在序号空间中占用一个单位，因此确认号为 x+1、y+1。&lt;/li&gt;
@@ -3059,21 +3059,7 @@ while (M != N):
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;pre&gt;&lt;code&gt;stateDiagram-v2
-    [*] --&amp;gt; CLOSED
-    CLOSED --&amp;gt; LISTEN: 被动打开
-    CLOSED --&amp;gt; SYN_SENT: 主动打开/发 SYN
-    LISTEN --&amp;gt; SYN_RCVD: 收 SYN/发 SYNACK
-    SYN_SENT --&amp;gt; ESTABLISHED: 收 SYNACK/发 ACK
-    SYN_RCVD --&amp;gt; ESTABLISHED: 收 ACK
-    ESTABLISHED --&amp;gt; FIN_WAIT_1: 关闭/发 FIN
-    ESTABLISHED --&amp;gt; CLOSE_WAIT: 收 FIN/发 ACK
-    FIN_WAIT_1 --&amp;gt; FIN_WAIT_2: 收 ACK
-    FIN_WAIT_2 --&amp;gt; TIME_WAIT: 收 FIN/发 ACK
-    CLOSE_WAIT --&amp;gt; LAST_ACK: 关闭/发 FIN
-    LAST_ACK --&amp;gt; CLOSED: 收 ACK
-    TIME_WAIT --&amp;gt; CLOSED: 2MSL 超时
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/14-tcp-state-machine.webp&quot; alt=&quot;TCP 状态转换图&quot; /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;同时关闭时还会经过 CLOSING 状态；图中只画主要路径，便于记忆。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -3442,8 +3428,8 @@ cwnd
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h4&gt;5.2.3 迭代查询与递归查询&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/10-dns-iterative.png&quot; alt=&quot;DNS 迭代查询时序图&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/11-dns-recursive.png&quot; alt=&quot;DNS 递归查询时序图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/10-dns-iterative.webp&quot; alt=&quot;DNS 迭代查询时序图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/11-dns-recursive.webp&quot; alt=&quot;DNS 递归查询时序图&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;迭代式：被查询服务器只返回“下一步该问谁”，由本地 DNS 继续查询。&lt;/li&gt;
 &lt;li&gt;递归式：被查询服务器代为完成后续查询，最终返回结果；对服务器负担更重。&lt;/li&gt;
@@ -3520,8 +3506,8 @@ cwnd
 &lt;li&gt;浏览器可打开多个并行 TCP 连接，并行获取引用对象。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;坚持式 HTTP&lt;/strong&gt;：服务器发送响应后保持连接；客户机获知引用对象后立即发送请求；所有引用对象只需 1 个 RTT（流水线方式）。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/12-http-nonpersistent.png&quot; alt=&quot;HTTP 非坚持式时序图&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/13-http-persistent.png&quot; alt=&quot;HTTP 坚持式与流水线时序图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/12-http-nonpersistent.webp&quot; alt=&quot;HTTP 非坚持式时序图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/13-http-persistent.webp&quot; alt=&quot;HTTP 坚持式与流水线时序图&quot; /&gt;&lt;/p&gt;
 &lt;h4&gt;5.3.4 HTTP 消息&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;请求消息（ASCII，可读）：&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;GET /index.html HTTP/1.1
