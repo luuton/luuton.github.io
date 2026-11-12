@@ -42,7 +42,7 @@
 &lt;p&gt;依据：&lt;code&gt;netun2026/教学要求及考试说明-2026.pdf&lt;/code&gt;，并整合 &lt;code&gt;netun2026/&lt;/code&gt; 下 0–14 讲课件、习题课与作业答案。
 用途：期末复习提纲。文中“了解 / 理解 / 掌握”沿用考试说明的三级要求。
 阅读建议：先看第 0 章掌握考试要求，再按五大部分过知识点，最后用第 6 章计算专题和第 7 章对比表自测。
-图表说明：本文档中的流程图、时序图与状态转换图均由 MATLAB 绘制（源码见 &lt;code&gt;scripts/matlab/redraw_computer_network_diagrams.m&lt;/code&gt;，图片位于 &lt;code&gt;public/images/computer-network/&lt;/code&gt;，已统一转换为 WebP 格式以减小体积）；公式使用 LaTeX 语法。&lt;/p&gt;
+图表说明：本文档中的流程图、时序图、状态转换图与 cwnd 曲线图均由 MATLAB 绘制（源码见 &lt;code&gt;scripts/matlab/redraw_computer_network_diagrams.m&lt;/code&gt;，图片位于 &lt;code&gt;public/images/computer-network/&lt;/code&gt;，已统一转换为 WebP 格式以减小体积）；公式使用 LaTeX 语法。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;h2&gt;目录&lt;/h2&gt;
@@ -3232,18 +3232,10 @@ else:
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;TCP Reno&lt;/strong&gt;：集成 AIMD、慢启动、拥塞避免、快速重传、快速恢复。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;其它扩展&lt;/strong&gt;：TCP SACK、ECN、TCP Vegas（基于时延）、CUBIC、Westwood+、Compound TCP 等。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cwnd 变化示意（超时 vs 3 个重复 ACK）：
-
-cwnd
- 24 |        /\
- 20 |       /  \      /\
- 16 |      /    \    /  \
- 12 |     /      \  /    \
-  8 |    /        \/      \
-  4 |   /
-  0 +--------------------------&amp;gt; 时间/RTT
-      慢启动  拥塞避免  快速恢复  拥塞避免
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/computer-network/15-cwnd-congestion-control.webp&quot; alt=&quot;cwnd 变化示意：超时 vs 3 个重复 ACK&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;第 12 回合检测到拥塞后：&lt;strong&gt;超时&lt;/strong&gt;使 &lt;code&gt;ssthresh=8、cwnd=1&lt;/code&gt;，重新慢启动；&lt;strong&gt;3 个重复 ACK&lt;/strong&gt; 只把 &lt;code&gt;cwnd&lt;/code&gt; 减半到 8，随后进入快速恢复与拥塞避免。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2&gt;5. 第五部分 应用层&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对应课件：&lt;code&gt;13-App.pdf&lt;/code&gt;、&lt;code&gt;14-Summ.pdf&lt;/code&gt;&lt;/p&gt;
