@@ -1,13 +1,14 @@
 import { existsSync, readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { fallbackAnime } from "../data/anime-fallback";
 import type { AnimeItem, AnimeStatus } from "../types/anime";
 
 export const BANGUMI_FEED_URL =
 	"https://bgm.tv/feed/user/luuton/interests";
 
-const CACHE_PATH = fileURLToPath(
-	new URL("../data/bangumi-feed.xml", import.meta.url),
+const CACHE_PATH = path.resolve(
+	process.cwd(),
+	"src/data/bangumi-feed.xml",
 );
 
 const USER_AGENT =
