@@ -12,7 +12,7 @@ for i=1:2:numel(varargin)
   end
 end
 p=[x y+hh/2; x+w/2 y; x y-hh/2; x-w/2 y];
-patch(ax,p(:,1),p(:,2),fc,'EdgeColor',ec,'LineWidth',lw);
+patch(ax,p(:,1),p(:,2),fc,'EdgeColor',ec,'LineWidth',lw,'LineJoin','round');
 h=text(ax,x,y,str,'HorizontalAlignment','center','VerticalAlignment','middle', ...
   'FontName','Microsoft YaHei','FontSize',fs,'Color',tc);
 end
