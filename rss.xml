@@ -132,24 +132,7 @@
 &lt;/table&gt;
 &lt;hr /&gt;
 &lt;h3&gt;A.2　全课程主线（一张图记住整门课）&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;        ┌───────────── 第1章：信号是什么、怎么用（调制/解调/解析信号）
-        │
-连续信号 xa(t) ──理想取样(第2章 §2.6)──► 序列 x(n) ──LSI系统 h(n)──► y(n)
-        ▲                                   │
-        │                                   ├─ 时域：卷积和  y = x * h
-        │                                   ├─ 频域：DTFT    Y = X·H   （§2.5）
-   重建/内插                                 ├─ z 域：Z变换   Y = X·H   （§2.7）
-   （取样定理）                              └─ 有限长：DFT/FFT         （第3章）
-                                                                         │
-                                    ┌────────────────────────────────────┘
-                                    ▼
-                     第4章：用上面的工具设计滤波器 H(z)
-                     IIR：模拟原型 + 冲激响应不变 / 双线性变换
-                     FIR：窗函数法 / 频率取样法
-                                    │
-                                    ▼
-                     第5、7章：输入是随机信号时怎么描述、怎么估计功率谱
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/course-map.svg&quot; alt=&quot;全课程主线：连续信号经理想取样成序列，再经 LSI 系统，用四种变换分析，最后设计 IIR/FIR 滤波器；输入为随机信号时用第 5、7 章的功率谱估计&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;四个变换的关系（考试必问）&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1941,12 +1924,7 @@ $$&lt;/p&gt;
 X(k)=X_1(k)+W_N^{k}X_2(k),\qquad X\Big(k+\frac N2\Big)=X_1(k)-W_N^{k}X_2(k),\qquad k=0,\dots,\tfrac N2-1
 $$&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;蝶形运算&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;       ┌──────┐
-x1 ───►│      ├───► x1 + W·x2
-       │  ⊕   │
-x2 ──►W│      ├───► x1 - W·x2
-       └──────┘
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/fft-butterfly.svg&quot; alt=&quot;基 2 蝶形运算：x₁ 以增益 1 送往两路，x₂ 以增益 W 与 −W 分别送往两路&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;一次蝶形 = 1 次复数乘 + 2 次复数加。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;运算量&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;$$
@@ -4081,24 +4059,11 @@ y(n)=x(n)+\frac34 y(n-1)-\frac18 y(n-2)
 $$&lt;/p&gt;
 &lt;p&gt;需要两个单位延迟 $z^{-1}$、两个系数乘法器（$3/4$、$-1/8$）与一个加法器。&lt;/p&gt;
 &lt;h5&gt;(1) 方框图&lt;/h5&gt;
-&lt;pre&gt;&lt;code&gt;                         ┌────────┐            ┌────────┐
-             ┌──────────►│  z⁻¹   ├───────────►│  z⁻¹   ├───────────┐
-             │           └────────┘            └────────┘           │
-             │             y(n-1)                 y(n-2)            │
-             │               │                      │              │
-             │            ┌──┴───┐              ┌───┴────┐          │
-             │            │ ×3/4 │              │ ×(−1/8)│          │
-             │            └──┬───┘              └───┬────┘          │
-             │               └──────────┬───────────┘               │
-             │                          ▼                           │
-  x(n) ─────►⊕───────────────────────── Σ ◄─────────────────────────┘
-             │
-             ▼
-            y(n)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-1-block.svg&quot; alt=&quot;习题 4.1 方框图：上链为 x(n) 及前馈抽头，下链为 y(n) 反馈链，两路汇入右侧求和器&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;其中 $\Sigma$ 为求和器：$x(n)$ 与两条反馈支路在同一个求和节点相加，得到 $y(n)$。&lt;/p&gt;
 &lt;h5&gt;(2) 信号流图&lt;/h5&gt;
-&lt;p&gt;信号流图把每个信号量画成&lt;strong&gt;节点&lt;/strong&gt;、每个运算画成&lt;strong&gt;有向支路&lt;/strong&gt;，支路增益标在线上：&lt;/p&gt;
+&lt;p&gt;信号流图把每个信号量画成&lt;strong&gt;节点&lt;/strong&gt;、每个运算画成&lt;strong&gt;有向支路&lt;/strong&gt;，支路增益标在线上。
+注意这里没有单独的求和器：节点本身完成相加，所以 $y(n)$ 节点就是汇点。&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -4109,37 +4074,33 @@ $$&lt;/p&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;$x(n)$ 节点&lt;/td&gt;
-&lt;td&gt;汇点 $\Sigma$&lt;/td&gt;
+&lt;td&gt;$x(n)$&lt;/td&gt;
+&lt;td&gt;$y(n)$&lt;/td&gt;
 &lt;td&gt;$1$&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;$y(n)$ 节点&lt;/td&gt;
-&lt;td&gt;$y(n-1)$ 节点&lt;/td&gt;
+&lt;td&gt;$y(n)$&lt;/td&gt;
+&lt;td&gt;$y(n-1)$&lt;/td&gt;
 &lt;td&gt;$z^{-1}$&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;$y(n-1)$ 节点&lt;/td&gt;
-&lt;td&gt;$y(n-2)$ 节点&lt;/td&gt;
+&lt;td&gt;$y(n-1)$&lt;/td&gt;
+&lt;td&gt;$y(n-2)$&lt;/td&gt;
 &lt;td&gt;$z^{-1}$&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;$y(n-1)$ 节点&lt;/td&gt;
-&lt;td&gt;汇点 $\Sigma$&lt;/td&gt;
+&lt;td&gt;$y(n-1)$&lt;/td&gt;
+&lt;td&gt;$y(n)$&lt;/td&gt;
 &lt;td&gt;$3/4$&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;$y(n-2)$ 节点&lt;/td&gt;
-&lt;td&gt;汇点 $\Sigma$&lt;/td&gt;
+&lt;td&gt;$y(n-2)$&lt;/td&gt;
+&lt;td&gt;$y(n)$&lt;/td&gt;
 &lt;td&gt;$-1/8$&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;pre&gt;&lt;code&gt;                    3/4                                  -1/8
-   x(n) ──►Ⓞ────────────►Ⓞ───────────►Ⓞ───────────►Ⓞ────────►Ⓞ y(n)
-                     ▲ z⁻¹             ▲ z⁻¹          ▲
-                     └──────────────────┴──────────────┘
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-1-sfg.svg&quot; alt=&quot;习题 4.1 信号流图：节点即信号，y(n-1)、y(n-2) 分别以增益 3/4、−1/8 反馈回 y(n)&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：这是二阶 IIR 系统，直接实现需 2 个延迟单元。&lt;/p&gt;
 &lt;p&gt;$$
 H(z)=\frac{1}{1-\dfrac34 z^{-1}+\dfrac18 z^{-2}}
@@ -4157,44 +4118,19 @@ H(z)=\frac{1+\dfrac13 z^{-1}}{1-\dfrac34 z^{-1}+\dfrac18 z^{-2}}
 =\frac{1+\dfrac13 z^{-1}}{\left(1-\dfrac12 z^{-1}\right)\left(1-\dfrac14 z^{-1}\right)}
 $$&lt;/p&gt;
 &lt;h5&gt;(1) 直接 Ⅰ 型&lt;/h5&gt;
-&lt;p&gt;输入、输出&lt;strong&gt;各用一条延迟链&lt;/strong&gt;，共 $2+2=4$ 个延迟单元。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  x(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┐
-       │        │        │
-       │      x(n-1)   x(n-2)
-       │        │        │
-       └────────┴────────┴────► Σ ──► y(n)
-                              ▲
-  y(n)─┬─►[z⁻¹]─┬─►[z⁻¹]──────┘
-     y(n-1)   y(n-2)
-       │        │
-      ×3/4    ×(−1/8)
-       └────────┴──────────────► Σ（与 x(n)、x(n-1)/3 相加）
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输入、输出&lt;strong&gt;各用一条延迟链&lt;/strong&gt;：$x$ 链 $M=1$ 级、$y$ 链 $N=2$ 级，共 $M+N=3$ 个延迟单元。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-3-direct1.svg&quot; alt=&quot;习题 4.3 直接 Ⅰ 型：x 链 1 级、y 链 2 级，共 3 个延迟单元，抽头全部汇入右侧求和器&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;即 $x(n)$ 经 $1$、$\frac13$ 两条前向支路，$y(n)$ 经 $\frac34$、$-\frac18$ 两条反馈支路，
 四路在同一个求和器相加。&lt;/p&gt;
 &lt;p&gt;$$
 y(n)=x(n)+\tfrac13 x(n-1)+\tfrac34 y(n-1)-\tfrac18 y(n-2)
 $$&lt;/p&gt;
 &lt;h5&gt;(2) 直接 Ⅱ 型（规范型）&lt;/h5&gt;
-&lt;p&gt;只保留&lt;strong&gt;一条&lt;/strong&gt;延迟链（中间变量 $w(n)$），共 &lt;strong&gt;2 个延迟单元&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;只保留&lt;strong&gt;一条&lt;/strong&gt;延迟链（中间变量 $w(n)$），$\max(M,N)=$ &lt;strong&gt;2 个延迟单元&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;$$
 w(n)=x(n)+\tfrac34 w(n-1)-\tfrac18 w(n-2),\qquad y(n)=w(n)+\tfrac13 w(n-1)
 $$&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;                        ┌──────┐             ┌──────┐
-              ┌─────────┤ z⁻¹  ├──────┬──────┤ z⁻¹  ├────────┐
-              │         └──────┘      │      └──────┘        │
-              │           w(n-1)      │        w(n-2)       │
-              │             │         │          │          │
-              │           ×3/4        │        ×(−1/8)      │
-              │             │         │          │          │
-  x(n)───►( Σ )──► w(n) ────┴─────────┴──────────┴──────────┘
-             ▲                         （三条反馈支路）
-             └────────────────────────────────────────────────
-             
-  w(n)──►×1────┐
-               ├──►( + )──► y(n)
-  w(n-1)──►×1/3┘
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-3-direct2.svg&quot; alt=&quot;习题 4.3 直接 Ⅱ 型：一条 w(n) 延迟链，反馈在左侧求和点、输出 1 与 1/3 在右上求和&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;即一条延迟链同时承担前向与反馈的存储，这是&lt;strong&gt;规范型&lt;/strong&gt;（延迟单元最少）的结构。&lt;/p&gt;
 &lt;h5&gt;(3) 级联型（两个一阶节）&lt;/h5&gt;
 &lt;p&gt;$$
@@ -4207,20 +4143,14 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 w(n)=x(n)+\tfrac13x(n-1)+\tfrac12w(n-1),\qquad y(n)=w(n)+\tfrac14y(n-1)
 $$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-3-cascade.svg&quot; alt=&quot;习题 4.3 级联型：H₁(z)=(1+z⁻¹/3)/(1−z⁻¹/2) 与 H₂(z)=1/(1−z⁻¹/4) 串联&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;级联形式&lt;strong&gt;便于零极点单独调节&lt;/strong&gt;（分子零点 $-1/3$ 与 $H_1$ 的极点 $1/2$ 配在一节）。&lt;/p&gt;
 &lt;h5&gt;(4) 并联型（部分分式）&lt;/h5&gt;
 &lt;p&gt;$$
 \frac{1+\frac13z^{-1}}{\left(1-\frac12z^{-1}\right)\left(1-\frac14z^{-1}\right)}
 =\frac{10/3}{1-\frac12z^{-1}}-\frac{7/3}{1-\frac14z^{-1}}
 $$&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;                ┌──────────────────────┐
-         ┌─────►│ (10/3)/(1−½z⁻¹)      ├─────┐
-         │      └──────────────────────┘     ▼
-  x(n)───┤                                  (+)───► y(n)
-         │      ┌──────────────────────┐     ▲
-         └─────►│ (−7/3)/(1−¼z⁻¹)      ├─────┘
-                └──────────────────────┘
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-3-parallel.svg&quot; alt=&quot;习题 4.3 并联型：两支路 (10/3)/(1−z⁻¹/2) 与 (−7/3)/(1−z⁻¹/4) 并联后相加&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;$$
 y(n)=\tfrac{10}{3}w_1(n)-\tfrac73w_2(n),\quad
 w_1(n)=x(n)+\tfrac12w_1(n-1),\quad w_2(n)=x(n)+\tfrac14w_2(n-1)
@@ -4245,36 +4175,20 @@ $$&lt;/p&gt;
 y(n)=-3y(n-1)-3y(n-2)-y(n-3)-5x(n)+2x(n-1)-0.5x(n-2)
 $$&lt;/p&gt;
 &lt;h5&gt;(1) 直接 Ⅰ 型&lt;/h5&gt;
-&lt;p&gt;输入、输出&lt;strong&gt;各用一条 3 级延迟链&lt;/strong&gt; ⇒ 共 &lt;strong&gt;6 个延迟单元&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;输入、输出&lt;strong&gt;各用一条延迟链&lt;/strong&gt;（$x$ 链 $M=2$ 级、$y$ 链 $N=3$ 级）⇒ 共 $M+N=$ &lt;strong&gt;5 个延迟单元&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;$$
 y(n)=-5x(n)+2x(n-1)-0.5x(n-2)-3y(n-1)-3y(n-2)-y(n-3)
 $$&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; x(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┬─►[z⁻¹]─┐
-      │        │        │        │
-     ×(−5)    ×2      ×(−0.5)    │
-      │        │        │        │
-      └────────┴────────┴────────┼──► Σ ──► y(n)
-                                 │      ▲
- y(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┬─►[z⁻¹]─┘      │
-     ×(−3)   ×(−3)    ×(−1)─────────────┘
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-4-direct1.svg&quot; alt=&quot;习题 4.4 直接 Ⅰ 型：x 链 2 级、y 链 3 级，共 5 个延迟单元&quot; /&gt;&lt;/p&gt;
 &lt;h5&gt;(2) 直接 Ⅱ 型（规范型）&lt;/h5&gt;
-&lt;p&gt;只留&lt;strong&gt;一条&lt;/strong&gt; 3 级延迟链 $w(n)$ ⇒ &lt;strong&gt;3 个延迟单元&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;只留&lt;strong&gt;一条&lt;/strong&gt; 3 级延迟链 $w(n)$ ⇒ $\max(M,N)=$ &lt;strong&gt;3 个延迟单元&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;$$
 w(n)=x(n)-3w(n-1)-3w(n-2)-w(n-3)
 $$
 $$
 y(n)=-5w(n)+2w(n-1)-0.5w(n-2)
 $$&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  x(n)─►Σ─►w(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┬─►[z⁻¹]─┐
-         ▲      │        │        │        │
-       ×(−3)   ×(−3)    ×(−3)    ×(−1)     │
-         │      │        │        │        │
-         └──────┴────────┴────────┴────────┘
-  
-  w(n)─×(−5)─┐   w(n-1)─×2─┐   w(n-2)─×(−0.5)─┐
-             └───────► (+) ◄───────────────────┘ ──► y(n)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/struct/struct-4-4-direct2.svg&quot; alt=&quot;习题 4.4 直接 Ⅱ 型：一条 3 级 w(n) 延迟链，反馈三个系数、输出三个系数&quot; /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;复核&lt;/strong&gt;：直接型 $h={-5,\ 17,\ -36.5,\ 63.5,\ -98,\ 140,\ -189.5,\ 246.5}$；
 用并联展开 $H=\dfrac{-0.5}{1+z^{-1}}+\dfrac{3}{(1+z^{-1})^{2}}-\dfrac{7.5}{(1+z^{-1})^{3}}$
