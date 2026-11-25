@@ -10,8 +10,8 @@
   * 抽头先竖直离开链、再水平汇入母线；前馈抽头越靠左层越高，
     反馈抽头越靠左层越低 —— 两组各占母线一半高度，永不交叉。
 """
-from build import (node, branch, label, gain, box, adder, fig,
-                   STEP, NODE_R, ADD_R, BOX_W, FS_GAIN)
+from build import (node, branch, label, gain, box, adder, fig, hollow_node,
+                   cross_node, STEP, NODE_R, ADD_R, BOX_W, FS_GAIN)
 
 Y_A, Y_B = 0.0, 2.40        # 上链 / 下链
 BUS_TOP, BUS_BOT, Y_M = 0.30, 2.10, 1.20
@@ -297,6 +297,125 @@ def fig_course_map(name):
 
 
 
+def fig_pzmap(name):
+    """零极点图：单位圆、±2 两个圆外零点、3/4 与 −1/2 两个圆内极点，
+    以及 Hmin 在 −1/2 处的零点（与极点相消）。"""
+    import math
+    items = []
+    circ = [(math.cos(t), math.sin(t)) for t in
+            [i * math.pi / 36 for i in range(73)]]
+    items.append({"k": "branch", "pts": [[round(x, 4), round(y, 4)] for x, y in circ],
+                  "arrow": False, "arc": True})
+    items.append(branch([(-1.55, 0), (2.50, 0)], arrow=False, cross_ok=True))
+    items.append(branch([(0, -1.50), (0, 1.30)], arrow=False, cross_ok=True))
+    items.append(label("{i:Re}", 2.56, 0.14, 0.130, "start"))
+    items.append(label("{i:Im}", 0.10, 1.40, 0.130, "start"))
+
+    # 零点（空心圆）：标签放在点的「外侧」，避开坐标轴
+    items.append(hollow_node(-2.0, 0)); items.append(label("{i:z}=−2", -2.10, 0.22, 0.120, "end"))
+    items.append(hollow_node(2.0, 0));  items.append(label("{i:z}=2", 2.10, 0.22, 0.120, "start"))
+    items.append(hollow_node(0.5, 0));  items.append(label("{i:z}=1/2", 0.60, -0.22, 0.120, "start"))
+    # 极点（×）
+    items.append(cross_node(0.75, 0));  items.append(label("{i:z}=3/4", 0.85, 0.22, 0.120, "start"))
+    items.append(cross_node(-0.5, 0));  items.append(label("{i:z}=−1/2", -0.60, 0.22, 0.120, "end"))
+    # Hmin 的零点（与极点同址，画成稍大的双圈）
+    items.append(hollow_node(-0.5, 0, 0.095))
+    items.append(label("{i:H}_{min} 零点与极点相消", -0.62, -0.30, 0.112, "end"))
+    items.append(label("单位圆 |{i:z}|=1", 0.74, 0.84, 0.112, "start"))
+    return fig(name, items, pad=0.26)
+
+
+def fig_fir_direct(name, h, label_fmt="h_{i:%d}"):
+    """FIR 直接型（横截型）：一条延迟链，每个抽头乘系数后汇入求和母线。
+
+    h 为系数列表（字符串，可为分数）。系数为 0 的抽头仍画出（框内写 0），
+    与教材「先画全 9 个抽头，再说明对称可省乘法器」的讲法一致。
+    """
+    n = len(h)
+    step = 0.92
+    xs = [1.15 + i * step for i in range(n)]
+    y = 0.0
+    y_bus = y + 1.95                     # 求和母线在链下方
+    x_bus = xs[-1] + 1.00
+
+    items = [branch([(xs[0] - 0.85, y), (xs[0] - NODE_R, y)])]
+    items.append(label("{i:x}(n)", xs[0] - 0.95, y + 0.06, 0.135, "end"))
+    for i, x in enumerate(xs):
+        items.append(node(x, y))
+        if i:
+            cx = (xs[i - 1] + x) / 2
+            items.append(box(cx, y, ["{i:z}^{-1}"], w=0.56, h=0.42, size=0.130))
+            items.append(branch([(xs[i - 1], y), (cx - 0.28, y)], arrow=False))
+            items.append(branch([(cx + 0.28, y), (x, y)], arrow=False))
+        # 抽头向下：乘法器，再进母线
+        items.append(branch([(x, y + NODE_R), (x, y_bus - 0.56)], arrow=False))
+        items.append(box(x, y_bus - 0.36, [h[i]], w=0.72, h=0.36, size=0.115))
+        items.append(branch([(x, y_bus - 0.18), (x, y_bus)], arrow=False))
+        items.append(label("h_{i:%d}" % i, x, y_bus + 0.26, 0.098))
+
+    items.append(branch([(xs[0], y_bus), (xs[-1], y_bus)], arrow=False))
+    items.append(branch([(xs[-1], y_bus), (x_bus, y_bus)], arrow=False))
+    items.append(adder(x_bus, y_bus, 0.22))
+    items.append(branch([(x_bus, y_bus), (x_bus + 0.75, y_bus)]))
+    items.append(label("{i:y}(n)", x_bus + 0.82, y_bus + 0.06, 0.135, "start"))
+    return fig(name, items, pad=0.22)
+
+
+def fig_magspec(name, rows=True):
+    """三点序列的幅频 / 相频示意：|X|=4cos^2(w/2)，∠X=-5w（主值折叠）。
+
+    默认上下排列（两行），使图窄而高，在窄栏位里字号仍然可读。
+    本工程 y 轴向下，故「向上为正」需取负 y。
+    """
+    import math
+    items = []
+    W = 3.40
+
+    def axes(x0, y0, title, top_label, bot_label):
+        its = [branch([(x0, y0), (x0 + W, y0)], arrow=True),
+               branch([(x0, y0), (x0, y0 - 1.75)], arrow=True)]
+        its.append(label("{i:\u03c9}", x0 + W + 0.08, y0 + 0.06, 0.130, "start"))
+        its.append(label(title, x0 + W / 2, y0 - 2.10, 0.125))
+        for k, tick in enumerate(["0", "{i:\u03c0}/2", "{i:\u03c0}"]):
+            xx = x0 + k * W / 2
+            its.append(branch([(xx, y0), (xx, y0 + 0.07)], arrow=False))
+            its.append(label(tick, xx, y0 + 0.26, 0.115))
+        its.append(label(top_label, x0 - 0.16, y0 - 1.70, 0.120, "end"))
+        its.append(label(bot_label, x0 - 0.16, y0 + 0.24, 0.120, "end"))
+        return its
+
+    gap = 0.55 if rows else 0.0
+    xL = 0.95
+    yL = 0.0
+    items += axes(xL, yL, "|{i:X}({i:e}^{{i:j\u03c9}})|", "4", "0")
+    pts = [(xL + W * i / 48, -1.55 * math.cos(math.pi * i / 96) ** 2) for i in range(49)]
+    items.append({"k": "branch", "pts": [[round(x, 4), round(y, 4)] for x, y in pts],
+                  "arrow": False, "arc": True})
+
+    yR = yL + gap + (2.05 if rows else 0.0)
+    xR = xL if rows else xL + W + 2.55
+    items += axes(xR, yR, "∠{i:X}({i:e}^{{i:j\u03c9}})", "\u03c0", "\u2212\u03c0")
+    seg, prev = [], None
+    for i in range(49):
+        w = math.pi * i / 48
+        ph = (w * -5 + math.pi) % (2 * math.pi) - math.pi
+        y = yR - 1.35 * ph / math.pi
+        x = xR + W * i / 48
+        if prev is not None and abs(y - prev) > 1.0:
+            if len(seg) > 1:
+                items.append({"k": "branch",
+                              "pts": [[round(a, 4), round(b, 4)] for a, b in seg],
+                              "arrow": False, "arc": True})
+            seg = []
+        seg.append((x, y))
+        prev = y
+    if len(seg) > 1:
+        items.append({"k": "branch", "pts": [[round(a, 4), round(b, 4)] for a, b in seg],
+                      "arrow": False, "arc": True})
+    items.append(label("斜率 −5（每段）", xR + 0.30, yR - 1.62, 0.112, "start"))
+    return fig(name, items, pad=0.28, pad_top=0.30)
+
+
 FIGURES = [
     block_direct1("struct-4-1-block", a=["3/4", "-1/8"], b=["1"]),
     sfg_direct("struct-4-1-sfg", a=["3/4", "-1/8"]),
@@ -311,6 +430,10 @@ FIGURES = [
     block_direct2("struct-4-4-direct2", a=["-3", "-3", "-1"], b=["-5", "2", "-0.5"]),
     fig_butterfly("fft-butterfly"),
     fig_course_map("course-map"),
+    fig_pzmap("fir-pzmap"),
+    fig_magspec("dtft-mag-phase"),
+    fig_fir_direct("lp-fir-type1",
+                   h=["1/25", "0", "1/25", "13/40", "0", "13/40", "1/25", "0", "1/25"]),
 ]
 
 

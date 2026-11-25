@@ -7,7 +7,7 @@ from pathlib import Path
 def segs(fig):
     out = []
     for it in fig["items"]:
-        if it["k"] != "branch":
+        if it["k"] != "branch" or it.get("arc") or it.get("cross_ok"):
             continue
         pts = it["pts"]
         for a, b in zip(pts, pts[1:]):
@@ -52,7 +52,9 @@ def main():
         issues = []
         for a, b in segs_:
             if abs(a[0] - b[0]) > 1e-9 and abs(a[1] - b[1]) > 1e-9:
-                issues.append("斜线 %s-%s" % (a, b))
+                short = abs(a[0] - b[0]) < 0.06 and abs(a[1] - b[1]) < 0.06
+                if not short:
+                    issues.append("斜线 %s-%s" % (a, b))
         for i in range(len(segs_)):
             for j in range(i + 1, len(segs_)):
                 if prop_cross(*segs_[i], *segs_[j]):
@@ -63,7 +65,8 @@ def main():
             x, y = it["xy"]
             for a, b in segs_:
                 if on_seg((x, y + 0.02), a, b):
-                    issues.append("文字压线 %r @%s" % (it["s"], (round(x, 2), round(y, 2))))
+                    txt = "".join(r["t"] for r in it.get("runs", []))
+                    issues.append("文字压线 %r @%s" % (txt, (round(x, 2), round(y, 2))))
                     break
         boxes = [(it["c"], it["wh"]) for it in fig["items"] if it["k"] == "box"]
         for i in range(len(boxes)):

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1067" height="663" viewBox="-2.607 -1.76 5.557 3.452">
+<defs><marker id="a" viewBox="0 0 12 12" refX="10.4" refY="6" markerWidth="0.155" markerHeight="0.082" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0,1.3 L 12,6 L 0,10.7 Z" fill="#000000"/></marker></defs>
+<path d="M 1.000,0.000 L 0.996,0.087 L 0.985,0.174 L 0.966,0.259 L 0.940,0.342 L 0.906,0.423 L 0.866,0.500 L 0.819,0.574 L 0.766,0.643 L 0.707,0.707 L 0.643,0.766 L 0.574,0.819 L 0.500,0.866 L 0.423,0.906 L 0.342,0.940 L 0.259,0.966 L 0.174,0.985 L 0.087,0.996 L 0.000,1.000 L -0.087,0.996 L -0.174,0.985 L -0.259,0.966 L -0.342,0.940 L -0.423,0.906 L -0.500,0.866 L -0.574,0.819 L -0.643,0.766 L -0.707,0.707 L -0.766,0.643 L -0.819,0.574 L -0.866,0.500 L -0.906,0.423 L -0.940,0.342 L -0.966,0.259 L -0.985,0.174 L -0.996,0.087 L -1.000,0.000 L -0.996,-0.087 L -0.985,-0.174 L -0.966,-0.259 L -0.940,-0.342 L -0.906,-0.423 L -0.866,-0.500 L -0.819,-0.574 L -0.766,-0.643 L -0.707,-0.707 L -0.643,-0.766 L -0.574,-0.819 L -0.500,-0.866 L -0.423,-0.906 L -0.342,-0.940 L -0.259,-0.966 L -0.174,-0.985 L -0.087,-0.996 L -0.000,-1.000 L 0.087,-0.996 L 0.174,-0.985 L 0.259,-0.966 L 0.342,-0.940 L 0.423,-0.906 L 0.500,-0.866 L 0.574,-0.819 L 0.643,-0.766 L 0.707,-0.707 L 0.766,-0.643 L 0.819,-0.574 L 0.866,-0.500 L 0.906,-0.423 L 0.940,-0.342 L 0.966,-0.259 L 0.985,-0.174 L 0.996,-0.087 L 1.000,-0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M -1.550,0.000 L 2.500,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 0.000,-1.500 L 0.000,1.300" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<text x="2.560" y="0.140" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.130" fill="#000000" text-anchor="start"><tspan font-style="italic">Re</tspan></text>
+<text x="0.100" y="1.400" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.130" fill="#000000" text-anchor="start"><tspan font-style="italic">Im</tspan></text>
+<circle cx="-2.000" cy="0.000" r="0.075" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="-2.100" y="0.220" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.120" fill="#000000" text-anchor="end"><tspan font-style="italic">z</tspan>=−2</text>
+<circle cx="2.000" cy="0.000" r="0.075" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="2.100" y="0.220" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.120" fill="#000000" text-anchor="start"><tspan font-style="italic">z</tspan>=2</text>
+<circle cx="0.500" cy="0.000" r="0.075" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="0.600" y="-0.220" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.120" fill="#000000" text-anchor="start"><tspan font-style="italic">z</tspan>=1/2</text>
+<path d="M 0.672,-0.078 L 0.828,0.078 M 0.672,0.078 L 0.828,-0.078" stroke="#000000" stroke-width="0.017"/>
+<text x="0.850" y="0.220" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.120" fill="#000000" text-anchor="start"><tspan font-style="italic">z</tspan>=3/4</text>
+<path d="M -0.578,-0.078 L -0.422,0.078 M -0.578,0.078 L -0.422,-0.078" stroke="#000000" stroke-width="0.017"/>
+<text x="-0.600" y="0.220" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.120" fill="#000000" text-anchor="end"><tspan font-style="italic">z</tspan>=−1/2</text>
+<circle cx="-0.500" cy="0.000" r="0.095" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="-0.620" y="-0.300" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.112" fill="#000000" text-anchor="end"><tspan font-style="italic">H</tspan><tspan dy="0.20em" font-size="0.62em">min</tspan><tspan dy="-0.20em">​</tspan> 零点与极点相消</text>
+<text x="0.740" y="0.840" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.112" fill="#000000" text-anchor="start">单位圆 |<tspan font-style="italic">z</tspan>|=1</text>
+</svg>

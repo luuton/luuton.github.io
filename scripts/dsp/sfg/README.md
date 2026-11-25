@@ -64,3 +64,16 @@ cp out/*.svg ../../../public/images/dsp/struct/
 `draw_sfg.m` 保留完整实现，读取同一份 `figures.json`，在有 MATLAB 许可的机器上
 可直接生成 PNG。本机 MATLAB R2024b 因在线许可无法连接 MathWorks（错误 5201）
 而无法启动，所以实际出图走 SVG 后端；两者几何完全同源，互换不影响排版。
+
+## 6. 图形清单
+
+| 输出 | 内容 |
+|---|---|
+| `course-map.svg` | 全课程主线（取样 → LSI → 四种变换 → 两类滤波器 → 随机信号） |
+| `fft-butterfly.svg` | 基 2 蝶形运算 |
+| `struct-4-1-block/sfg.svg` | 习题 4.1 方框图、信号流图 |
+| `struct-4-3-*.svg` | 习题 4.3 直接 Ⅰ/Ⅱ、级联、并联 |
+| `struct-4-4-*.svg` | 习题 4.4 直接 Ⅰ/Ⅱ |
+| `fir-pzmap.svg` | 2024-解 1(a) 的零极点图（含单位圆、Hmin 零点相消） |
+| `dtft-mag-phase.svg` | 2024-解 2 的幅频/相频（主值折叠的 −5ω） |
+| `lp-fir-type1.svg` | 2025-四 的 9 抽头线性相位 FIR 直接型结构 |

@@ -80,6 +80,17 @@ def render(fig, unit):
                 out.append('<path d="M %.3f,%.3f L %.3f,%.3f" stroke="%s" '
                            'stroke-width="%.3f"/>'
                            % (cx - bw * 0.36, ry, cx + bw * 0.36, ry, INK, LW * 0.75))
+        elif k == "circle0":
+            x, y = it["xy"]
+            r = it.get("r", NODE_R * 1.25)
+            out.append('<circle cx="%.3f" cy="%.3f" r="%.3f" fill="none" stroke="%s" '
+                       'stroke-width="%.3f"/>' % (x, y, r, INK, LW))
+        elif k == "cross":
+            x, y = it["xy"]
+            s = it.get("r", NODE_R * 1.3)
+            out.append('<path d="M %.3f,%.3f L %.3f,%.3f M %.3f,%.3f L %.3f,%.3f" '
+                       'stroke="%s" stroke-width="%.3f"/>'
+                       % (x - s, y - s, x + s, y + s, x - s, y + s, x + s, y - s, INK, LW))
         elif k == "adder":
             cx, cy, r = it["c"][0], it["c"][1], it["r"]
             out.append('<circle cx="%.3f" cy="%.3f" r="%.3f" fill="none" stroke="%s" '

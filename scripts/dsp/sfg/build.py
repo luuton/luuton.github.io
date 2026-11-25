@@ -34,9 +34,13 @@ def node(x, y):
     return {"k": "node", "xy": [x, y]}
 
 
-def branch(pts, arrow=True):
-    return {"k": "branch", "pts": [[round(x, 4), round(y, 4)] for x, y in pts],
-            "arrow": arrow}
+def branch(pts, arrow=True, cross_ok=False):
+    """支路。cross_ok=True 表示该支路允许与其它支路交叉（无连接点的普通交叉）。"""
+    it = {"k": "branch", "pts": [[round(x, 4), round(y, 4)] for x, y in pts],
+          "arrow": arrow}
+    if cross_ok:
+        it["cross_ok"] = True
+    return it
 
 
 def runs(s):
@@ -76,6 +80,14 @@ def box(cx, cy, lines, w=BOX_W, h=BOX_H, size=FS_BOX):
     return {"k": "box", "c": [round(cx, 4), round(cy, 4)], "wh": [w, h],
             "lines": [runs(ln) for ln in lines], "size": size,
             "rule": 2 if len(lines) == 3 else None}
+
+
+def hollow_node(x, y, r=NODE_R * 1.25):
+    return {"k": "circle0", "xy": [round(x, 4), round(y, 4)], "r": r}
+
+
+def cross_node(x, y, s=NODE_R * 1.3):
+    return {"k": "cross", "xy": [round(x, 4), round(y, 4)], "r": s}
 
 
 def adder(cx, cy, r=ADD_R):
