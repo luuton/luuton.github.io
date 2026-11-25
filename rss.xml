@@ -41,8 +41,9 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;内容&lt;/strong&gt;：把课程总览、6 份分章知识点、3 份习题解答合并为&lt;strong&gt;一篇完整文章&lt;/strong&gt;，可按目录跳读，也可整体打印。
 &lt;strong&gt;资料来源&lt;/strong&gt;：课程讲义（第1章、第2章上/下、第3章、第4章、第5章、第7章）
-&lt;strong&gt;作业题来源&lt;/strong&gt;：第2章课件 P87 清单、第3章习题 + MATLAB 题、第4章课件 P243 清单、第5章课件作业
+&lt;strong&gt;作业题来源&lt;/strong&gt;：第2章课件 P87 清单、第3章习题 + MATLAB 题、第4章课件 P243 清单、第5章课件作业（题号一律用教材编号）
 &lt;strong&gt;真题来源&lt;/strong&gt;：&lt;code&gt;数字信号处理考试_2024回忆版.pdf&lt;/code&gt;、&lt;code&gt;数字信号处理考试_2025回忆版.pdf&lt;/code&gt;（见 §D）
+&lt;strong&gt;参考资料&lt;/strong&gt;：&lt;code&gt;数字信号处理-开卷考试参考资料.pdf&lt;/code&gt;（37 页：知识点速查 + 作业题详解 + 答题模板，教材《数字信号处理》第 3 版）
 &lt;strong&gt;符号约定&lt;/strong&gt;：$z^{-1}$ 为单位延迟，$T$ 为抽样周期，$\omega$ 为数字角频率（rad/sample），$\Omega$ 为模拟角频率（rad/s）。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
@@ -71,9 +72,13 @@
 &lt;td&gt;§D 历年真题&lt;/td&gt;
 &lt;td&gt;D.0 考点分布 · D.1 2024 填空 · D.2 2024 解答 · D.3 2025 填空 · D.4 2025 大题&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;附录&lt;/td&gt;
+&lt;td&gt;常用三角/指数恒等式、常用 DTFT 变换对、六类题型的答题模板、勘误记录&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;建议用法&lt;/strong&gt;：先读 §A 建立框架 → 按章精读 §B → 用 §C 逐题自测 → 用 §D 做真题演练 → 考前只回看 §A 的公式速查 / 高频考点与各章「易错点」。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;建议用法&lt;/strong&gt;：先读 §A 建立框架 → 按章精读 §B → 用 §C 逐题自测 → 用 §D 做真题演练 → 开卷时用附录 A 的恒等式/变换对/答题模板快速定位 → 考前只回看 §A 的公式速查 / 高频考点与各章「易错点」。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;§A 课程总览（主线 / 作业题总表 / 公式速查 / 高频考点）&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -3242,6 +3247,31 @@ $$&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;作业 5.14 模板&lt;/strong&gt;：给 $r_{XX}(m)$ → 直接代 $P=\sum r(m)e^{-j\omega m}$，等比级数分 $m\ge0$ 与 $m&amp;lt;0$ 两段求和；结果验证非负、实、偶。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;例 5.6.3（希尔伯特移相器与复解析信号，作业 5.12）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;90° 移相器 $h(n)=\dfrac{2}{\pi}\dfrac{\sin^2(\pi n/2)}{n}$（$n\ne0$，$h(0)=0$）的幅频恒为 1：
+$H(e^{j\omega})=-j$（$0\le\omega&amp;lt;\pi$）、$+j$（$-\pi\le\omega&amp;lt;0$）。白噪声（方差 $\sigma^2$）输入时&lt;/p&gt;
+&lt;p&gt;$$
+r_{YY}(m)=r_{XX}(m)=\sigma^2\delta(m)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+r_{XY}(m)=\sigma^2h(m),\qquad r_{XY}(-m)=-r_{XY}(m)
+$$&lt;/p&gt;
+&lt;p&gt;（$H$ 幅频为 1 ⇒ $|H|^2S_{XX}=S_{XX}$；$r_{XX}$ 偶、$h$ 奇 ⇒ 互相关奇对称。）&lt;/p&gt;
+&lt;p&gt;复解析序列 $w(n)=x(n)+jy(n)$，取 $r_{ww}(m)=E[w^*(n)w(n+m)]$，则&lt;/p&gt;
+&lt;p&gt;$$
+r_{ww}(m)=2r_{XX}(m)+j2r_{XY}(m)
+=2\sigma^2\delta(m)\big[1+jH(e^{j\omega})\big]
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ S_{ww}(e^{j\omega})=4S_{XX}(e^{j\omega}) },\qquad
+S_{ww}(e^{j\omega})=4\sigma^2\ (0\le\omega&amp;lt;\pi),\quad 0\ (-\pi\le\omega&amp;lt;0)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要点&lt;/strong&gt;：解析信号只含正频率，故功率谱&lt;strong&gt;负频段为 0、正频段为原谱的 4 倍&lt;/strong&gt;（不是 2 倍，因为 $|1+jH|^2=2$）。
+这是&quot;解析信号单边谱&quot;在随机信号下的版本，与 §B.1 §1.3 的确定性结论相对应。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：自相关若写成 $E[w(n)w^*(n+m)]$（共轭在后），谱会整体镜像，$4S_{XX}$ 跑到负频段；
+作答时前后保持一致即可。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;h4&gt;§5.7 离散随机信号通过 LSI 系统（作业 5.19，本章重点）&lt;/h4&gt;
 &lt;p&gt;输入 $x(n)$ 平稳，系统 $h(n)$，输出 $y(n)=x(n)*h(n)$，$Y(z)=H(z)X(z)$。&lt;/p&gt;
@@ -3293,6 +3323,43 @@ $\sum\lvert h(n)\rvert^2=\dfrac{1}{1-a^2}$ → $\sigma_Y^2=\dfrac{\sigma^2}{1-a^
 ③ $r_{YY}(m)=\mathrm{IZT}{P_{YY}}$（或 $=\sigma^2h(m)*h(-m)$）；
 ④ $\sigma_Y^2=r_{YY}(0)=\sigma^2\sum\lvert h(n)\rvert^2$；
 ⑤ 白噪声输入直接套上式；有色噪声先做谱分解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 5.19 的常见判断题（级联方差三式）&lt;/strong&gt;：两级级联 $h=h_1*h_2$，白噪声（方差 $\sigma_X^2$）输入，
+判断下列三式正误：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;式子&lt;/th&gt;
+&lt;th&gt;判断&lt;/th&gt;
+&lt;th&gt;理由&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(a) $\sigma_Y^2=\sigma_X^2\sum h_1^2(n)$&lt;/td&gt;
+&lt;td&gt;正确&lt;/td&gt;
+&lt;td&gt;第一级输入是白噪声，$R_{XX}(i-j)=\sigma_X^2\delta(i-j)$，交叉项全消&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(b) $\sigma_W^2=\sigma_Y^2\sum h_2^2(n)$&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;错误&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;前提是「第二级输入也是白噪声」，但 $y(n)$ 已不是白噪声（$R_{YY}(m)\ne\sigma^2\delta(m)$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(c) $\sigma_W^2=\sigma_X^2\sum h^2(n)$&lt;/td&gt;
+&lt;td&gt;正确&lt;/td&gt;
+&lt;td&gt;对整个系统，输入仍是白噪声、总冲激响应为 $h$，与 (a) 同理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;量化差异&lt;/strong&gt;：取 $h_1(n)=a^nu(n)$、$h_2(n)=b^nu(n)$（$|a|,|b|&amp;lt;1$），则
+$h(n)=\dfrac{a^{n+1}-b^{n+1}}{a-b}u(n)$，于是&lt;/p&gt;
+&lt;p&gt;$$
+\sigma_W^2\big|&lt;em&gt;{\text{(c)}}=\frac{\sigma_X^2(1+ab)}{(1-a^2)(1-b^2)(1-ab)},\qquad
+\sigma_W^2\big|&lt;/em&gt;{\text{(b)}}=\frac{\sigma_X^2}{(1-a^2)(1-b^2)}
+$$&lt;/p&gt;
+&lt;p&gt;两者相差因子 $\dfrac{1+ab}{1-ab}$（$a=0.7,\ b=0.5$ 时约为 $2.08$ 倍），可见 (b) 确实错。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;h4&gt;本章公式速查卡&lt;/h4&gt;
@@ -4634,6 +4701,17 @@ $$&lt;/p&gt;
 &lt;/table&gt;
 &lt;p&gt;通带在 $\omega=\pi/8$ 处已近于零，而阻带在 $\omega=5\pi/8$ 反而升到 $0.912$ ——
 $h_2$ &lt;strong&gt;不再是低通滤波器&lt;/strong&gt;，更谈不上截止频率仍为 $\pi/2$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一般判据（比数值反例更通用）&lt;/strong&gt;：设 $h_1$ 偶对称、$N=8$，记 $h_1={a_0,a_1,a_2,a_3,a_3,a_2,a_1,a_0}$，
+则两个幅度函数为&lt;/p&gt;
+&lt;p&gt;$$
+A_1(\omega)=2\Big[a_0\cos\tfrac{7\omega}{2}+a_1\cos\tfrac{5\omega}{2}+a_2\cos\tfrac{3\omega}{2}+a_3\cos\tfrac{\omega}{2}\Big]
+$$&lt;/p&gt;
+&lt;p&gt;$$
+A_2(\omega)=2\Big[a_3\cos\tfrac{7\omega}{2}+a_2\cos\tfrac{5\omega}{2}+a_1\cos\tfrac{3\omega}{2}+a_0\cos\tfrac{\omega}{2}\Big]
+$$&lt;/p&gt;
+&lt;p&gt;同一组基函数，只是&lt;strong&gt;系数次序颠倒&lt;/strong&gt;。故 $A_1\equiv A_2$ 当且仅当 $a_0=a_3$、$a_1=a_2$，
+即 $h_1$ 以 4 为周期——此时四点循环移位不变序列本身，$h_2=h_1$，当然是同一个滤波器。
+题给 $h_1$ 由两端单调升到中间，不具备 4 周期，两者必不相同。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：只有两序列在&lt;strong&gt;整个频率轴&lt;/strong&gt;上幅度相同（如 $h_2(n)=h_1(n-n_0)$ 的纯延时情形，
 或移位量为 $N$ 的整数倍）才能说对应同一滤波器；循环移位 4 点改变了非采样点的频响，
 故该说法不成立。&lt;/p&gt;
@@ -6129,10 +6207,120 @@ $$&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;hr /&gt;
-&lt;h2&gt;附录 · 使用说明与勘误记录&lt;/h2&gt;
+&lt;h2&gt;附录 A · 常用恒等式与变换对&lt;/h2&gt;
+&lt;h3&gt;三角与指数恒等式&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;恒等式&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\cos A\cos B=\tfrac12\big[\cos(A-B)+\cos(A+B)\big]$&lt;/td&gt;
+&lt;td&gt;积化和差，求余弦序列的 Z 变换 / 自相关&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\sin A\sin B=\tfrac12\big[\cos(A-B)-\cos(A+B)\big]$&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\sin A\cos B=\tfrac12\big[\sin(A+B)+\sin(A-B)\big]$&lt;/td&gt;
+&lt;td&gt;拆角&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\cos(\omega_0n+\varphi)=\cos\varphi\cos\omega_0n-\sin\varphi\sin\omega_0n$&lt;/td&gt;
+&lt;td&gt;求含初相序列的变换&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\sin(\omega_0n+\varphi)=\sin\varphi\cos\omega_0n+\cos\varphi\sin\omega_0n$&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$e^{j\theta}=\cos\theta+j\sin\theta,\quad \cos\theta=\dfrac{e^{j\theta}+e^{-j\theta}}{2}$&lt;/td&gt;
+&lt;td&gt;复指数与正余弦互化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1+a+\cdots+a^n=\dfrac{1-a^{n+1}}{1-a}$&lt;/td&gt;
+&lt;td&gt;等比求和（卷积、级数收敛）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;常用 DTFT 变换对&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$x(n)$&lt;/th&gt;
+&lt;th&gt;$X(e^{j\omega})$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\delta(n)$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$2\pi\sum_k\delta(\omega-2\pi k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a^nu(n),\ \lvert a\rvert&amp;lt;1$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-ae^{-j\omega}}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$u(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-e^{-j\omega}}+\pi\sum_k\delta(\omega-2\pi k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$R_N(n)$&lt;/td&gt;
+&lt;td&gt;$e^{-j\omega\frac{N-1}{2}}\dfrac{\sin(\omega N/2)}{\sin(\omega/2)}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$e^{j\omega_0n}$&lt;/td&gt;
+&lt;td&gt;$2\pi\sum_k\delta(\omega-\omega_0-2\pi k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;常见题型与答题模板&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题型&lt;/th&gt;
+&lt;th&gt;步骤模板&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;判断系统四性质&lt;/td&gt;
+&lt;td&gt;① 代入 $ax_1+bx_2$ 查线性；② 把 $n$ 换成 $n-k$ 与 $y(n-k)$ 比对查移不变；③ 用有界输入反例查稳定（或算 $\sum\lvert h\rvert$）；④ 查是否用到 $x(n+1)$ 等未来值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;求 $h(n)$ / 阶跃响应&lt;/td&gt;
+&lt;td&gt;① 差分方程令 $x=\delta$ 递推；或 ② 求 $H(z)$ 后反变换；③ 阶跃响应 $=h(n)*u(n)$，或 $Y(z)=H(z)\cdot\dfrac{1}{1-z^{-1}}$ 再反变换&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;逆 Z 变换&lt;/td&gt;
+&lt;td&gt;① 判 ROC → 定左/右边；② 假分式先做除法；③ 部分分式（先除 $z$ 再乘回）或留数；④ 写出 $u(n)$ 或 $u(-n-1)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;由零极点判稳定/因果&lt;/td&gt;
+&lt;td&gt;① 由 ROC 是否含单位圆判稳定；② 由 ROC 是否某圆外且含 $z=\infty$ 判因果；③ 因果稳定 ⟺ 极点全在单位圆内&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IIR 滤波器设计&lt;/td&gt;
+&lt;td&gt;① 数字指标 → $\omega$；② 预畸变 → $\Omega$；③ 求 $N$、$\Omega_c$；④ 极点 → $H_a(s)$；⑤ 代 $s=\dfrac{2}{T}\dfrac{1-z^{-1}}{1+z^{-1}}$ 得 $H(z)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FIR 窗函数设计&lt;/td&gt;
+&lt;td&gt;① 由 $H_d$ 求 $h_d(n)$（积分）；② 定 $\alpha=(N-1)/2$、$N$ 的奇偶；③ 选窗型、定 $N$（过渡带 $\approx$ 系数$/N$）；④ $h(n)=h_d(n)w(n)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;附录 B · 使用说明与勘误记录&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;排版约定&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;全文分四部分：§A 课程总览、§B 分章知识点、§C 习题全解、§D 历年真题；教材章节号仍写作 §3.4、§4.6 等，与部分编号不冲突。&lt;/li&gt;
+&lt;li&gt;全文分四部分：§A 课程总览、§B 分章知识点、§C 习题全解、§D 历年真题，另有两个附录（A 恒等式与答题模板、B 使用说明与勘误）；教材章节号仍写作 §3.4、§4.6 等，与部分编号不冲突。&lt;/li&gt;
 &lt;li&gt;文中「作业 x.y」的题面与答案：第 3 章见 §C.1 / §C.2，第 4 章见 §C.3；第 2、5 章讲义未给题面，只在对应知识点小节给出解题模板。&lt;/li&gt;
 &lt;li&gt;行内公式用 &lt;code&gt;$...$&lt;/code&gt;，独立公式用 &lt;code&gt;$$...$$&lt;/code&gt;，网页已用 KaTeX 渲染。&lt;/li&gt;
 &lt;/ul&gt;
@@ -6154,6 +6342,9 @@ $$&lt;/p&gt;
 &lt;li&gt;巴特沃斯阶数：粗估式 $(\alpha_s-\alpha_p)/20\lg(\Omega_s/\Omega_p)$ 只宜估数量级，精确式见 §B.4 §4.4.3。&lt;/li&gt;
 &lt;li&gt;作业 3.28 教材 (2) 式一处误印为 $\cos(0.4\pi n)$，按同序列应为 $0.47\pi$；MATLAB 代码按 $0.47\pi$ 实现。&lt;/li&gt;
 &lt;li&gt;习题 4.3 的并联展开系数 $10/3$、$7/3$ 对应&lt;strong&gt;分子含 $1+\frac13z^{-1}$&lt;/strong&gt; 的系统；习题 4.1（分子为 1）的 $h(n)$ 是 $2\left(\frac12\right)^n-\left(\frac14\right)^n$，两题系数不同，勿混用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;习题 4.17(3) 与配套解答册分歧&lt;/strong&gt;：解答册答「合理」，依据只是循环移位后 &lt;strong&gt;8 个 DFT 取样点&lt;/strong&gt;上幅度相同。取样点之间两者幅度相差数倍（$\omega=\pi/8$ 处 $10.32$ 对 $5.06$），$h_2$ 已把能量搬向高频，不再是截止 $\pi/2$ 的低通，故本文答&lt;strong&gt;不合理&lt;/strong&gt;。若按解答册口径作答，可补一句「从取样点看二者不可区分」。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;习题 4.18 的 $N$ 必须取奇数&lt;/strong&gt;：理想高通响应关于 $\alpha=\frac{N-1}{2}$ 偶对称，$N$ 偶时属第 Ⅱ 类，在 $z=-1$（$\omega=\pi$）处必有零点，做不了高通；故只能取 $N=2\alpha+1$（第 Ⅰ 类）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;习题 4.12 的图形读数&lt;/strong&gt;：该响应在 $\omega=0$ 处电平是 $1/4$，到 $|\omega|=2\pi/3$ 才升到 $1$，两处极易看反；反推模拟响应时记住「电平整体乘 $T$，频率轴按 $\Omega=\omega/T$（冲激不变）或 $\Omega=\frac{2}{T}\tan\frac{\omega}{2}$（双线性）映射」。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;真题中题面存在缺陷的题目（已在 §D 就地说明）&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
