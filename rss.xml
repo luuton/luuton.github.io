@@ -37,6 +37,4757 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;mailto:hust_tungly@outlook.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Email-hust_tungly@outlook.com-blue&quot; alt=&quot;Email&quot; /&gt;&lt;/a&gt;
 &lt;a href=&quot;https://github.com/luuton/luuton.github.io/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/luuton/luuton.github.io?logo=github&quot; alt=&quot;GitHub Issues&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>数字信号处理 · 期末复习整合（2026 秋）</title><link>https://luuton.github.io/posts/dsp/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%95%B4%E5%90%88/</link><guid isPermaLink="true">https://luuton.github.io/posts/dsp/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86-%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%95%B4%E5%90%88/</guid><description>DSP 课程期末复习：四个变换、LSI 系统、DFT/FFT、IIR/FIR 设计、随机信号与功率谱估计，附第 3、4 章习题全解与 MATLAB 代码。</description><pubDate>Wed, 25 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;数字信号处理 · 期末复习整合&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;内容&lt;/strong&gt;：把课程总览、6 份分章知识点、3 份习题解答合并为&lt;strong&gt;一篇完整文章&lt;/strong&gt;，可按目录跳读，也可整体打印。
+&lt;strong&gt;资料来源&lt;/strong&gt;：课程讲义（第1章、第2章上/下、第3章、第4章、第5章、第7章）
+&lt;strong&gt;作业题来源&lt;/strong&gt;：第2章课件 P87 清单、第3章习题 + MATLAB 题、第4章课件 P243 清单、第5章课件作业
+&lt;strong&gt;符号约定&lt;/strong&gt;：$z^{-1}$ 为单位延迟，$T$ 为抽样周期，$\omega$ 为数字角频率（rad/sample），$\Omega$ 为模拟角频率（rad/s）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;位置&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;§A 课程总览&lt;/td&gt;
+&lt;td&gt;课程主线、讲义对照、作业题总表、核心公式速查、15 条高频考点、复习路线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;§B 分章知识点&lt;/td&gt;
+&lt;td&gt;B.1 绪论 · B.2 离散时间信号与系统 · B.3 DFT/FFT · B.4 数字滤波器 · B.5 离散时间随机信号 · B.6 功率谱估计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;§C 习题全解&lt;/td&gt;
+&lt;td&gt;C.1 第3章习题全解（3.6–3.28）· C.2 第3章 MATLAB 代码与图形 · C.3 第4章习题（4.1–4.18）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;建议用法&lt;/strong&gt;：先读 §A 建立框架 → 按章精读 §B → 用 §C 逐题自测 → 考前只回看 §A 的公式速查 / 高频考点与各章「易错点」。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;§A 课程总览（主线 / 作业题总表 / 公式速查 / 高频考点）&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本部分给出全课程的框架与速查，细节推导见 §B，例题见 §C。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.1　讲义 ↔ 本文位置对照&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;讲义文件&lt;/th&gt;
+&lt;th&gt;页数&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;本文位置&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;第一章绪论.pdf&lt;/td&gt;
+&lt;td&gt;26&lt;/td&gt;
+&lt;td&gt;信号分类、希尔伯特变换、幅度调制、DSP 应用&lt;/td&gt;
+&lt;td&gt;第1章 绪论 → 本文 §B.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第二章-1.pdf&lt;/td&gt;
+&lt;td&gt;90&lt;/td&gt;
+&lt;td&gt;§2.1–§2.5 序列、系统、差分方程、DTFT&lt;/td&gt;
+&lt;td&gt;第2章 → 本文 §B.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2026第二章-2.pdf&lt;/td&gt;
+&lt;td&gt;79&lt;/td&gt;
+&lt;td&gt;§2.6–§2.8 取样、Z 变换、系统函数&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第三章.pdf&lt;/td&gt;
+&lt;td&gt;115&lt;/td&gt;
+&lt;td&gt;DFS、DFT 及性质、循环卷积、频率取样、FFT、FFT 应用&lt;/td&gt;
+&lt;td&gt;第3章 → 本文 §B.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第四章.pdf&lt;/td&gt;
+&lt;td&gt;163&lt;/td&gt;
+&lt;td&gt;IIR/FIR 结构、IIR 设计、频率变换、FIR 窗函数设计&lt;/td&gt;
+&lt;td&gt;第4章 → 本文 §B.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第五章.pptx&lt;/td&gt;
+&lt;td&gt;49&lt;/td&gt;
+&lt;td&gt;随机变量、随机过程、相关序列、功率谱、随机信号过 LSI 系统&lt;/td&gt;
+&lt;td&gt;第5章 → 本文 §B.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第七章功率谱估计.pptx&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;谱估计概述、周期图法、BT 法&lt;/td&gt;
+&lt;td&gt;第7章 → 本文 §B.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.2　全课程主线（一张图记住整门课）&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;        ┌───────────── 第1章：信号是什么、怎么用（调制/解调/解析信号）
+        │
+连续信号 xa(t) ──理想取样(第2章 §2.6)──► 序列 x(n) ──LSI系统 h(n)──► y(n)
+        ▲                                   │
+        │                                   ├─ 时域：卷积和  y = x * h
+        │                                   ├─ 频域：DTFT    Y = X·H   （§2.5）
+   重建/内插                                 ├─ z 域：Z变换   Y = X·H   （§2.7）
+   （取样定理）                              └─ 有限长：DFT/FFT         （第3章）
+                                                                         │
+                                    ┌────────────────────────────────────┘
+                                    ▼
+                     第4章：用上面的工具设计滤波器 H(z)
+                     IIR：模拟原型 + 冲激响应不变 / 双线性变换
+                     FIR：窗函数法 / 频率取样法
+                                    │
+                                    ▼
+                     第5、7章：输入是随机信号时怎么描述、怎么估计功率谱
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;四个变换的关系（考试必问）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变换&lt;/th&gt;
+&lt;th&gt;时域&lt;/th&gt;
+&lt;th&gt;频域&lt;/th&gt;
+&lt;th&gt;计算机能否直接算&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CTFT&lt;/td&gt;
+&lt;td&gt;连续&lt;/td&gt;
+&lt;td&gt;连续&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FS&lt;/td&gt;
+&lt;td&gt;连续周期&lt;/td&gt;
+&lt;td&gt;离散&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DTFT&lt;/td&gt;
+&lt;td&gt;离散&lt;/td&gt;
+&lt;td&gt;连续、以 2π 为周期&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DFT&lt;/td&gt;
+&lt;td&gt;离散&lt;strong&gt;有限长&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;离散&lt;strong&gt;有限长&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;三者关系（务必背熟）：&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=X(z)\Big|&lt;em&gt;{z=W_N^{-k}=e^{j2\pi k/N}}=X(e^{j\omega})\Big|&lt;/em&gt;{\omega=2\pi k/N},\qquad k=0,1,\dots,N-1
+$$&lt;/p&gt;
+&lt;p&gt;即 &lt;strong&gt;DFT = Z 变换在单位圆上的 N 点等间隔取样 = DTFT 在 [0, 2π) 上的 N 点等间隔取样&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两类频率的换算&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\omega=\Omega T=\frac{2\pi f}{f_s}\ \text{(rad/sample)},\qquad z=e^{sT}=e^{j\Omega T}=e^{j\omega}
+$$&lt;/p&gt;
+&lt;p&gt;模拟频率 Ω（rad/s）→ 数字频率 ω（rad/sample）；数字域周期 2π 对应模拟域抽样频率 f_s。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.3　作业题总表（题号 → 考点 → 解答位置）&lt;/h3&gt;
+&lt;h4&gt;第 2 章（课本 P87，见 第二章-1.pdf 第 2 页）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;考点&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2.1&lt;/td&gt;
+&lt;td&gt;序列的图形表示、加权 δ 表示、基本运算&lt;/td&gt;
+&lt;td&gt;§B.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.3(2)&lt;/td&gt;
+&lt;td&gt;序列周期性判定（2π/ω 是否为有理数）&lt;/td&gt;
+&lt;td&gt;§B.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.4、2.5&lt;/td&gt;
+&lt;td&gt;序列能量/平均功率；能量信号与功率信号&lt;/td&gt;
+&lt;td&gt;§B.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.7(1)(3)(4)&lt;/td&gt;
+&lt;td&gt;线性、移不变、因果、稳定的判定&lt;/td&gt;
+&lt;td&gt;§B.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.13、2.14(9)(10)&lt;/td&gt;
+&lt;td&gt;卷积和（图解法 / 解析法）&lt;/td&gt;
+&lt;td&gt;§B.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.15、2.19&lt;/td&gt;
+&lt;td&gt;差分方程 → 系统响应（递推法）&lt;/td&gt;
+&lt;td&gt;§B.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.21(3)(5)、2.23(4)&lt;/td&gt;
+&lt;td&gt;DTFT 及其性质（移位、卷积、对称性）&lt;/td&gt;
+&lt;td&gt;§B.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.29(2)、2.31、2.33&lt;/td&gt;
+&lt;td&gt;取样定理、混叠、频率归一化&lt;/td&gt;
+&lt;td&gt;§B.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2.35、2.41(选做)&lt;/td&gt;
+&lt;td&gt;Z 变换与收敛域、逆 Z 变换、系统函数&lt;/td&gt;
+&lt;td&gt;§B.2 内 §2.7–§2.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ 第 2 章作业&lt;strong&gt;课本题面不在讲义中&lt;/strong&gt;（讲义里只有习题清单）。§B.2 给出了对应题型的&lt;strong&gt;解题模板&lt;/strong&gt;；要逐题详解，请补题面照片。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;第 3 章（习题截图 + MATLAB 题，截图见 dsp 根目录）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;考点&lt;/th&gt;
+&lt;th&gt;解答&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;3.6&lt;/td&gt;
+&lt;td&gt;5 个序列的 N 点 DFT 直接计算&lt;/td&gt;
+&lt;td&gt;§C.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.8&lt;/td&gt;
+&lt;td&gt;线性卷积 vs 4 点/8 点循环卷积（混叠关系）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.10&lt;/td&gt;
+&lt;td&gt;单位圆 N 等分取样后求 IDFT（时域周期延拓）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.13&lt;/td&gt;
+&lt;td&gt;半径 1/2、附加相位 π/10 的圆上取样 → 如何修改 x(n)&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.16&lt;/td&gt;
+&lt;td&gt;8 点基 2 DIT-FFT 流程图与每级蝶形运算结果&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.18&lt;/td&gt;
+&lt;td&gt;FFT 谱分析三参数（t_p、T、N）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.20&lt;/td&gt;
+&lt;td&gt;用一个复序列的 DFT 求两个实序列的 DFT（共轭对称拆分）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.22&lt;/td&gt;
+&lt;td&gt;DTFT 与 4 点 DFT 对比（MATLAB）&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.25&lt;/td&gt;
+&lt;td&gt;循环移位（MATLAB）&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.26&lt;/td&gt;
+&lt;td&gt;循环卷积（MATLAB）&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.28&lt;/td&gt;
+&lt;td&gt;补零与频率分辨率（MATLAB）&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;第 4 章（课本 P243，见 第四章.pdf 第 2 页）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;考点&lt;/th&gt;
+&lt;th&gt;解答&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;4.1&lt;/td&gt;
+&lt;td&gt;由差分方程画方框图 / 信号流图&lt;/td&gt;
+&lt;td&gt;§C.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.3&lt;/td&gt;
+&lt;td&gt;同一 H(z) 的 4 种结构（直接 Ⅰ/Ⅱ、级联、并联）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.4(1)&lt;/td&gt;
+&lt;td&gt;直接 Ⅰ 型与直接 Ⅱ 型实现&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.6(1)&lt;/td&gt;
+&lt;td&gt;奇对称 FIR 的相位/幅度响应（Ⅲ、Ⅳ 类）证明&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.8&lt;/td&gt;
+&lt;td&gt;冲激响应不变法 + 双线性变换法（T = 0.5）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.10(1)&lt;/td&gt;
+&lt;td&gt;冲激响应不变法（h(n) = h_a(nT)，共轭极点）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.12&lt;/td&gt;
+&lt;td&gt;由数字频响反推模拟频响（作图法）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.14&lt;/td&gt;
+&lt;td&gt;双线性变换法设计巴特沃斯低通（含预畸变）&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.17&lt;/td&gt;
+&lt;td&gt;循环移位序列的 DFT 关系、是否为线性相位&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.18&lt;/td&gt;
+&lt;td&gt;矩形窗/汉宁窗设计线性相位高通 FIR&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.25&lt;/td&gt;
+&lt;td&gt;选做：频率取样法设计 FIR&lt;/td&gt;
+&lt;td&gt;§B.4 内 §4.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;第 5 章（见 第五章.pptx 第 2 页）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;考点&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;5.2&lt;/td&gt;
+&lt;td&gt;概率分布/密度/质量函数、均值与方差&lt;/td&gt;
+&lt;td&gt;§B.5 内 §5.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5.4&lt;/td&gt;
+&lt;td&gt;随机过程的数字特征、平稳性判定&lt;/td&gt;
+&lt;td&gt;§B.5 内 §5.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5.12&lt;/td&gt;
+&lt;td&gt;自相关/互相关/协方差序列的性质与计算&lt;/td&gt;
+&lt;td&gt;§B.5 内 §5.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5.14&lt;/td&gt;
+&lt;td&gt;功率谱（维纳–辛钦定理）计算&lt;/td&gt;
+&lt;td&gt;§B.5 内 §5.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5.19&lt;/td&gt;
+&lt;td&gt;随机信号通过 LSI 系统：均值、自相关、功率谱、方差&lt;/td&gt;
+&lt;td&gt;§B.5 内 §5.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ 第 5 章作业同样只有题号清单（课件无题面），§B.5 给出 5 类题型解题模板。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.4　核心公式速查&lt;/h3&gt;
+&lt;h4&gt;A.4.1　四个基本变换&lt;/h4&gt;
+&lt;p&gt;$$
+\text{DTFT:}\quad X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n},\qquad x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n},d\omega
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\text{ZT:}\quad X(z)=\sum_{n=-\infty}^{\infty}x(n)z^{-n},\qquad x(n)=\frac{1}{2\pi j}\oint_C X(z)z^{n-1},dz
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\text{DFT:}\quad X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-nk},\quad W_N=e^{-j2\pi/N}
+$$&lt;/p&gt;
+&lt;h4&gt;A.4.2　常用 Z 变换对&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$x(n)$&lt;/th&gt;
+&lt;th&gt;$X(z)$&lt;/th&gt;
+&lt;th&gt;收敛域&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\delta(n)$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;全 z 平面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$u(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-z^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a^nu(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-az^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;\lvert a\rvert$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$-a^nu(-n-1)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-az^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;lt;\lvert a\rvert$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$na^nu(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{az^{-1}}{(1-az^{-1})^2}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;\lvert a\rvert$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$r^n\cos(\omega_0n)u(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1-r\cos\omega_0,z^{-1}}{1-2r\cos\omega_0,z^{-1}+r^2z^{-2}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;r$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$r^n\sin(\omega_0n)u(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{r\sin\omega_0,z^{-1}}{1-2r\cos\omega_0,z^{-1}+r^2z^{-2}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;r$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;A.4.3　窗函数参数表（窗长 $N$）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;窗&lt;/th&gt;
+&lt;th&gt;$w(n)$&lt;/th&gt;
+&lt;th&gt;主瓣宽度&lt;/th&gt;
+&lt;th&gt;最小阻带衰减&lt;/th&gt;
+&lt;th&gt;过渡带 $\Delta\omega$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;矩形&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$4\pi/N$&lt;/td&gt;
+&lt;td&gt;$-21$ dB&lt;/td&gt;
+&lt;td&gt;$1.8\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;三角 Bartlett&lt;/td&gt;
+&lt;td&gt;$1-\left\lvert\dfrac{2n}{N-1}-1\right\rvert$&lt;/td&gt;
+&lt;td&gt;$8\pi/N$&lt;/td&gt;
+&lt;td&gt;$-25$ dB&lt;/td&gt;
+&lt;td&gt;$6.1\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;汉宁 Hanning&lt;/td&gt;
+&lt;td&gt;$0.5-0.5\cos\dfrac{2\pi n}{N-1}$&lt;/td&gt;
+&lt;td&gt;$8\pi/N$&lt;/td&gt;
+&lt;td&gt;$-44$ dB&lt;/td&gt;
+&lt;td&gt;$3.1\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;汉明 Hamming&lt;/td&gt;
+&lt;td&gt;$0.54-0.46\cos\dfrac{2\pi n}{N-1}$&lt;/td&gt;
+&lt;td&gt;$8\pi/N$&lt;/td&gt;
+&lt;td&gt;$-53$ dB&lt;/td&gt;
+&lt;td&gt;$3.3\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;布莱克曼&lt;/td&gt;
+&lt;td&gt;$0.42-0.5\cos\dfrac{2\pi n}{N-1}+0.08\cos\dfrac{4\pi n}{N-1}$&lt;/td&gt;
+&lt;td&gt;$12\pi/N$&lt;/td&gt;
+&lt;td&gt;$-74$ dB&lt;/td&gt;
+&lt;td&gt;$5.5\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;A.4.4　IIR 设计两条路线&lt;/h4&gt;
+&lt;p&gt;$$
+\text{冲激响应不变法:}\quad h(n)=h_a(nT),\ z_k=e^{s_kT}\quad\text{（有混叠，只宜 LP/BP）}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\text{双线性变换:}\quad s=\frac{2}{T}\cdot\frac{1-z^{-1}}{1+z^{-1}},\quad \Omega=\frac{2}{T}\tan\frac{\omega}{2}\quad\text{（无混叠，频率轴非线性需预畸变）}
+$$&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.5　高频考点 15 条（考前 30 分钟看这一节）&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;数字频率与模拟频率：ω = ΩT；ω 的&lt;strong&gt;混叠性&lt;/strong&gt;（ω 与 ω+2πm 等价）。&lt;/li&gt;
+&lt;li&gt;正弦序列周期性：2π/ω = N/k 为&lt;strong&gt;有理数&lt;/strong&gt;才周期，最小周期 N = 2πk/ω。&lt;/li&gt;
+&lt;li&gt;LSI 系统稳定 ⟺ Σ|h(n)| &amp;lt; ∞；因果 ⟺ h(n) = 0 (n&amp;lt;0)；H(z) 因果稳定 ⟺ 极点全在单位圆内。&lt;/li&gt;
+&lt;li&gt;卷积四大性质 + 与 δ 卷积：x(n)·δ(n−n₀) = x(n−n₀)。&lt;/li&gt;
+&lt;li&gt;取样定理：Ω_s ≥ 2Ω_m，折叠频率 Ω_s/2；DFT 用循环卷积算线性卷积要求 N ≥ L₁+L₂−1。&lt;/li&gt;
+&lt;li&gt;Z 变换三要素：表达式 + &lt;strong&gt;收敛域&lt;/strong&gt; + 零极点图；同一 X(z) 不同收敛域对应不同序列。&lt;/li&gt;
+&lt;li&gt;DFT 循环移位 ⟷ 乘 W_N^{mk}；循环卷积 ⟷ 频域相乘（别与线性卷积混）。&lt;/li&gt;
+&lt;li&gt;实序列 DFT 共轭对称性：X(k) = X*((N−k))_N；实偶 ⟷ 实偶，实奇 ⟷ 纯虚奇。&lt;/li&gt;
+&lt;li&gt;帕斯瓦尔：Σ|x(n)|² = (1/N)Σ|X(k)|²。&lt;/li&gt;
+&lt;li&gt;FFT 运算量：复数乘 (N/2)log₂N、复数加 N log₂N；DIT 输入倒位序、输出自然序。&lt;/li&gt;
+&lt;li&gt;FFT 谱分析三参数：t_p = 1/F、T ≤ 1/(2f₀)、N = t_p/T；&lt;strong&gt;补零只提高显示分辨率&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;直接 Ⅱ 型 = 典范型（延迟单元最少，N 阶用 N 个）。&lt;/li&gt;
+&lt;li&gt;冲激响应不变法有混叠；双线性无混叠但频率畸变（预畸变补偿）；双线性可做 LP/HP/BP/BS。&lt;/li&gt;
+&lt;li&gt;线性相位 FIR：h(n) = ±h(N−1−n)，4 种类型；Ⅱ 型不能做高通/带阻，Ⅲ 型不能做低通/高通（只能带通/微分器），Ⅳ 型不能做低通。&lt;/li&gt;
+&lt;li&gt;平稳随机过程：均值常数 + 自相关只与时间差有关；功率谱 P(e^{jω}) = Σ r(m)e^{−jωm}，平均功率 = r(0) = (1/2π)∫P dω。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.6　复习路线建议&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;轮次&lt;/th&gt;
+&lt;th&gt;任务&lt;/th&gt;
+&lt;th&gt;对应位置&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;第 1 轮（2 天）&lt;/td&gt;
+&lt;td&gt;通读第 2、3 章知识点，默写 DTFT/ZT/DFT 三组定义与性质表&lt;/td&gt;
+&lt;td&gt;§B.2、§B.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第 2 轮（2 天）&lt;/td&gt;
+&lt;td&gt;第 4 章设计流程（IIR 两条路线 + FIR 窗函数法）算 3 道典型题&lt;/td&gt;
+&lt;td&gt;§B.4 + §C.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第 3 轮（1 天）&lt;/td&gt;
+&lt;td&gt;第 5、7 章随机信号公式 + 第 1 章概念题记忆&lt;/td&gt;
+&lt;td&gt;§B.5、§B.6、§B.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;冲刺&lt;/td&gt;
+&lt;td&gt;只看 §A 的公式速查与高频考点 + 各章「易错点」&lt;/td&gt;
+&lt;td&gt;§A、各章末&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h3&gt;A.7　待补充&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;第 2 章（P87）、第 5 章作业题的&lt;strong&gt;课本题面&lt;/strong&gt;不在讲义里，目前按题号给知识点与解题模板；如需逐题详解请补题面截图。&lt;/li&gt;
+&lt;li&gt;第 4 章 4.25（选做，频率取样法设计 FIR）尚无解答文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;§B 分章知识点&lt;/h2&gt;
+&lt;h3&gt;B.1　第1章 绪论&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对应讲义：&lt;code&gt;第一章绪论.pdf&lt;/code&gt;（26 页）
+本章无作业题，但&lt;strong&gt;概念题/判断题&lt;/strong&gt;常从这里出（信号分类、解析信号、调制方式）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;1.1 常见信号&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;信号&lt;/th&gt;
+&lt;th&gt;数学描述&lt;/th&gt;
+&lt;th&gt;维数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;声音/音乐&lt;/td&gt;
+&lt;td&gt;空气压强 vs 时间 p(t)&lt;/td&gt;
+&lt;td&gt;1-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;心电图 ECG&lt;/td&gt;
+&lt;td&gt;心脏活动的周期电信号（&lt;strong&gt;周期信号&lt;/strong&gt;，一周期 = 血液从心脏到组织一次循环）&lt;/td&gt;
+&lt;td&gt;1-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;脑电波 EEG&lt;/td&gt;
+&lt;td&gt;神经细胞随机扰动 → &lt;strong&gt;随机信号&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;地震波&lt;/td&gt;
+&lt;td&gt;岩石运动的随机信号（3 种弹性波）&lt;/td&gt;
+&lt;td&gt;1-D 或多道&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;黑白图像&lt;/td&gt;
+&lt;td&gt;亮度 vs 空间坐标 f(x, y)&lt;/td&gt;
+&lt;td&gt;2-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;彩色图像&lt;/td&gt;
+&lt;td&gt;U(x,y) = [r(x,y), g(x,y), b(x,y)]&lt;/td&gt;
+&lt;td&gt;3 通道 2-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;黑白视频&lt;/td&gt;
+&lt;td&gt;f(x, y, t)，每幅称&lt;strong&gt;数据帧&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;3-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;彩色视频&lt;/td&gt;
+&lt;td&gt;U(x,y,t) = （r, g, b）(x,y,t)&lt;/td&gt;
+&lt;td&gt;3 通道 3-D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;1.2 信号的分类（考点：给出信号说出类别）&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;按信号源个数&lt;/strong&gt;：单信号源 → 标量/单信道；多信号源 → 矢量/多信道。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;按自变量个数&lt;/strong&gt;：1-D、M-D。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;按数值类型&lt;/strong&gt;：实值、复值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;按自变量与函数值是否连续（最重要，四分法）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;时间连续&lt;/th&gt;
+&lt;th&gt;时间离散&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;幅度连续&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;模拟信号 analog x(t)&lt;/td&gt;
+&lt;td&gt;抽样信号 sampled-data x(nT)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;幅度离散&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;阶梯信号 quantized boxcar&lt;/td&gt;
+&lt;td&gt;数字信号 digital x[n]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;要点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数字信号 = 时间离散 + 幅度量化&lt;/strong&gt;，是&quot;量化的抽样信号&quot;；&lt;/li&gt;
+&lt;li&gt;抽样只离散化时间，&lt;strong&gt;量化&lt;/strong&gt;才离散化幅度；&lt;/li&gt;
+&lt;li&gt;确定性信号 vs 随机信号：前者每时刻取值固定，后者只能用概率密度、均值、方差描述。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;1.3 由实信号产生复信号 —— 希尔伯特变换&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;动机&lt;/strong&gt;：实信号频谱正负频率共轭对称，负频率分量是冗余的。若能得到只含正频率的复信号（&lt;strong&gt;解析信号&lt;/strong&gt;），则可降低采样率、便于瞬时幅度/相位提取。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;希尔伯特变换器&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+H_{HT}(j\Omega)=\begin{cases}-j,&amp;amp;\Omega&amp;gt;0\[2pt] 0,&amp;amp;\Omega=0\[2pt] +j,&amp;amp;\Omega&amp;lt;0\end{cases}
+\qquad\Longleftrightarrow\qquad
+\hat x(t)=\frac{1}{\pi}\int_{-\infty}^{\infty}\frac{x(\tau)}{t-\tau}d\tau
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解析信号&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+g(t)=x(t)+j\hat x(t),\qquad G(j\Omega)=X(j\Omega)+j\hat X(j\Omega)=
+\begin{cases}2X(j\Omega),&amp;amp;\Omega&amp;gt;0\ 0,&amp;amp;\Omega&amp;lt;0\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;即解析信号的频谱是原实信号&lt;strong&gt;正频率部分幅值加倍、负频率置零&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;记忆要点&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;希尔伯特变换器是&lt;strong&gt;全通移相器&lt;/strong&gt;（幅频恒为 1），对正频率移相 $-90^\circ$、负频率 $+90^\circ$；&lt;/li&gt;
+&lt;li&gt;解析信号只有正频率分量，是&lt;strong&gt;复信号&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;一个实信号 + 其希尔伯特变换 = 解析信号（如 $\cos\Omega_0t \to e^{j\Omega_0t}$）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;1.4 模拟信号的振幅调制与解调&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;载波&lt;/strong&gt; $c(t)=A\cos\Omega_c t$；&lt;strong&gt;调制信号&lt;/strong&gt; $x(t)$（基带，最高频率 $\Omega_m$）。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;调制方式&lt;/th&gt;
+&lt;th&gt;已调信号&lt;/th&gt;
+&lt;th&gt;带宽&lt;/th&gt;
+&lt;th&gt;特点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;DSB-SC&lt;/strong&gt;（抑制载波双边带）&lt;/td&gt;
+&lt;td&gt;$x(t)\cos\Omega_c t$&lt;/td&gt;
+&lt;td&gt;$2\Omega_m$&lt;/td&gt;
+&lt;td&gt;无载波分量，须同步解调；包络不再是 $x(t)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;DSB&lt;/strong&gt;（常规双边带/AM）&lt;/td&gt;
+&lt;td&gt;$[A_0+x(t)]\cos\Omega_c t$&lt;/td&gt;
+&lt;td&gt;$2\Omega_m$&lt;/td&gt;
+&lt;td&gt;含载波，可用&lt;strong&gt;包络检波&lt;/strong&gt;；要求 $A_0\ge\lvert x(t)\rvert_{\max}$，否则&lt;strong&gt;过调制&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;SSB&lt;/strong&gt;（单边带）&lt;/td&gt;
+&lt;td&gt;只保留一个边带&lt;/td&gt;
+&lt;td&gt;$\Omega_m$&lt;/td&gt;
+&lt;td&gt;带宽减半，需 Hilbert 变换实现相移法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;QAM&lt;/strong&gt;（正交调幅）&lt;/td&gt;
+&lt;td&gt;$x_1(t)\cos\Omega_c t+x_2(t)\sin\Omega_c t$&lt;/td&gt;
+&lt;td&gt;$2\Omega_m$&lt;/td&gt;
+&lt;td&gt;两路正交载波同频带传输，容量翻倍&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;AM 的调制指数&lt;/strong&gt;：$m=\dfrac{\lvert x(t)\rvert_{\max}}{A_0}$，$0&amp;lt;m\le1$ 不过调制；例：$f=20$ Hz、$f_c=400$ Hz、$m=0.5$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解调&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;同步解调（相干解调）&lt;/strong&gt;：乘同频同相载波再低通 → 得到 $x(t)/2$；DSB-SC、SSB、QAM 必须用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;包络检波&lt;/strong&gt;：二极管+RC，仅适用于 AM（含载波）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;QAM 解调&lt;/strong&gt;：分别乘 $\cos$、$\sin$ 后低通，分离 $x_1$、$x_2$；要求两载波严格正交、相位同步。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;用解析信号解释单边带&lt;/strong&gt;：$g(t)=x(t)+j\hat x(t)$ 只有正频率，乘 $e^{j\Omega_c t}$ 再取实部即得上边带 SSB。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;1.5 DSP 应用领域&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;蜂窝电话（语音编码、信道均衡）&lt;/li&gt;
+&lt;li&gt;数码相机（CMOS 图像传感器 + 图像处理算法：去马赛克、白平衡、降噪、锐化、压缩）&lt;/li&gt;
+&lt;li&gt;数字声音合成&lt;/li&gt;
+&lt;li&gt;数字编码与压缩（JPEG、MP3、H.264…）&lt;/li&gt;
+&lt;li&gt;信号增强（降噪、回声消除）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h4&gt;1.6 易错点 &amp;amp; 速记&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;「数字信号」必须&lt;strong&gt;幅度也离散&lt;/strong&gt;，只抽样不量化仍是抽样信号。&lt;/li&gt;
+&lt;li&gt;希尔伯特变换器幅频为 1，&lt;strong&gt;不是&lt;/strong&gt;微分器/积分器；它把 $\cos$ 变 $\sin$。&lt;/li&gt;
+&lt;li&gt;AM 过调制（$m&amp;gt;1$）会导致包络检波严重失真 —— 包络不再对应 $x(t)$。&lt;/li&gt;
+&lt;li&gt;QAM 与 SSB 都用到了正交（$\cos$/$\sin$）载波，但 QAM 传两路独立信号、SSB 只传一路的单个边带。&lt;/li&gt;
+&lt;li&gt;解析信号 = 实信号只保留正频率 → 复信号；其频谱幅度是原信号正频率部分的 2 倍。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;B.2　第2章 离散时间信号与系统&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对应讲义：第二章-1.pdf（§2.1–§2.5，90 页）+ 2026第二章-2.pdf（§2.6–§2.8，79 页）
+作业题：课本 &lt;strong&gt;P87&lt;/strong&gt; — 2.1、2.3(2)、2.4、2.5、2.7(1)(3)(4)、2.13、2.14(9)(10)、2.15、2.19、2.21(3)(5)、2.23(4)、2.29(2)、2.31、2.33、2.35、2.41（选做）
+题面不在讲义中，下文把每题号对应到相应知识点并给出解题模板。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.1 引言&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;信号：传载信息的函数（自变量可为时间、压强、位置、温度、距离）。&lt;/li&gt;
+&lt;li&gt;四个基本概念：连续/离散时间系统；模拟/数字系统。&lt;/li&gt;
+&lt;li&gt;数字信号处理的范围：对&lt;strong&gt;幅度和时间都离散&lt;/strong&gt;的信号进行变换。&lt;/li&gt;
+&lt;li&gt;四象限分类：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;              幅度连续            幅度离散
+时间连续      模拟信号            阶梯信号
+时间离散      抽样信号            数字信号
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.2 离散时间信号 —— 序列&lt;/h4&gt;
+&lt;h5&gt;2.2.1 表示方法&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;数字表示：$x={x(n)},-\infty&amp;lt;n&amp;lt;\infty$；$n$ 为非整数时 $x(n)$ 没有定义。&lt;/li&gt;
+&lt;li&gt;例：$x(n)={2,3,4,5,6.3,7.9}$，$n=0,\dots,5$，其余为零。&lt;/li&gt;
+&lt;li&gt;5 bit 量化后 $0.3767\to0.375$ 等，抽样信号 → 数字信号的差别就在量化。&lt;/li&gt;
+&lt;li&gt;图形表示：茎叶图（火柴杆图）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;2.2.2 序列的运算（用于产生同抽样率的新序列）&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算&lt;/th&gt;
+&lt;th&gt;定义&lt;/th&gt;
+&lt;th&gt;实现&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;加&lt;/td&gt;
+&lt;td&gt;$z(n)=x(n)+y(n)$&lt;/td&gt;
+&lt;td&gt;同序号相加&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;乘（调制）&lt;/td&gt;
+&lt;td&gt;$z(n)=x(n)\cdot y(n)$&lt;/td&gt;
+&lt;td&gt;同序号相乘&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;数乘&lt;/td&gt;
+&lt;td&gt;$z(n)=a,x(n)$&lt;/td&gt;
+&lt;td&gt;放大器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;单位延时&lt;/td&gt;
+&lt;td&gt;$z(n)=x(n-1)$&lt;/td&gt;
+&lt;td&gt;延迟器 $z^{-1}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;单位超前&lt;/td&gt;
+&lt;td&gt;$z(n)=x(n+1)$&lt;/td&gt;
+&lt;td&gt;超前器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;时间反转&lt;/td&gt;
+&lt;td&gt;$z(n)=x(-n)$&lt;/td&gt;
+&lt;td&gt;以 $n=0$ 为轴翻转&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;复制（抽取/内插）&lt;/td&gt;
+&lt;td&gt;改变抽样率&lt;/td&gt;
+&lt;td&gt;多抽样率处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;2.2.3 常用序列&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;① 单位取样序列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\delta(n)=\begin{cases}1,&amp;amp;n=0\0,&amp;amp;n\ne0\end{cases}\qquad
+\delta(n-n_0)=\begin{cases}1,&amp;amp;n=n_0\0,&amp;amp;n\ne n_0\end{cases}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\delta(n)$ 是确定的物理量，而 $\delta(t)$ 是数学抽象（$t=0$ 处取 $\infty$）。&lt;/li&gt;
+&lt;li&gt;抽样性质：$x(n)\delta(n)=x(0)\delta(n)$，$x(n)\delta(n-n_0)=x(n_0)\delta(n-n_0)$。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;加权表示（最重要）&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+x(n)=\sum_{k=-\infty}^{\infty}x(k),\delta(n-k)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这是&quot;讨论 LSI 系统只需知道 $h(n)$&quot;的根据。作业 2.1 就是用它把图形序列写成 δ 的加权和。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 2.1 模板&lt;/strong&gt;：读出每根谱线的高度与位置 $(n_k,x_k)$，写 $x(n)=\sum_k x_k\delta(n-n_k)$。
+讲义例 2.2.1：$x(n)=0.5\delta(n+2)+0.75\delta(n+1)+2\delta(n)+1.5\delta(n-1)-2\delta(n-2)+0.5\delta(n-3)$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;② 单位阶跃序列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+u(n)=\begin{cases}1,&amp;amp;n\ge0\0,&amp;amp;n&amp;lt;0\end{cases}\qquad
+\delta(n)=u(n)-u(n-1),\qquad u(n)=\sum_{k=-\infty}^{n}\delta(k)=\sum_{m=0}^{\infty}\delta(n-m)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;③ 矩形序列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+R_N(n)=\begin{cases}1,&amp;amp;0\le n\le N-1\0,&amp;amp;\text{其它}\end{cases}\qquad R_N(n)=u(n)-u(n-N)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;④ 实指数序列&lt;/strong&gt;：$x(n)=a^n u(n)$，$a$ 为实数。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;a 的范围&lt;/th&gt;
+&lt;th&gt;波形&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$a&amp;gt;1$&lt;/td&gt;
+&lt;td&gt;单调递增&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$0&amp;lt;a&amp;lt;1$&lt;/td&gt;
+&lt;td&gt;单调衰减（正）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$-1&amp;lt;a&amp;lt;0$&lt;/td&gt;
+&lt;td&gt;正负交替衰减&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a&amp;lt;-1$&lt;/td&gt;
+&lt;td&gt;正负交替发散&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a=1$&lt;/td&gt;
+&lt;td&gt;恒为 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a=-1$&lt;/td&gt;
+&lt;td&gt;$(-1)^n$ 正负交替&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;⑤ 复指数序列与正弦序列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=A\alpha^n,\quad \alpha=e^{\sigma+j\omega_0}\ \Rightarrow\ x(n)=Ae^{\sigma n}\cos(\omega_0n)+jAe^{\sigma n}\sin(\omega_0n)
+$$&lt;/p&gt;
+&lt;p&gt;实部、虚部都是实序列。$\sigma&amp;gt;0$ 幅度递增，$\sigma&amp;lt;0$ 幅度递减，$\sigma=0$ 等幅。&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=A\sin(\omega n+\varphi),\quad A\text{ 振幅},\ \omega\text{ 数字角频率 (rad/sample)},\ \varphi\text{ 初相}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模拟频率 ↔ 数字频率&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x_a(t)=A\sin(\Omega t+\varphi)\ \xrightarrow{\ t=nT\ }\ x(n)=A\sin(\Omega Tn+\varphi)
+\qquad\Longrightarrow\qquad \omega=\Omega T=\frac{2\pi f}{f_s}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;⑥ 数字频率的三个关键性质（极易考）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1) 周期性（混叠性）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+e^{j(\omega+2\pi m)n}=e^{j\omega n},\qquad \cos\big((\omega+2\pi m)n\big)=\cos(\omega n)
+$$&lt;/p&gt;
+&lt;p&gt;即对 $\omega$ 以 $2\pi$ 为周期 —— 这是&lt;strong&gt;离散&lt;/strong&gt;正弦与连续正弦的本质区别（连续时 $\cos((\Omega+2\pi m)t)\ne\cos(\Omega t)$）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;主值区间：DTFT 取 $[-\pi,\pi]$ 或 $[0,2\pi]$；DFT 取 $[0,2\pi)$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;2) 最低/最高频率&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$\omega$&lt;/th&gt;
+&lt;th&gt;变化快慢&lt;/th&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$ 或 $2\pi$&lt;/td&gt;
+&lt;td&gt;不变化&lt;/td&gt;
+&lt;td&gt;数字低频（直流）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\pi$&lt;/td&gt;
+&lt;td&gt;变化最快（$(-1)^n$）&lt;/td&gt;
+&lt;td&gt;数字高频&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;模拟信号 $\Omega$ 越大变化越快；数字信号只在 $[0,\pi]$ 内&quot;越大越快&quot;，到 $\pi$ 后反转。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3) 唯一对应条件&lt;/strong&gt;：只有 $\Omega&amp;lt;\Omega_s/2$ 时模拟频率与数字频率一一对应；否则（欠采样）高频折叠成低频。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;⑦ 周期序列（作业 2.3）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$x(n)=x(n+N)$ 对所有 $n$ 成立，最小正整数 $N$ 为周期。对正弦/复指数序列考察 $\dfrac{2\pi}{\omega}$：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;条件&lt;/th&gt;
+&lt;th&gt;结论&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\dfrac{2\pi}{\omega}$ 为整数 $N$&lt;/td&gt;
+&lt;td&gt;周期序列，最小周期 $N$（如 $\omega=\pi/2\to N=4$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\dfrac{2\pi}{\omega}=\dfrac Nk$ 为有理数&lt;/td&gt;
+&lt;td&gt;周期序列，最小周期 $N=\dfrac{2\pi k}{\omega}$（如 $\omega=3\pi/7\to N=14$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\dfrac{2\pi}{\omega}$ 为无理数&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;非周期&lt;/strong&gt;（如 $\omega=3/7$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作业 2.3(2) 模板：把 $\omega$ 写成含 $\pi$ 的形式 → 算 $\frac{2\pi}{\omega}$ → 判断整数/有理数 → 求最小 $N$。
+注意：$\omega=\pi$ 时 $N=2$ 仍是周期序列，属&quot;整数&quot;情形。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;⑧ 能量与平均功率（作业 2.4、2.5）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+E=\sum_{n=-\infty}^{\infty}\lvert x(n)\rvert^2,\qquad
+P=\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}\lvert x(n)\rvert^2
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$0&amp;lt;E&amp;lt;\infty$（$P=0$）→ &lt;strong&gt;能量信号&lt;/strong&gt;（有限长序列、$a^nu(n),|a|&amp;lt;1$）&lt;/li&gt;
+&lt;li&gt;$E=\infty$ 且 $0&amp;lt;P&amp;lt;\infty$ → &lt;strong&gt;功率信号&lt;/strong&gt;（$u(n)$、正弦序列、周期序列）&lt;/li&gt;
+&lt;li&gt;周期序列：$P=\dfrac1N\sum_{n=0}^{N-1}\lvert x(n)\rvert^2$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作业 2.4/2.5 模板：先判类别 → 有限长直接求和得 $E$；无限长等比用 $\sum a^n=\frac{1}{1-a}$ 判收敛；周期序列用单周期求和除以 $N$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.3 离散时间系统&lt;/h4&gt;
+&lt;h5&gt;2.3.0 概述&lt;/h5&gt;
+&lt;p&gt;系统 = 把输入序列映射成输出序列的唯一变换：$y(n)=T[x(n)]$。&lt;/p&gt;
+&lt;p&gt;按输入输出个数：2 入 1 出（调制器、累加器）、1 入 1 出（数乘、延迟、超前）、1 入多出（分流器）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三个常见系统&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;系统&lt;/th&gt;
+&lt;th&gt;表达式&lt;/th&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;累加器&lt;/td&gt;
+&lt;td&gt;$y(n)=\sum_{k=-\infty}^{n}x(k)$，因果形式 $y(n)=y(n-1)+x(n)$&lt;/td&gt;
+&lt;td&gt;线性、移不变；不稳定（$h(n)=u(n)$ 不可和）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;M 点滑动平均&lt;/td&gt;
+&lt;td&gt;$y(n)=\frac1M\sum_{k=0}^{M-1}x(n-k)$&lt;/td&gt;
+&lt;td&gt;线性、移不变、FIR；用于平滑去噪声&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;线性插值器&lt;/td&gt;
+&lt;td&gt;由相邻样本线性组合而成&lt;/td&gt;
+&lt;td&gt;线性、移不变&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;2.3.1 线性非移变（LSI）系统&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;线性&lt;/strong&gt;：$T[ax_1+bx_2]=aT[x_1]+bT[x_2]$，即同时满足&lt;strong&gt;齐次性（比例性）+ 可加性&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;线性系统的初始条件必须为 0（零状态），否则累加器也不线性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;移不变&lt;/strong&gt;：$T[x(n-k)]=y(n-k)$，输入平移多少，输出就平移多少。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反例（作业 2.7 常考）&lt;/strong&gt;：$y(n)=n,x(n)$ 线性但&lt;strong&gt;不是&lt;/strong&gt;移不变：&lt;/p&gt;
+&lt;p&gt;$$
+T[x(n-k)]=n,x(n-k)\ \ne\ (n-k)x(n-k)=y(n-k)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LSI 的卷积表示（核心）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=x(n)*h(n)=\sum_{k=-\infty}^{\infty}x(k)h(n-k)=\sum_{k=-\infty}^{\infty}h(k)x(n-k)
+$$&lt;/p&gt;
+&lt;p&gt;其中 $h(n)=T[\delta(n)]$ 为单位取样响应，完全刻画 LSI 系统。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四条性质判据（作业 2.7 必用）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;th&gt;条件&lt;/th&gt;
+&lt;th&gt;判据&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;线性&lt;/td&gt;
+&lt;td&gt;齐次 + 可加&lt;/td&gt;
+&lt;td&gt;无常数项、无输入相乘&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;移不变&lt;/td&gt;
+&lt;td&gt;$T[x(n-k)]=y(n-k)$&lt;/td&gt;
+&lt;td&gt;系数与 $n$ 无关&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;因果&lt;/td&gt;
+&lt;td&gt;输出只依赖现在和过去&lt;/td&gt;
+&lt;td&gt;$h(n)=0,\ n&amp;lt;0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;稳定（BIBO）&lt;/td&gt;
+&lt;td&gt;有界输入 → 有界输出&lt;/td&gt;
+&lt;td&gt;$\sum_n\lvert h(n)\rvert&amp;lt;\infty$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作业 2.7 模板：① 检验 $T[ax_1+bx_2]=aT[x_1]+bT[x_2]$；② 检验 $T[x(n-k)]=y(n-k)$；③ 是否用到 $x(n+1)$ 等未来值；④ 求和 $\sum|h(n)|$ 是否收敛。
+例：$y(n)=x(n)x(n-1)$ 移不变但非线性；$y(n)=x(2n)$ 线性但不是移不变。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;2.3.2 卷积和的性质&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;th&gt;式子&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;交换律&lt;/td&gt;
+&lt;td&gt;$x&lt;em&gt;h=h&lt;/em&gt;x$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;结合律&lt;/td&gt;
+&lt;td&gt;$(x&lt;em&gt;h_1)&lt;em&gt;h_2=x&lt;/em&gt;(h_1&lt;/em&gt;h_2)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;分配律&lt;/td&gt;
+&lt;td&gt;$x*(h_1+h_2)=x&lt;em&gt;h_1+x&lt;/em&gt;h_2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;与 δ&lt;/td&gt;
+&lt;td&gt;$x(n)*\delta(n-n_0)=x(n-n_0)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;长度&lt;/td&gt;
+&lt;td&gt;$L_y=L_x+L_h-1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;因果系统&lt;/td&gt;
+&lt;td&gt;$y(n)=\sum_{k=0}^{n}x(k)h(n-k)\ (n\ge0)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;图解法四步&lt;/strong&gt;：反折 → 平移 → 相乘 → 相加。
+&lt;strong&gt;解析法&lt;/strong&gt;：分段（重叠区间）求等比/等差和，注意 $u(n)$ 造成的分段点。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作业 2.13、2.14(9)(10) 模板：有限长序列先画表找重叠区间；或用多项式乘法（序列值作系数，乘完取系数）。
+例：${1,2,3}*{1,1}={1,3,5,3}$，$n=0,\dots,3$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.4 线性常系数差分方程&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;一般形式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\sum_{k=0}^{N}a_k,y(n-k)=\sum_{r=0}^{M}b_r,x(n-r)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两种结构（讲义例 2.4.1）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;二阶 IIR：$y(n)=a_1y(n-1)+a_2y(n-2)+b_0x(n)+b_1x(n-1)+b_2x(n-2)$&lt;/li&gt;
+&lt;li&gt;二阶 FIR：$y(n)=b_0x(n)+b_1x(n-1)+b_2x(n-2)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;求解方法&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;递推法（差分方程法）&lt;/strong&gt;：已知初始条件与输入逐点递推
+$$
+y(n)=\frac{1}{a_0}\Big[\sum_r b_rx(n-r)-\sum_{k\ge1}a_ky(n-k)\Big]
+$$
+只能得数值解，适合计算机。&lt;strong&gt;作业 2.15、2.19&lt;/strong&gt; 用此法，注意区分零输入响应与零状态响应。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;经典法&lt;/strong&gt;：齐次解 + 特解，用初始条件定系数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Z 变换法&lt;/strong&gt;：$Y(z)=H(z)X(z)$ + 部分分式反变换（见 §2.7）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;卷积法&lt;/strong&gt;：$y(n)=x(n)*h(n)$，$h(n)$ 由方程求得。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;一阶差分系统实现积分&lt;/strong&gt;：$y(n)=y(n-1)+Tx(n)$，即后向欧拉积分器。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;差分方程 ⟺ 结构 ⟺ 系统函数，三者在第 4 章反复使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.5 离散时间信号与系统的频域描述（DTFT）&lt;/h4&gt;
+&lt;h5&gt;2.5.1 DTFT 定义&lt;/h5&gt;
+&lt;p&gt;$$
+X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}\qquad\text{存在条件：}\sum\lvert x(n)\rvert&amp;lt;\infty\text{ 或有限能量}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n},d\omega
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$X(e^{j\omega})$ 一般是复数：$X=|X|e^{j\varphi(\omega)}$，$|X|$ 幅度谱、$\varphi$ 相位谱。&lt;/li&gt;
+&lt;li&gt;以 $2\pi$ 为周期、共轭对称：$X(e^{j(\omega+2\pi)})=X(e^{j\omega})$，$X(e^{-j\omega})=X^*(e^{j\omega})$（实序列）。&lt;/li&gt;
+&lt;li&gt;与 CTFT 的关系：$X(e^{j\omega})=X_a(j\Omega)\big|_{\Omega=\omega/T}$（无混叠时）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;2.5.2 DTFT 的性质（作业 2.21、2.23 直接考）&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;th&gt;时域&lt;/th&gt;
+&lt;th&gt;频域&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;线性&lt;/td&gt;
+&lt;td&gt;$ax_1+bx_2$&lt;/td&gt;
+&lt;td&gt;$aX_1+bX_2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;时移&lt;/td&gt;
+&lt;td&gt;$x(n-n_0)$&lt;/td&gt;
+&lt;td&gt;$e^{-j\omega n_0}X(e^{j\omega})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;频移（调制）&lt;/td&gt;
+&lt;td&gt;$e^{j\omega_0n}x(n)$&lt;/td&gt;
+&lt;td&gt;$X(e^{j(\omega-\omega_0)})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;时间反转&lt;/td&gt;
+&lt;td&gt;$x(-n)$&lt;/td&gt;
+&lt;td&gt;$X(e^{-j\omega})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;共轭&lt;/td&gt;
+&lt;td&gt;$x^*(n)$&lt;/td&gt;
+&lt;td&gt;$X^*(e^{-j\omega})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;卷积定理&lt;/td&gt;
+&lt;td&gt;$x(n)*h(n)$&lt;/td&gt;
+&lt;td&gt;$X(e^{j\omega})H(e^{j\omega})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;相乘（加窗）&lt;/td&gt;
+&lt;td&gt;$x(n)w(n)$&lt;/td&gt;
+&lt;td&gt;$\frac{1}{2\pi}X(e^{j\omega})\circledast W(e^{j\omega})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;差分&lt;/td&gt;
+&lt;td&gt;$x(n)-x(n-1)$&lt;/td&gt;
+&lt;td&gt;$(1-e^{-j\omega})X(e^{j\omega})$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;累加&lt;/td&gt;
+&lt;td&gt;$\sum_{k=-\infty}^{n}x(k)$&lt;/td&gt;
+&lt;td&gt;$\frac{X(e^{j\omega})}{1-e^{-j\omega}}+\pi X(e^{j0})\sum_k\delta(\omega-2\pi k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;频域微分&lt;/td&gt;
+&lt;td&gt;$n,x(n)$&lt;/td&gt;
+&lt;td&gt;$j\frac{dX(e^{j\omega})}{d\omega}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;帕斯瓦尔&lt;/td&gt;
+&lt;td&gt;$\sum_n\lvert x(n)\rvert^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert X(e^{j\omega})\rvert^2d\omega$&lt;/td&gt;
+&lt;td&gt;能量守恒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;对称性分解（实序列）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=x_e(n)+x_o(n),\quad x_e(n)=\tfrac12\big[x(n)+x(-n)\big],\quad x_o(n)=\tfrac12\big[x(n)-x(-n)\big]
+$$&lt;/p&gt;
+&lt;p&gt;$$
+X(e^{j\omega})=\underbrace{X_R(e^{j\omega})}&lt;em&gt;{\text{对应 }x_e}+\ j\underbrace{X_I(e^{j\omega})}&lt;/em&gt;{\text{对应 }x_o}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实偶序列 ⟷ 实偶频谱；实奇序列 ⟷ 纯虚奇频谱。&lt;/li&gt;
+&lt;li&gt;实序列的&lt;strong&gt;幅度谱是偶函数、相位谱是奇函数&lt;/strong&gt;（$X(e^{-j\omega})=X^*(e^{j\omega})$）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;2.5.3 系统的频率响应&lt;/h5&gt;
+&lt;p&gt;$$
+H(e^{j\omega})=\sum_{n=-\infty}^{\infty}h(n)e^{-j\omega n}=\lvert H\rvert e^{j\varphi(\omega)}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;复指数通过 LSI 系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=e^{j\omega n}\ \Rightarrow\ y(n)=H(e^{j\omega})e^{j\omega n}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正弦通过 LSI 系统（正弦不变量性质）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=A\cos(\omega_0n+\theta)\ \Rightarrow\ y(n)=A\lvert H(e^{j\omega_0})\rvert\cos\big(\omega_0n+\theta+\varphi(\omega_0)\big)
+$$&lt;/p&gt;
+&lt;p&gt;即幅度乘 $|H|$、相位加 $\varphi$，频率不变。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;由差分方程直接求 $H(e^{j\omega})$&lt;/strong&gt;（令 $z=e^{j\omega}$）&lt;/p&gt;
+&lt;p&gt;$$
+H(e^{j\omega})=\frac{\sum_r b_re^{-j\omega r}}{\sum_k a_ke^{-j\omega k}}
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作业 2.21/2.23 模板：先套性质表化简（移位、卷积、对称），再代定义求值；涉及能量用帕斯瓦尔。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.6 连续时间信号的取样（重点）&lt;/h4&gt;
+&lt;h5&gt;2.6.1 理想取样&lt;/h5&gt;
+&lt;p&gt;$$
+x_a(t)\to\hat x_a(t)=x_a(t)p(t)=\sum_{n=-\infty}^{\infty}x_a(nT)\delta(t-nT),\quad p(t)=\sum_n\delta(t-nT)
+$$&lt;/p&gt;
+&lt;p&gt;序列：$x(n)={x_a(nT)}$。注意 $\hat x_a(t)$ 是模拟信号（冲激串），不是数字信号。&lt;/p&gt;
+&lt;h5&gt;2.6.2 取样信号的频谱（取样定理）&lt;/h5&gt;
+&lt;p&gt;$$
+P(j\Omega)=\frac{2\pi}{T}\sum_{r=-\infty}^{\infty}\delta(\Omega-r\Omega_s),\qquad\Omega_s=\frac{2\pi}{T}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\hat X_a(j\Omega)=\frac{1}{T}\sum_{r=-\infty}^{\infty}X_a\big(j(\Omega-r\Omega_s)\big)
+$$&lt;/p&gt;
+&lt;p&gt;即&lt;strong&gt;原频谱以 $\Omega_s$ 为周期无限复制&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;取样定理（奈奎斯特）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\Omega_s\ge2\Omega_m\qquad(f_s\ge2f_m)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\Omega_m$：信号最高频率；$\Omega_s/2$：折叠频率；$2\Omega_m$：奈奎斯特频率。&lt;/li&gt;
+&lt;li&gt;不满足 → 频谱&lt;strong&gt;混叠（折叠）&lt;/strong&gt;，高频搬移到低频，无法用低通恢复原信号。&lt;/li&gt;
+&lt;li&gt;满足 → 用理想低通（截止 $\Omega_s/2$、增益 $T$）可唯一恢复。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;2.6.3 频率归一化&lt;/h5&gt;
+&lt;p&gt;$$
+X(e^{j\omega})=\frac1T\hat X_a!\Big(j\frac{\omega}{T}\Big)=\frac1T\sum_r X_a\Big(j\frac{\omega-2\pi r}{T}\Big)
+\qquad\Longrightarrow\qquad \omega=\Omega T
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数字域周期 $2\pi$ ↔ 模拟域周期 $\Omega_s$；数字域 $\pi$ ↔ 模拟域 $\Omega_s/2$（折叠频率）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;2.6.4 实际取样与重建&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;零阶保持（ZOH）取样：频谱多乘 sinc 因子（孔径效应），需补偿。&lt;/li&gt;
+&lt;li&gt;重建：理想低通 → 内插公式 $x_a(t)=\sum_n x(n),\mathrm{sinc}\big((t-nT)/T\big)$。&lt;/li&gt;
+&lt;li&gt;抗混叠前置滤波器：取样前先低通限制 $\Omega_m&amp;lt;\Omega_s/2$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作业 2.29(2)、2.31、2.33 模板：
+① 由 $f_s$ 求 $T$，由 $f_0$ 求 $\Omega_m$，比较 $f_s$ 与 $2f_m$ 判混叠；
+② 若欠采样，混叠频率 $f_{alias}=\lvert f_0-kf_s\rvert$（取落在 $(0,f_s/2]$ 的值）；
+③ 数字频率 $\omega=2\pi f_0/f_s$，若 $&amp;gt;\pi$ 则减去 $2\pi$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：$f_s=200$ Hz 对 80 Hz、120 Hz 取样 → $\omega_1=0.8\pi$；$\omega_2=1.2\pi$ 折叠为 $1.2\pi-2\pi=-0.8\pi$，两分量混叠到同一数字频率（相位相反）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.7 Z 变换（重点）&lt;/h4&gt;
+&lt;h5&gt;2.7.1 定义与收敛域&lt;/h5&gt;
+&lt;p&gt;$$
+X(z)=\sum_{n=-\infty}^{\infty}x(n)z^{-n},\qquad z=re^{j\omega}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=\frac{1}{2\pi j}\oint_C X(z)z^{n-1},dz\qquad\text{（C 在收敛域内逆时针）}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;收敛域（ROC）&lt;/strong&gt;：使级数收敛的 $z$ 的集合，由 $\sum\lvert x(n)\rvert r^{-n}&amp;lt;\infty$ 决定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ROC 三条铁律&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ROC 是以极点为边界的圆环（不包含极点，可以包含零点）；&lt;/li&gt;
+&lt;li&gt;ROC 内不能有极点；&lt;/li&gt;
+&lt;li&gt;同一 $X(z)$ 配不同 ROC 对应不同序列（如 $a^nu(n)$ 与 $-a^nu(-n-1)$）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;速记口诀&lt;/strong&gt;：右外、左内、双环、有限长全平面（可能去掉 $z=0$ 或 $\infty$）。&lt;/p&gt;
+&lt;h5&gt;2.7.2 典型序列的 ZT 与 ROC&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;序列&lt;/th&gt;
+&lt;th&gt;$X(z)$&lt;/th&gt;
+&lt;th&gt;ROC&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\delta(n)$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;全平面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\delta(n-m)$&lt;/td&gt;
+&lt;td&gt;$z^{-m}$&lt;/td&gt;
+&lt;td&gt;$z\ne0$（$m&amp;gt;0$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$u(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-z^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a^nu(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-az^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;\lvert a\rvert$（因果 → 圆外）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$-a^nu(-n-1)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1}{1-az^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;lt;\lvert a\rvert$（逆因果 → 圆内）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$a^{\lvert n\rvert}$（$0&amp;lt;a&amp;lt;1$）&lt;/td&gt;
+&lt;td&gt;双环&lt;/td&gt;
+&lt;td&gt;$a&amp;lt;\lvert z\rvert&amp;lt;1/a$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$R_N(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1-z^{-N}}{1-z^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$na^nu(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{az^{-1}}{(1-az^{-1})^2}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;\lvert a\rvert$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\cos(\omega_0n)u(n)$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1-z^{-1}\cos\omega_0}{1-2z^{-1}\cos\omega_0+z^{-2}}$&lt;/td&gt;
+&lt;td&gt;$\lvert z\rvert&amp;gt;1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;2.7.3 逆 Z 变换&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;① 幂级数法（长除法）&lt;/strong&gt;：右边序列展成 $z^{-1}$ 幂级数（降幂），左边序列展成 $z$ 幂级数。只得数值序列。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;② 部分分式法（最常用）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$X(z)=N(z)/D(z)$，$M&amp;lt;N$ 且极点单阶：&lt;/p&gt;
+&lt;p&gt;$$
+\frac{X(z)}{z}=\sum_k\frac{A_k}{z-p_k},\qquad A_k=\Big[(z-p_k)\frac{X(z)}{z}\Big]_{z=p_k}
+$$&lt;/p&gt;
+&lt;p&gt;逐项反变换时&lt;strong&gt;必先看 ROC 定因果性&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+\frac{1}{1-pz^{-1}}\ \xrightarrow[\ \lvert z\rvert&amp;gt;\lvert p\rvert\ ]{\ }p^nu(n),\qquad
+\frac{1}{1-pz^{-1}}\ \xrightarrow[\ \lvert z\rvert&amp;lt;\lvert p\rvert\ ]{\ }-p^nu(-n-1)
+$$&lt;/p&gt;
+&lt;p&gt;重极点用 $\dfrac{z}{(z-p)^m}$ 型公式（含 $n^{m-1}p^n$ 项）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;③ 留数法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=\sum_{z=p_k}\mathrm{Res}\big[X(z)z^{n-1}\big]
+$$&lt;/p&gt;
+&lt;p&gt;$\lvert z\rvert&amp;gt;R_+$ 时围线包含全部极点；$\lvert z\rvert&amp;lt;R_-$ 时取围线外极点（加负号）。&lt;/p&gt;
+&lt;h5&gt;2.7.4 ZT 的性质&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;th&gt;表达式&lt;/th&gt;
+&lt;th&gt;ROC&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;线性&lt;/td&gt;
+&lt;td&gt;$ax_1+bx_2$&lt;/td&gt;
+&lt;td&gt;交集（可能扩大）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;时移&lt;/td&gt;
+&lt;td&gt;$x(n-m)\leftrightarrow z^{-m}X(z)$&lt;/td&gt;
+&lt;td&gt;除 $z=0/\infty$ 外不变&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;乘指数&lt;/td&gt;
+&lt;td&gt;$a^nx(n)\leftrightarrow X(z/a)$&lt;/td&gt;
+&lt;td&gt;$\lvert a\rvert R_x$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;时间反转&lt;/td&gt;
+&lt;td&gt;$x(-n)\leftrightarrow X(1/z)$&lt;/td&gt;
+&lt;td&gt;$1/R_x$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;共轭&lt;/td&gt;
+&lt;td&gt;$x^&lt;em&gt;(n)\leftrightarrow X^&lt;/em&gt;(z^*)$&lt;/td&gt;
+&lt;td&gt;$R_x$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;卷积&lt;/td&gt;
+&lt;td&gt;$x(n)*h(n)\leftrightarrow X(z)H(z)$&lt;/td&gt;
+&lt;td&gt;交集&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;相乘（复卷积）&lt;/td&gt;
+&lt;td&gt;$x(n)w(n)\leftrightarrow\frac{1}{2\pi j}\oint X(v)W(z/v)v^{-1}dv$&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;差分&lt;/td&gt;
+&lt;td&gt;$x(n)-x(n-1)\leftrightarrow(1-z^{-1})X(z)$&lt;/td&gt;
+&lt;td&gt;至少交集&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;累加&lt;/td&gt;
+&lt;td&gt;$\sum_{k=-\infty}^{n}x(k)\leftrightarrow\dfrac{X(z)}{1-z^{-1}}$&lt;/td&gt;
+&lt;td&gt;交集且 $\lvert z\rvert&amp;gt;1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;初值定理&lt;/td&gt;
+&lt;td&gt;$x(0)=\lim_{z\to\infty}X(z)$（因果）&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;终值定理&lt;/td&gt;
+&lt;td&gt;$\lim_{n\to\infty}x(n)=\lim_{z\to1}(1-z^{-1})X(z)$&lt;/td&gt;
+&lt;td&gt;需 $(1-z^{-1})X(z)$ 极点在单位圆内&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;帕斯瓦尔&lt;/td&gt;
+&lt;td&gt;$\sum\lvert x(n)\rvert^2=\frac{1}{2\pi j}\oint X(z)X^&lt;em&gt;(1/z^&lt;/em&gt;)z^{-1}dz$&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;要注意的例外&lt;/strong&gt;：$x(n)=u(n)$ 的 ROC 是 $\lvert z\rvert&amp;gt;1$，但 $x(n)-x(n-1)=\delta(n)$ 的 ROC 是&lt;strong&gt;整个 z 平面&lt;/strong&gt;（零极点相消使 ROC 扩大）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§2.8 系统函数&lt;/h4&gt;
+&lt;h5&gt;2.8.1 定义&lt;/h5&gt;
+&lt;p&gt;$$
+H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{r=0}^{M}b_rz^{-r}}{\sum_{k=0}^{N}a_kz^{-k}}
+=K,\frac{\prod_{r=1}^{M}(1-c_rz^{-1})}{\prod_{k=1}^{N}(1-d_kz^{-1})}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$c_r$ 零点、$d_k$ 极点（$a_0=1$ 时 $K=b_0$）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;$H(z)$ 由系统结构决定，与输入输出无关&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;$H(z)$ 与 $h(n)$ 是一对 ZT；ROC 含单位圆时 $H(e^{j\omega})=H(z)\big|_{z=e^{j\omega}}$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;零极点图&lt;/strong&gt;：极点用 ×、零点用 ○ 标在 z 平面。&lt;/p&gt;
+&lt;h5&gt;2.8.2 稳定性、因果性判据（必考）&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;系统&lt;/th&gt;
+&lt;th&gt;时域判据&lt;/th&gt;
+&lt;th&gt;z 域判据&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;因果&lt;/td&gt;
+&lt;td&gt;$h(n)=0,\ n&amp;lt;0$&lt;/td&gt;
+&lt;td&gt;$H(z)$ 的 ROC 是某圆外部（含 $z=\infty$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;稳定&lt;/td&gt;
+&lt;td&gt;$\sum_n\lvert h(n)\rvert&amp;lt;\infty$&lt;/td&gt;
+&lt;td&gt;ROC 包含单位圆 $\lvert z\rvert=1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;因果且稳定&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;全部极点严格在单位圆内&lt;/strong&gt; $\lvert d_k\rvert&amp;lt;1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记忆：因果 → 圆外；稳定 → 含单位圆；两者兼得 → 极点全在圆内。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：$H(z)=\dfrac{1}{1-0.5z^{-1}}$，极点在 $0.5$，ROC $\lvert z\rvert&amp;gt;0.5$ 含单位圆且为圆外 → 因果稳定。
+$H(z)=\dfrac{1}{1-2z^{-1}}$ 取 $\lvert z\rvert&amp;gt;2$ → 因果但不稳定（$2^nu(n)$ 发散）。&lt;/p&gt;
+&lt;h5&gt;2.8.3 频率响应的几何求法&lt;/h5&gt;
+&lt;p&gt;$$
+H(e^{j\omega})=K\frac{\prod_r\big(e^{j\omega}-c_r\big)}{\prod_k\big(e^{j\omega}-d_k\big)}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单位圆上点 $\omega$ 到各零点矢量模相乘、到各极点矢量模相除 → 幅度；&lt;/li&gt;
+&lt;li&gt;矢量辐角求和相减 → 相位；&lt;/li&gt;
+&lt;li&gt;极点靠近单位圆 → 该频率峰起（共振）；零点在单位圆上 → 该频率幅度为 0。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;本章备考清单&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] 默写 $\delta,u,R_N$ 的关系及 $x(n)=\sum x(k)\delta(n-k)$&lt;/li&gt;
+&lt;li&gt;[ ] 会判正弦序列周期性（$\frac{2\pi}{\omega}$ 有理数）&lt;/li&gt;
+&lt;li&gt;[ ] 会判线性/移不变/因果/稳定（4 个判据 + 反例 $y(n)=nx(n)$）&lt;/li&gt;
+&lt;li&gt;[ ] 会用图解法/解析法做卷积和（长度 $L_x+L_h-1$）&lt;/li&gt;
+&lt;li&gt;[ ] 会递推解差分方程，会由差分方程写 $H(z)$&lt;/li&gt;
+&lt;li&gt;[ ] 默写 DTFT 性质表（移位、调制、卷积、帕斯瓦尔）&lt;/li&gt;
+&lt;li&gt;[ ] 记住取样定理 + 混叠频率计算 $f_{alias}=\lvert f_0-kf_s\rvert$&lt;/li&gt;
+&lt;li&gt;[ ] 记住典型 ZT 对及 ROC，会用部分分式求逆 ZT（先看 ROC）&lt;/li&gt;
+&lt;li&gt;[ ] 牢记&quot;因果 + 稳定 ⟺ 极点全在单位圆内&quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;常见易错点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;把 $\hat x_a(t)$ 当数字信号 —— 它是冲激串，仍是模拟信号。&lt;/li&gt;
+&lt;li&gt;判周期性时只算 $\frac{2\pi}{\omega}$ 的整数情形，漏掉有理数 $N/k$。&lt;/li&gt;
+&lt;li&gt;$y(n)=nx(n)$ 误判为移不变；$y(n)=x(n)x(n-1)$ 误判为线性。&lt;/li&gt;
+&lt;li&gt;部分分式反变换忘记根据 ROC 选 $u(n)$ 还是 $-u(-n-1)$（&lt;strong&gt;最常见扣分点&lt;/strong&gt;）。&lt;/li&gt;
+&lt;li&gt;混叠频率只算 $f_0-f_s$ 而不取绝对值/不折到 $(0,f_s/2]$。&lt;/li&gt;
+&lt;li&gt;ZT 的 ROC 写成&quot;圆内/圆外&quot;却漏掉&quot;不含极点&quot;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;B.3　第3章 离散傅里叶变换（DFT / FFT）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对应讲义：第三章.pdf（115 页）
+作业题（题面截图见 dsp 根目录）：&lt;strong&gt;3.6、3.8、3.10、3.13、3.16、3.18、3.20&lt;/strong&gt;（手算）+ &lt;strong&gt;3.22、3.25、3.26、3.28&lt;/strong&gt;（MATLAB）
+已有解答：手算题见 §C.1，MATLAB 题见 §C.2（含完整代码与图形）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.1 引言：四种傅里叶变换&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变换&lt;/th&gt;
+&lt;th&gt;时域&lt;/th&gt;
+&lt;th&gt;频域&lt;/th&gt;
+&lt;th&gt;计算机能算？&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CTFT&lt;/td&gt;
+&lt;td&gt;连续&lt;/td&gt;
+&lt;td&gt;连续&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FS&lt;/td&gt;
+&lt;td&gt;连续周期&lt;/td&gt;
+&lt;td&gt;离散&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DTFT&lt;/td&gt;
+&lt;td&gt;离散&lt;/td&gt;
+&lt;td&gt;连续、2π 周期&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;DFT&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;离散有限长&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;离散有限长&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;核心动机&lt;/strong&gt;：前三种总有一个域不离散。DFT 让时域、频域&lt;strong&gt;都离散且有限长&lt;/strong&gt;，计算机才能算。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;连续信号的傅里叶级数（回顾）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x_a(t)=\sum_{k=-\infty}^{\infty}X_ke^{jk\Omega_0t},\quad
+X_k=\frac{1}{T_0}\int_{T_0}x_a(t)e^{-jk\Omega_0t}dt,\quad \Omega_0=\frac{2\pi}{T_0}
+$$&lt;/p&gt;
+&lt;p&gt;频谱离散非周期（谐波），是 DFS 的来源。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.2 离散傅里叶级数（DFS）&lt;/h4&gt;
+&lt;h5&gt;3.2.1 定义&lt;/h5&gt;
+&lt;p&gt;周期序列 $\tilde x(n)=\tilde x(n+N)$，基波 $e^{j\frac{2\pi}{N}n}$，$k$ 次谐波 $e^{j\frac{2\pi}{N}kn}$：&lt;/p&gt;
+&lt;p&gt;$$
+\tilde X(k)=\sum_{n=0}^{N-1}\tilde x(n)e^{-j\frac{2\pi}{N}kn}=\sum_{n=0}^{N-1}\tilde x(n)W_N^{nk}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\tilde x(n)=\frac{1}{N}\sum_{k=0}^{N-1}\tilde X(k)e^{j\frac{2\pi}{N}kn}=\frac{1}{N}\sum_{k=0}^{N-1}\tilde X(k)W_N^{-nk}
+$$&lt;/p&gt;
+&lt;p&gt;旋转因子：$W_N=e^{-j2\pi/N}$，具有
+$W_N^{nk}=W_N^{(nk\bmod N)}$，$W_N^{N}=1$，$\sum_{n=0}^{N-1}W_N^{nk}=N\delta((k))_N$（正交性——一切推导的基础）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要点&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\tilde X(k)$ 也是&lt;strong&gt;周期为 $N$ 的离散序列&lt;/strong&gt;（DFS 在时域、频域都周期）；&lt;/li&gt;
+&lt;li&gt;周期序列的 ZT &lt;strong&gt;不收敛&lt;/strong&gt;（无 ROC），所以周期信号只能用 DFS，不能用 ZT。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;3.2.2 DFS 的性质&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;th&gt;时域&lt;/th&gt;
+&lt;th&gt;频域&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;线性&lt;/td&gt;
+&lt;td&gt;$a\tilde x_1+b\tilde x_2$&lt;/td&gt;
+&lt;td&gt;$a\tilde X_1+b\tilde X_2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;周期移位&lt;/td&gt;
+&lt;td&gt;$\tilde x(n-m)$&lt;/td&gt;
+&lt;td&gt;$W_N^{mk}\tilde X(k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;频域移位（调制）&lt;/td&gt;
+&lt;td&gt;$W_N^{-mn}\tilde x(n)$&lt;/td&gt;
+&lt;td&gt;$\tilde X(k-m)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;周期卷积&lt;/td&gt;
+&lt;td&gt;$\sum_m\tilde x_1(m)\tilde x_2(n-m)$&lt;/td&gt;
+&lt;td&gt;$\tilde X_1(k)\tilde X_2(k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;相乘&lt;/td&gt;
+&lt;td&gt;$\tilde x_1(n)\tilde x_2(n)$&lt;/td&gt;
+&lt;td&gt;$\frac1N\sum_l\tilde X_1(l)\tilde X_2(k-l)$（周期卷积）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;共轭对称&lt;/td&gt;
+&lt;td&gt;$\tilde x^*(n)$&lt;/td&gt;
+&lt;td&gt;$\tilde X^*((−k))_N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;帕斯瓦尔&lt;/td&gt;
+&lt;td&gt;$\sum_{n=0}^{N-1}\lvert\tilde x(n)\rvert^2$&lt;/td&gt;
+&lt;td&gt;$=\frac1N\sum_{k=0}^{N-1}\lvert\tilde X(k)\rvert^2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.3 离散傅里叶变换（DFT）&lt;/h4&gt;
+&lt;h5&gt;3.3.1 定义（从 DFS 与 DTFT/ZT 取样两个角度）&lt;/h5&gt;
+&lt;p&gt;有限长序列 $x(n),0\le n\le N-1$：&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk},\qquad x(n)=\frac1N\sum_{k=0}^{N-1}X(k)W_N^{-nk},\qquad 0\le k,n\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两种理解（考试常考等价性）&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;DFS 的主值&lt;/strong&gt;：把 $x(n)$ 以 $N$ 为周期延拓成 $\tilde x(n)$，取 DFS 的主值区间即得 DFT。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ZT/DTFT 的 N 点取样&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;$$
+X(k)=X(z)\Big|&lt;em&gt;{z=W_N^{-k}}=X(e^{j\omega})\Big|&lt;/em&gt;{\omega=\frac{2\pi k}{N}}
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这正是作业 3.10、3.13 的出发点：&lt;strong&gt;Z 变换在单位圆（或其他半径圆）上等角距取样 → IDFT → 时域周期延拓&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+x_N(n)=\mathrm{IDFT}\big[X(k)\big]=\sum_{r=-\infty}^{\infty}x(n+rN),\qquad 0\le n\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四种变换的关系链&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\underbrace{X_a(j\Omega)}&lt;em&gt;{\text{CTFT}}\xrightarrow{\text{取样}}\underbrace{X(e^{j\omega})}&lt;/em&gt;{\text{DTFT}}\xrightarrow{z=e^{j\omega}}\underbrace{X(z)}&lt;em&gt;{\text{ZT}}\xrightarrow{\text{单位圆 }N\text{ 点取样}}\underbrace{X(k)}&lt;/em&gt;{\text{DFT}}
+$$&lt;/p&gt;
+&lt;p&gt;DTFT 与 DFT 的差别：DTFT 是连续谱，DFT 是 $[0,2\pi)$ 上间隔 $2\pi/N$ 的 $N$ 根谱线。DFT 是 DTFT 的&lt;strong&gt;频域取样&lt;/strong&gt;，时域对应&lt;strong&gt;周期延拓&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 3.22（MATLAB）&lt;/strong&gt;：$x(n)=1\ (0\le n\le3)$。
+(1) DTFT $X(e^{j\omega})=\dfrac{1-e^{-j4\omega}}{1-e^{-j\omega}}=e^{-j\frac32\omega}\dfrac{\sin2\omega}{\sin(\omega/2)}$，
+幅度在 $\omega=0,\pm\pi/2,\pm\pi$ 处为 $4,0,0$；(2) 4 点 DFT $X(k)=4\delta(k)={4,0,0,0}$。
+对比可见：&lt;strong&gt;DFT 就是在 $\omega=2\pi k/4$ 上对 DTFT 取样&lt;/strong&gt;。
+代码见 §C.2。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;3.3.2 DFT 的性质（作业 3.20 直接用）&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;① 线性&lt;/strong&gt;：$ax_1+bx_2\leftrightarrow aX_1+bX_2$（长度都补到 $N$）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;② 循环移位&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x\big((n-m)\big)_N R_N(n)\ \longleftrightarrow\ W_N^{mk}X(k)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;③ 频域循环移位（调制）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+W_N^{-mn}x(n)\ \longleftrightarrow\ X\big((k-m)\big)_N R_N(k)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;④ 循环卷积（循环卷积定理）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=x(n)\circledast h(n)=\sum_{m=0}^{N-1}x(m)h\big((n-m)\big)_N\ \longleftrightarrow\ Y(k)=X(k)H(k)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;⑤ 共轭对称性（本章最易考）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;圆周共轭对称序列：$x_{ep}(n)=\tfrac12\big[x(n)+x^&lt;em&gt;((N-n))&lt;em&gt;N\big]$
+圆周共轭反对称序列：$x&lt;/em&gt;{op}(n)=\tfrac12\big[x(n)-x^&lt;/em&gt;((N-n))_N\big]$&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=x_{ep}(n)+x_{op}(n),\qquad
+\mathrm{DFT}[x_{ep}]=X_R(k)\ (\text{实}),\qquad \mathrm{DFT}[x_{op}]=jX_I(k)\ (\text{纯虚})
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实序列的共轭对称性&lt;/strong&gt;（作业 3.20 的核心）&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=X^*\big((N-k)\big)_N\quad(\text{实序列}),\qquad
+\lvert X(k)\rvert=\lvert X((N-k))_N\rvert,\quad \varphi(k)=-\varphi((N-k))_N
+$$&lt;/p&gt;
+&lt;p&gt;即实序列的 DFT 满足&lt;strong&gt;幅频偶对称、相频奇对称&lt;/strong&gt;，只有 $N/2+1$ 个独立值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;类型对应速查&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;时域 $x(n)$&lt;/th&gt;
+&lt;th&gt;频域 $X(k)$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;实序列&lt;/td&gt;
+&lt;td&gt;圆周共轭对称（$X(k)=X^*((N-k))_N$）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;纯虚序列&lt;/td&gt;
+&lt;td&gt;圆周共轭反对称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实偶（圆周）&lt;/td&gt;
+&lt;td&gt;实偶&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实奇（圆周）&lt;/td&gt;
+&lt;td&gt;纯虚奇&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;共轭对称部分 $x_{ep}$&lt;/td&gt;
+&lt;td&gt;实部 $X_R(k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;共轭反对称部分 $x_{op}$&lt;/td&gt;
+&lt;td&gt;虚部 $jX_I(k)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;⑥ 帕斯瓦尔定理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\sum_{n=0}^{N-1}\lvert x(n)\rvert^2=\frac1N\sum_{k=0}^{N-1}\lvert X(k)\rvert^2
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;⑦ 对偶性&lt;/strong&gt;：$X(n)\leftrightarrow N x((−k))_N$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 3.6&lt;/strong&gt; 用定义直接求和（等比级数 + 正交性）；
+&lt;strong&gt;作业 3.20&lt;/strong&gt; 用共轭对称拆分：$X_1(k)=G_{ER}(k)+j,G_{OI}(k)$，$X_2(k)=G_{EI}(k)-j,G_{OR}(k)$
+（等价形式 $X_1=\frac12[G(k)+G^&lt;em&gt;((N-k))_N]$、$X_2=\frac{1}{2j}[G(k)-G^&lt;/em&gt;((N-k))_N]$） —— 详见 §C.1。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;3.20 的正确推导（易错，务必按此写）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$g(n)=x_1(n)+jx_2(n)\ \Rightarrow\ G=X_1+jX_2$，所以&lt;/p&gt;
+&lt;p&gt;$$
+G_R=X_{1R}-X_{2I},\qquad G_I=X_{1I}+X_{2R}
+$$&lt;/p&gt;
+&lt;p&gt;$X_1,X_2$ 是实序列的 DFT → &lt;strong&gt;实部偶、虚部奇&lt;/strong&gt;，故取偶/奇部分：&lt;/p&gt;
+&lt;p&gt;$$
+G_{ER}=X_{1R},\quad G_{OR}=-X_{2I},\quad G_{EI}=X_{2R},\quad G_{OI}=X_{1I}
+$$&lt;/p&gt;
+&lt;p&gt;代回即得 $X_1=G_{ER}+jG_{OI}$，$X_2=G_{EI}-jG_{OR}$（已数值验证）。
+注意 &lt;strong&gt;$G_R\neq X_1$&lt;/strong&gt;（$X_1$ 一般是复数，$G_R$ 还混入了 $x_2$ 的虚部）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.4 用循环卷积计算线性卷积&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;线性卷积&lt;/strong&gt;：$y_l(n)=x(n)*h(n)$，长度 $L=L_1+L_2-1$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;循环卷积（$N$ 点）&lt;/strong&gt;：$y_c(n)=\sum_{m=0}^{N-1}x(m)h\big((n-m)\big)_N$，长度仍为 $N$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两者的关系（作业 3.8 的核心结论）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+y_c(n)=\Big[\sum_{r=-\infty}^{\infty}y_l(n+rN)\Big]R_N(n)
+$$&lt;/p&gt;
+&lt;p&gt;即 &lt;strong&gt;$N$ 点循环卷积 = 线性卷积以 $N$ 为周期延拓后取主值&lt;/strong&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;条件&lt;/th&gt;
+&lt;th&gt;结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$N\ge L_1+L_2-1$&lt;/td&gt;
+&lt;td&gt;无混叠，$y_c(n)=y_l(n)$（末尾补零）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$N&amp;lt;L_1+L_2-1$&lt;/td&gt;
+&lt;td&gt;发生&lt;strong&gt;时域混叠&lt;/strong&gt;，$y_c\ne y_l$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;用循环卷积算线性卷积的标准步骤（FFT 快速卷积）&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;选 $N\ge L_1+L_2-1$，且 $N$ 取 2 的整数幂；&lt;/li&gt;
+&lt;li&gt;两序列补零到 $N$ 点；&lt;/li&gt;
+&lt;li&gt;$Y(k)=X(k)H(k)$（FFT）；&lt;/li&gt;
+&lt;li&gt;$y(n)=\mathrm{IFFT}[Y(k)]$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;运算量对比&lt;/strong&gt;（$N$ 点）&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方法&lt;/th&gt;
+&lt;th&gt;复数乘法次数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;直接线性卷积&lt;/td&gt;
+&lt;td&gt;$N^2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FFT 快速卷积&lt;/td&gt;
+&lt;td&gt;$3\cdot\frac N2\log_2N+O(N)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这就是&quot;为什么要 FFT&quot;的答案：$N$ 大时 FFT 卷积快得多。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.5 频率取样&lt;/h4&gt;
+&lt;h5&gt;3.5.1 序列的几种变换关系（作业 3.10、3.13 的理论依据）&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;关系&lt;/th&gt;
+&lt;th&gt;公式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ZT 与 DTFT&lt;/td&gt;
+&lt;td&gt;$X(e^{j\omega})=\left.X(z)\right\rvert_{z=e^{j\omega}}$（单位圆上的 ZT）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LT 与 ZT&lt;/td&gt;
+&lt;td&gt;$z=e^{sT}$：s 左半平面 → 单位圆内，虚轴 → 单位圆，宽 $2\pi/T$ 的带 → 整个 z 平面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DFT 与 ZT&lt;/td&gt;
+&lt;td&gt;$X(k)=\left.X(z)\right\rvert_{z=W_N^{-k}}$（单位圆上等角距 $2\pi/N$ 取样）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DFT 与 DTFT&lt;/td&gt;
+&lt;td&gt;$X(k)=\left.X(e^{j\omega})\right\rvert_{\omega=2\pi k/N}$（一个周期内等间隔取样）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;3.5.2 从 N 个取样值恢复 $x(n)$&lt;/h5&gt;
+&lt;p&gt;$$
+x_N(n)=\frac1N\sum_{k=0}^{N-1}X(k)W_N^{-nk}=\sum_{r=-\infty}^{\infty}x(n+rN),\qquad 0\le n\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：单位圆上等角距取样 → 反变换得到时域&lt;strong&gt;周期延拓&lt;/strong&gt;的原序列（混叠）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;作业 3.10&lt;/strong&gt;：$x(n)=a^nu(n)$，$X(k)=\dfrac{1}{1-aW_N^{k}}$，&lt;/p&gt;
+&lt;p&gt;$$
+x_N(n)=\mathrm{IDFT}\big[X(k)\big]=\sum_{i=0}^{\infty}a^{n+iN}=\frac{a^n}{1-a^N},\qquad 0\le n\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;（$0&amp;lt;a&amp;lt;1$ 时级数收敛，得到 $N$ 点有限长序列。）&lt;/p&gt;
+&lt;h5&gt;3.5.3 从 N 个取样值恢复 $X(z)$ 或 $X(e^{j\omega})$（内插公式）&lt;/h5&gt;
+&lt;p&gt;由 $N$ 个 $X(k)$ 可恢复连续频谱：&lt;/p&gt;
+&lt;p&gt;$$
+X(z)=\sum_{k=0}^{N-1}X(k)\cdot\frac{1-z^{-N}}{N\big(1-W_N^{-k}z^{-1}\big)}
+\ \Longrightarrow&lt;br /&gt;
+X(e^{j\omega})=\sum_{k=0}^{N-1}X(k),\Phi!\Big(\omega-\frac{2\pi k}{N}\Big)
+$$&lt;/p&gt;
+&lt;p&gt;其中 $\Phi(\omega)=\dfrac{1}{N}\cdot\dfrac{\sin(\omega N/2)}{\sin(\omega/2)}e^{-j\omega(N-1)/2}$ 为&lt;strong&gt;内插函数&lt;/strong&gt;（各取样点的 sinc 型加权和）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 3.13 的思路&lt;/strong&gt;：要在 $z=0.5e^{j(\frac{2\pi k}{10}+\frac{\pi}{10})}$ 上取 $X(z)$，
+需构造 $x_1(n)=x(n)\cdot(0.5)^{-n}e^{-j\frac{\pi}{10}n}\cdot$（周期为 10 的延拓），
+使 $X_1(k)=\sum_n x_1(n)e^{-j\frac{2\pi}{10}kn}=X\big(0.5e^{j(\frac{2\pi k}{10}+\frac{\pi}{10})}\big)$。
+即&lt;strong&gt;乘指数序列 $2^ne^{-j\pi n/10}$ 后再做 10 点 DFT&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.6 快速傅里叶变换（FFT）&lt;/h4&gt;
+&lt;h5&gt;3.6.1 直接 DFT 的运算量&lt;/h5&gt;
+&lt;p&gt;$X(k)=\sum_{n=0}^{N-1}x(n)W_N^{nk}$：复数乘 $N^2$ 次、复数加 $N(N-1)$ 次。&lt;/p&gt;
+&lt;p&gt;$N=1024$ 时 $\approx10^6$ 次乘法。FFT 利用 $W_N$ 的&lt;strong&gt;周期性&lt;/strong&gt;与&lt;strong&gt;对称性&lt;/strong&gt;把运算量降到 $O(N\log N)$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;旋转因子的两个性质&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+W_N^{k(N-n)}=W_N^{-kn}=\big(W_N^{kn}\big)^*,\qquad W_N^{kn}=W_N^{(kn\bmod N)}
+$$&lt;/p&gt;
+&lt;h5&gt;3.6.2 时间抽取（DIT）基 2-FFT&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;分解思路&lt;/strong&gt;：按 $n$ 的奇偶把 $N$ 点序列分成两个 $N/2$ 点序列：&lt;/p&gt;
+&lt;p&gt;$$
+x_1(r)=x(2r),\quad x_2(r)=x(2r+1),\qquad r=0,1,\dots,\tfrac N2-1
+$$&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=X_1(k)+W_N^{k}X_2(k),\qquad X\Big(k+\frac N2\Big)=X_1(k)-W_N^{k}X_2(k),\qquad k=0,\dots,\tfrac N2-1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;蝶形运算&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;       ┌──────┐
+x1 ───►│      ├───► x1 + W·x2
+       │  ⊕   │
+x2 ──►W│      ├───► x1 - W·x2
+       └──────┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一次蝶形 = 1 次复数乘 + 2 次复数加。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;运算量&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\text{复数乘：}\frac N2\log_2N,\qquad\text{复数加：}N\log_2N
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DIT 流程要点（作业 3.16）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;共 $M=\log_2N$ 级，每级 $N/2$ 个蝶形；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输入按倒位序（bit-reversal）排列，输出自然序&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;每级跨度：第 $m$ 级蝶形&quot;距离&quot;为 $2^{m-1}$，旋转因子 $W_{2^m}^{k}$；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;级 $m$&lt;/th&gt;
+&lt;th&gt;蝶形距离&lt;/th&gt;
+&lt;th&gt;旋转因子&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;$W_2^0=1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;$W_4^0,W_4^1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;$W_8^{0..3}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;$N=8$ 位倒序表&lt;/strong&gt;：$0,4,2,6,1,5,3,7$（即 $000\to000,\ 001\to100,\ 010\to010,\dots$）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 3.16&lt;/strong&gt;：$x={0,1,0,1,1,1}$ 补零成 $N=8$：${0,1,0,1,1,1,0,0}$。
+倒位序重排为 $[\tilde x]=[0,1,0,0,1,1,1,0]$，再逐级蝶形（跨度 1 → 2 → 4），
+最后 $X(k)={4,\ -1.7071-0.7071j,\ 1-j,\ -0.2929-0.7071j,\ -2,\ -0.2929+0.7071j,\ 1+j,\ -1.7071+0.7071j}$，
+与直接 DFT / MATLAB &lt;code&gt;fft&lt;/code&gt; 一致。各级中间结果见 §C.1。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;3.6.3 频率抽取（DIF）基 2-FFT&lt;/h5&gt;
+&lt;p&gt;按输出 $k$ 的奇偶分解。与 DIT 的对偶关系：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;DIT&lt;/th&gt;
+&lt;th&gt;DIF&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;输入&lt;/td&gt;
+&lt;td&gt;倒位序&lt;/td&gt;
+&lt;td&gt;自然序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;输出&lt;/td&gt;
+&lt;td&gt;自然序&lt;/td&gt;
+&lt;td&gt;倒位序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;蝶形位置&lt;/td&gt;
+&lt;td&gt;先乘 $W$ 后加减&lt;/td&gt;
+&lt;td&gt;先加减后乘 $W$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;两者运算量相同。程序实现常用 DIT（输入倒序）；DIF 便于级联成 IFFT。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IFFT 用 FFT 实现&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+x(n)=\frac1N\big[\mathrm{DFT}{X^&lt;em&gt;(k)}\big]^&lt;/em&gt;=\frac1N\Big(\mathrm{FFT}\big[X^&lt;em&gt;(k)\big]\Big)^&lt;/em&gt;
+$$&lt;/p&gt;
+&lt;p&gt;即&quot;共轭 → FFT → 共轭 → 除以 $N$&quot;，使 FFT 程序可复用于 IFFT。&lt;/p&gt;
+&lt;h5&gt;3.6.4 $N$ 为合数的 FFT&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;基 4、基 8 算法：进一步减少乘法；&lt;/li&gt;
+&lt;li&gt;混合基算法（如 $N=N_1N_2$）；&lt;/li&gt;
+&lt;li&gt;线性调频 z 变换（CZT）：沿任意围线（螺旋线）取样，可算任意 $N$ 点、可求 $z$ 变换任意区段。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§3.7 FFT 应用&lt;/h4&gt;
+&lt;h5&gt;3.7.1 用 FFT 作谱分析（作业 3.18）&lt;/h5&gt;
+&lt;p&gt;三个参数的关系：&lt;/p&gt;
+&lt;p&gt;$$
+t_p=\frac1F,\qquad T\le\frac{1}{2f_0},\qquad N=\frac{t_p}{T}
+$$&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;由什么决定&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$F$&lt;/td&gt;
+&lt;td&gt;频率分辨率（谱线间隔）&lt;/td&gt;
+&lt;td&gt;$F=f_s/N=1/t_p$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$t_p$&lt;/td&gt;
+&lt;td&gt;最小记录长度&lt;/td&gt;
+&lt;td&gt;$t_p=1/F$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$T$&lt;/td&gt;
+&lt;td&gt;最大抽样间隔&lt;/td&gt;
+&lt;td&gt;取样定理 $T\le1/(2f_0)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$N$&lt;/td&gt;
+&lt;td&gt;一个记录中的最少点数&lt;/td&gt;
+&lt;td&gt;$N=t_p/T$，通常取 2 的幂&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 3.18&lt;/strong&gt;：$F\le5$ Hz、$f_0=1.25$ kHz →
+(1) $t_p\ge1/F=0.2$ s；(2) $T\le1/(2\times1250)=0.4$ ms；(3) $N\ge t_p/T=500$ 点（若用基 2-FFT，取 $N=512$；教材答案为 500）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;补零问题（作业 3.28）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;题面：$x(n)=\cos(0.47\pi n)+\cos(0.53\pi n)$，三种情形做 FFT 并画图比较：
+(1) $0\le n\le10$（$N=11$）；
+(2) 尾部补 90 个零，即 $x(n)=\cos(0.47\pi n)+\cos(0.53\pi n)\ (0\le n\le10)$、$x(n)=0\ (11\le n\le100)$，
+总长 $N=101$（教材分段式右端印作 $90$，按&quot;补 90 个零&quot;应为 $100$）；
+(3) 样本数增至 500，$0\le n\le499$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;教材 (2) 式中一处误印为 $\cos(0.4\pi n)$，按同一序列应为 $0.47\pi$，MATLAB 解答按 $0.47\pi$ 计算。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;补零使 $N$ 增大 → 谱线更密 → &lt;strong&gt;只提高&quot;计算/显示分辨率&quot;&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;但 $t_p$ 未变 → &lt;strong&gt;真实频率分辨率 $F=1/t_p$ 不变&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;分辨两个相近频率必须靠&lt;strong&gt;加长实际数据记录 $t_p$&lt;/strong&gt;，不能靠补零。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;结论（已用 MATLAB 复核）&lt;/strong&gt;：$\Delta\omega=0.06\pi$，需 $N\ge2\pi/0.06\pi\approx34$ 点才可分辨。
+(1) $N=11$ → 不可分；(2) $N=101$ 但有效数据只有 11 点 → 谱线变密、包络仍是一个，&lt;strong&gt;仍不可分&lt;/strong&gt;；
+(3) $N=500$ → 两峰分别在 $k\approx118$、$134$（理论 $0.47\times500/2=117.5$、$0.53\times500/2=132.5$），清晰可分。
+这正是&quot;补零 vs 加长记录&quot;区别的标准演示。&lt;/p&gt;
+&lt;h5&gt;3.7.2 用 FFT 计算线性卷积&lt;/h5&gt;
+&lt;p&gt;见 §3.4。要点：$N\ge L_1+L_2-1$，否则循环卷积混叠。&lt;/p&gt;
+&lt;h5&gt;3.7.3 分段卷积（长序列卷积）&lt;/h5&gt;
+&lt;p&gt;长序列 $x(n)$ 与短序列 $h(n)$（$M$ 点）卷积：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方法&lt;/th&gt;
+&lt;th&gt;做法&lt;/th&gt;
+&lt;th&gt;特点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;重叠相加法&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;把 $x$ 分成 $L$ 点段，各段与 $h$ 做 $N=L+M-1$ 点 FFT 卷积，相邻段&lt;strong&gt;重叠部分相加&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;每段输出长 $L+M-1$，需暂存后 $M-1$ 点&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;重叠保留法&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;每段取 $N$ 点（含前段末尾 $M-1$ 点），FFT 后&lt;strong&gt;丢弃前 $M-1$ 点&lt;/strong&gt;，保留其余&lt;/td&gt;
+&lt;td&gt;每段输入重叠 $M-1$ 点&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记忆：重叠相加是&quot;输出重叠&quot;，重叠保留是&quot;输入重叠&quot;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;作业题解答索引&lt;/h4&gt;
+&lt;h5&gt;手算题&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;考点&lt;/th&gt;
+&lt;th&gt;本文章节&lt;/th&gt;
+&lt;th&gt;详细解答&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;3.6&lt;/td&gt;
+&lt;td&gt;$N$ 点 DFT 直接计算（δ、移位 δ、$a^n$、$\cos$、矩形 5 小题）&lt;/td&gt;
+&lt;td&gt;§3.3.1&lt;/td&gt;
+&lt;td&gt;§C.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.8&lt;/td&gt;
+&lt;td&gt;$x={1,2,2,1}$ 的线性卷积 vs 4 点/8 点循环卷积&lt;/td&gt;
+&lt;td&gt;§3.4&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.10&lt;/td&gt;
+&lt;td&gt;$x(n)=a^nu(n)$ 在单位圆 $N$ 等分取样后求 IDFT&lt;/td&gt;
+&lt;td&gt;§3.5.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.13&lt;/td&gt;
+&lt;td&gt;半径 $1/2$、附加相位 $\pi/10$ 的圆上取样 → 如何修改 $x(n)$&lt;/td&gt;
+&lt;td&gt;§3.5.3&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.16&lt;/td&gt;
+&lt;td&gt;$x={0,1,0,1,1,1}$ 补零成 8 点，画 DIT-FFT 流程图与各级蝶形结果&lt;/td&gt;
+&lt;td&gt;§3.6.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.18&lt;/td&gt;
+&lt;td&gt;$F\le5$ Hz、$f_0=1.25$ kHz，求 $t_p$、$T$、$N$&lt;/td&gt;
+&lt;td&gt;§3.7.1&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.20&lt;/td&gt;
+&lt;td&gt;$g(n)=x_1(n)+jx_2(n)$ 的 DFT 拆出 $X_1,X_2$&lt;/td&gt;
+&lt;td&gt;§3.3.2⑤&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;MATLAB 题（&quot;以下习题利用 Matlab 求解&quot;）&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;题面要点&lt;/th&gt;
+&lt;th&gt;本文章节&lt;/th&gt;
+&lt;th&gt;代码 / 结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;3.22&lt;/td&gt;
+&lt;td&gt;$x(n)=1\ (0\le n\le3)$；(1) 计算 DTFT $X(e^{j\omega})$ 并画幅度/相位；(2) 算 4 点 DFT&lt;/td&gt;
+&lt;td&gt;§3.3.1&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.25&lt;/td&gt;
+&lt;td&gt;$x(n)=5(0.6)^n,0\le n\le9$；画 $x((n+4))&lt;em&gt;{10}R&lt;/em&gt;{10}$ 与 $x((n-3))&lt;em&gt;{10}R&lt;/em&gt;{10}$&lt;/td&gt;
+&lt;td&gt;§3.3.2②&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.26&lt;/td&gt;
+&lt;td&gt;$x_1={1,2,2},x_2={1,2,3,4}$；(1) 5 点循环卷积 $y_1=x_1\circledast x_2$；(2) 8 点循环卷积 $y_2=x_2\circledast x_2$&lt;/td&gt;
+&lt;td&gt;§3.4&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3.28&lt;/td&gt;
+&lt;td&gt;$x(n)=\cos0.47\pi n+\cos0.53\pi n$；比较 $N=11$、补零 $N=101$、$N=500$&lt;/td&gt;
+&lt;td&gt;§3.7.1&lt;/td&gt;
+&lt;td&gt;§C.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;三个 MATLAB 题的关键数值结果（便于对照自查）&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;3.25（N=10，x(n)=5·0.6^n）
+  x(n) = 5.0000 3.0000 1.8000 1.0800 0.6480 0.3888 0.2333 0.1400 0.0840 0.0504
+  x((n+4))₁₀R₁₀ = 0.6480 0.3888 0.2333 0.1400 0.0840 0.0504 5.0000 3.0000 1.8000 1.0800
+  x((n-3))₁₀R₁₀ = 0.1400 0.0840 0.0504 5.0000 3.0000 1.8000 1.0800 0.6480 0.3888 0.2333
+
+3.26
+  5 点循环卷积 y₁ = 9 4 9 14 14        线性卷积 x₁*x₂ = 1 4 9 14 14 8
+  8 点循环卷积 y₂ = 1 4 10 20 25 24 16 0   线性卷积 x₂*x₂ = 1 4 10 20 25 24 16
+
+3.28
+  N=11  → 0.47π 与 0.53π 合成一个包络，不可分
+  N=101 → 补零只加密谱线，仍不可分（有效数据仍 11 点）
+  N=500 → 两峰落在 k≈118 与 k≈134（理论 117.5 与 132.5），可分
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;3.26 的判读要点&lt;/strong&gt;：$N=5&amp;lt;3+4-1=6$ → 发生时域混叠：线性卷积末位 $y_l(5)=8$ 折回 $n=0$，
+使 $y_1(0)=y_l(0)+y_l(5)=1+8=9$，其余各点与线性卷积相同；
+故 $y_1$ 与线性卷积不同；8 点 $\ge4+4-1=7$ → 无混叠，$y_2$ 只在线性卷积末尾补一个零。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;本章备考清单&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] 能写 DFT/IDFT 定义并说明与 ZT、DTFT 的关系（三个等号）&lt;/li&gt;
+&lt;li&gt;[ ] 记住 $W_N$ 的正交性 $\sum_nW_N^{nk}=N\delta((k))_N$&lt;/li&gt;
+&lt;li&gt;[ ] 会用定义算 $N=4,8$ 点 DFT（δ、$a^n$、$\cos$、矩形）&lt;/li&gt;
+&lt;li&gt;[ ] 记住循环移位、循环卷积的频域对应&lt;/li&gt;
+&lt;li&gt;[ ] 会推实序列共轭对称性，会做&quot;一个复 DFT 拆两个实 DFT&quot;&lt;/li&gt;
+&lt;li&gt;[ ] 会判循环卷积与线性卷积何时相等（$N\ge L_1+L_2-1$）&lt;/li&gt;
+&lt;li&gt;[ ] 会画 8 点 DIT-FFT 流程图（倒位序）&lt;/li&gt;
+&lt;li&gt;[ ] 记住 FFT 运算量 $\frac N2\log_2N$ 与 $N\log_2N$&lt;/li&gt;
+&lt;li&gt;[ ] 会算谱分析三参数，能区分&quot;补零&quot;与&quot;真实分辨率&quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;常见易错点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;把循环卷积当线性卷积算（$N$ 不够时漏掉折叠）。&lt;/li&gt;
+&lt;li&gt;循环移位忘记取模 $((n-m))_N$，当成线性移位。&lt;/li&gt;
+&lt;li&gt;共轭对称性中把 $N-k$ 写成 $-k$（应为 $((N-k))_N$，$k=0$ 时取 0）。&lt;/li&gt;
+&lt;li&gt;DIT 的输入是倒位序、输出自然序 —— 写反了整题皆错。&lt;/li&gt;
+&lt;li&gt;认为补零能提高频率分辨率（不能，只增加谱线密度）。&lt;/li&gt;
+&lt;li&gt;谱分析时把 $f_s$ 和 $f_0$ 混淆：$T\le1/(2f_0)$ 中是信号最高频率，不是抽样率。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;B.4　第4章 数字滤波器的原理与设计&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对应讲义：第四章.pdf（163 页，§4.1–§4.7）
+作业题：课本 &lt;strong&gt;P243&lt;/strong&gt; — 4.1、4.3、4.4(1)、4.6(1)、4.8、4.10(1)、4.12、4.14、4.17、4.18，选做 4.25
+已有完整详解：§C.3。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.1 引言&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;数字滤波器&lt;/strong&gt;：对输入序列作运算，使输出序列的频谱满足给定要求。&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=x(n)*h(n),\qquad Y(e^{j\omega})=X(e^{j\omega})H(e^{j\omega})
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两类滤波器的设计流程&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;指标 → 系统函数 H(z) 或 h(n) → 有限精度实现（结构、字长、误差分析）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;技术指标（低通为例）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;指标&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;关系&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\omega_p$&lt;/td&gt;
+&lt;td&gt;通带截止频率&lt;/td&gt;
+&lt;td&gt;通带内 $\lvert H\rvert$ 在 $1\pm\delta_1$ 内&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\omega_s$&lt;/td&gt;
+&lt;td&gt;阻带截止频率&lt;/td&gt;
+&lt;td&gt;阻带内 $\lvert H\rvert\le\delta_2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\alpha_p$&lt;/td&gt;
+&lt;td&gt;通带最大衰减&lt;/td&gt;
+&lt;td&gt;$\alpha_p=-20\lg\frac{1}{1-\delta_1}$ dB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\alpha_s$&lt;/td&gt;
+&lt;td&gt;阻带最小衰减&lt;/td&gt;
+&lt;td&gt;$\alpha_s=-20\lg\delta_2$ dB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Delta\omega=\omega_s-\omega_p$&lt;/td&gt;
+&lt;td&gt;过渡带宽度&lt;/td&gt;
+&lt;td&gt;由窗长/阶数决定&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;IIR 设计的两种思路&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;模拟原型映射法&lt;/strong&gt;（本章主线）：先设计模拟 $H_a(s)$，再用映射 $s\to z$ 得 $H(z)$。要求映射满足：
+① s 虚轴 → z 单位圆（幅频不失真）；
+② s 左半平面 → 单位圆内（稳定 → 稳定）；
+③ 是有理函数（有理 → 有理）。&lt;/li&gt;
+&lt;li&gt;计算机辅助优化设计（CAD，最小最大/最小二乘）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.2 IIR 数字滤波器的基本网络结构&lt;/h4&gt;
+&lt;p&gt;设&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=\frac{\sum_{k=0}^{M}b_kz^{-k}}{1-\sum_{k=1}^{N}a_kz^{-k}}=\frac{Y(z)}{X(z)}
+$$&lt;/p&gt;
+&lt;h5&gt;4.2.1 直接 Ⅰ 型&lt;/h5&gt;
+&lt;p&gt;$$
+H(z)=\underbrace{\sum_{k=0}^{M}b_kz^{-k}}&lt;em&gt;{H_1(z)\text{：零点}}\cdot\underbrace{\frac{1}{1-\sum&lt;/em&gt;{k=1}^{N}a_kz^{-k}}}_{H_2(z)\text{：极点}}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;先零点后极点&lt;/strong&gt;：先对 $x$ 做 $M$ 级延迟加权求和得中间变量，再反馈 $N$ 级延迟。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;延迟器 $M+N$ 个、乘法器 $M+N+1$ 个（$M=N$ 时各 $2N$ 个）；&lt;/li&gt;
+&lt;li&gt;结构直观，但延迟单元多。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;4.2.2 直接 Ⅱ 型（典范型，正准型）&lt;/h5&gt;
+&lt;p&gt;因两链&lt;strong&gt;都是线性非移变&lt;/strong&gt;，可交换次序并共用延迟链：&lt;/p&gt;
+&lt;p&gt;$$
+W(z)=\frac{X(z)}{1-\sum a_kz^{-k}},\qquad Y(z)=W(z)\sum b_kz^{-k}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+w(n)=\sum_{k=1}^{N}a_kw(n-k)+x(n),\qquad y(n)=\sum_{k=0}^{M}b_kw(n-k)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;延迟器 $\max(M,N)$ 个（$M=N$ 时 $N$ 个）—— &lt;strong&gt;延迟单元最少&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;乘法器 $M+N+1$ 个；&lt;/li&gt;
+&lt;li&gt;优缺点：延迟少、省存储；但&lt;strong&gt;系数 $a_k,b_k$ 的量化误差对零极点位置影响大&lt;/strong&gt;（高阶时极点位置对系数敏感 → 宜分解为二阶节）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;4.2.3 级联型（串联型）&lt;/h5&gt;
+&lt;p&gt;把 $H(z)$ 分解为实系数二阶节（含一阶节）的乘积：&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=A\prod_{i=1}^{K}\frac{1+\beta_{1i}z^{-1}+\beta_{2i}z^{-2}}{1-\alpha_{1i}z^{-1}-\alpha_{2i}z^{-2}}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;每个二阶节独立控制一对零点和一对极点&lt;/strong&gt; → 调整方便、受系数量化影响小；&lt;/li&gt;
+&lt;li&gt;所需乘法器比直接型多（每节 5 个系数），但&lt;strong&gt;延迟单元仍为 $N$ 个左右&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;实际实现（DSP 芯片、MATLAB）&lt;strong&gt;首选结构&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;4.2.4 并联型&lt;/h5&gt;
+&lt;p&gt;按部分分式展开：&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=A_0+\sum_{i=1}^{K}\frac{A_i}{1-p_iz^{-1}}+\sum_{j=1}^{L}\frac{B_j(1+C_jz^{-1})}{1-\alpha_{1j}z^{-1}-\alpha_{2j}z^{-2}}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;各节&lt;strong&gt;并联&lt;/strong&gt;（输出相加），各节的误差互不影响（最不易产生极限环）；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不能直接控制零点&lt;/strong&gt;（零点由各节组合而成）；&lt;/li&gt;
+&lt;li&gt;运算可并行，速度快。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;四种结构对比（作业 4.3、4.4 直接考）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;结构&lt;/th&gt;
+&lt;th&gt;延迟器&lt;/th&gt;
+&lt;th&gt;乘法器&lt;/th&gt;
+&lt;th&gt;零点控制&lt;/th&gt;
+&lt;th&gt;极点控制&lt;/th&gt;
+&lt;th&gt;系数量化敏感度&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;直接 Ⅰ&lt;/td&gt;
+&lt;td&gt;$M+N$&lt;/td&gt;
+&lt;td&gt;$M+N+1$&lt;/td&gt;
+&lt;td&gt;直接&lt;/td&gt;
+&lt;td&gt;直接&lt;/td&gt;
+&lt;td&gt;高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;直接 Ⅱ&lt;/td&gt;
+&lt;td&gt;$\max(M,N)$&lt;/td&gt;
+&lt;td&gt;$M+N+1$&lt;/td&gt;
+&lt;td&gt;直接&lt;/td&gt;
+&lt;td&gt;直接&lt;/td&gt;
+&lt;td&gt;高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;级联&lt;/td&gt;
+&lt;td&gt;$\approx N$&lt;/td&gt;
+&lt;td&gt;多（$5K$）&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;每节独立&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;每节独立&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;低&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;并联&lt;/td&gt;
+&lt;td&gt;$\approx N$&lt;/td&gt;
+&lt;td&gt;多&lt;/td&gt;
+&lt;td&gt;不可单独控制&lt;/td&gt;
+&lt;td&gt;每节独立&lt;/td&gt;
+&lt;td&gt;低&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 4.1&lt;/strong&gt;：由差分方程画方框图/信号流图（直接 Ⅰ 型：$2N$ 个延迟 + 反馈支路）。
+&lt;strong&gt;作业 4.3&lt;/strong&gt;：同一 $H(z)$ 画出直接 Ⅰ、直接 Ⅱ、级联、并联四种流图。
+&lt;strong&gt;作业 4.4(1)&lt;/strong&gt;：写出两种直接型的实现方程与结构图。
+详见 §C.3。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.3 FIR 数字滤波器的基本网络结构&lt;/h4&gt;
+&lt;p&gt;$$
+H(z)=\sum_{n=0}^{N-1}h(n)z^{-n},\qquad y(n)=\sum_{k=0}^{N-1}h(k)x(n-k)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;特点&lt;/strong&gt;：只含前向通路（无反馈）→ &lt;strong&gt;恒稳定&lt;/strong&gt;；$N-1$ 阶有 $N-1$ 个延迟。&lt;/p&gt;
+&lt;h5&gt;4.3.1 直接型（横截型、卷积型）&lt;/h5&gt;
+&lt;p&gt;$$
+y(n)=h(0)x(n)+h(1)x(n-1)+\dots+h(N-1)x(n-N+1)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;结构：$N-1$ 个延迟器串联，$N$ 个乘法器，一个加法链；&lt;/li&gt;
+&lt;li&gt;直观，但对系数量化敏感 —— 与 IIR 直接型同样问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;4.3.2 级联型&lt;/h5&gt;
+&lt;p&gt;$H(z)$ 分解为一阶/二阶实系数节的乘积，每节控制一对零点。&lt;/p&gt;
+&lt;h5&gt;4.3.3 线性相位型（重点）&lt;/h5&gt;
+&lt;p&gt;若 $h(n)$ 满足对称条件，乘法器可&lt;strong&gt;减少一半&lt;/strong&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;条件&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;延迟&lt;/th&gt;
+&lt;th&gt;结论&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$h(n)=h(N-1-n)$，$N$ 奇&lt;/td&gt;
+&lt;td&gt;Ⅰ 类&lt;/td&gt;
+&lt;td&gt;$(N-1)/2$&lt;/td&gt;
+&lt;td&gt;可做任意滤波器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$h(n)=h(N-1-n)$，$N$ 偶&lt;/td&gt;
+&lt;td&gt;Ⅱ 类&lt;/td&gt;
+&lt;td&gt;$N/2$&lt;/td&gt;
+&lt;td&gt;$H(e^{j\pi})=0$，&lt;strong&gt;不能做高通/带阻&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$h(n)=-h(N-1-n)$，$N$ 奇&lt;/td&gt;
+&lt;td&gt;Ⅲ 类&lt;/td&gt;
+&lt;td&gt;$(N-1)/2$&lt;/td&gt;
+&lt;td&gt;$H(e^{j0})=H(e^{j\pi})=0$，只能做带通/微分器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$h(n)=-h(N-1-n)$，$N$ 偶&lt;/td&gt;
+&lt;td&gt;Ⅳ 类&lt;/td&gt;
+&lt;td&gt;$N/2$&lt;/td&gt;
+&lt;td&gt;$H(e^{j0})=0$，不能做低通&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;对称型实现&lt;/strong&gt;：$y(n)=\sum_{k=0}^{(N-1)/2}h(k)\big[x(n-k)+x(n-N+1+k)\big]$，乘法器由 $N$ 个降为 $(N+1)/2$ 个。&lt;/p&gt;
+&lt;h5&gt;4.3.4 频率取样型&lt;/h5&gt;
+&lt;p&gt;用 $N$ 个频率取样值 $H(k)$ 实现：$H(z)=(1-z^{-N})\frac1N\sum_{k=0}^{N-1}\frac{H(k)}{1-W_N^{-k}z^{-1}}$。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;结构上是一个梳状滤波器 $(1-z^{-N})$ 级联 $N$ 个一阶谐振器；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;每个 $H(k)$ 直接影响该取样频点的响应&lt;/strong&gt;，调整方便；&lt;/li&gt;
+&lt;li&gt;缺点：极点都在单位圆上（临界稳定），且非取样频点的响应不受控（需优化过渡带取样点）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.4 IIR 数字滤波器的设计方法（本章重点）&lt;/h4&gt;
+&lt;h5&gt;4.4.1 冲激响应不变法&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;准则&lt;/strong&gt;：令数字滤波器的单位取样响应等于模拟冲激响应的等间隔取样&lt;/p&gt;
+&lt;p&gt;$$
+h(n)=h_a(nT)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;映射关系&lt;/strong&gt;：$z=e^{sT}$&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;s 平面&lt;/th&gt;
+&lt;th&gt;z 平面&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;虚轴 $\sigma=0$&lt;/td&gt;
+&lt;td&gt;单位圆 $r=1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;左半平面 $\sigma&amp;lt;0$&lt;/td&gt;
+&lt;td&gt;单位圆内 $r&amp;lt;1$（稳定）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;右半平面 $\sigma&amp;gt;0$&lt;/td&gt;
+&lt;td&gt;单位圆外&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;单极点映射：$s=p_k\ \to\ z=e^{p_kT}$，即&lt;/p&gt;
+&lt;p&gt;$$
+H_a(s)=\sum_{k}\frac{A_k}{s-p_k}\ \Longrightarrow\ H(z)=\sum_k\frac{A_k}{1-e^{p_kT}z^{-1}}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设计步骤&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数字指标 $\omega_p,\omega_s$ → 模拟指标 $\Omega_p=\omega_p/T,\ \Omega_s=\omega_s/T$（&lt;strong&gt;线性关系&lt;/strong&gt;）；&lt;/li&gt;
+&lt;li&gt;设计模拟 $H_a(s)$（巴特沃斯/切比雪夫…）；&lt;/li&gt;
+&lt;li&gt;部分分式展开；&lt;/li&gt;
+&lt;li&gt;$s-p_k\to 1-e^{p_kT}z^{-1}$ 得 $H(z)$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;致命缺点：频谱混叠&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+H(e^{j\omega})=\frac1T\sum_{r=-\infty}^{\infty}H_a\Big(j\frac{\omega-2\pi r}{T}\Big)
+$$&lt;/p&gt;
+&lt;p&gt;模拟频谱以 $2\pi/T$ 为周期叠加 → 若 $H_a(j\Omega)$ 在 $\lvert\Omega\rvert&amp;gt;\pi/T$ 不衰减到零 → 混叠。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用范围&lt;/strong&gt;：只适合&lt;strong&gt;低通、带通&lt;/strong&gt;（高频衰减快）；不能做高通/带阻（混叠严重）。&lt;/p&gt;
+&lt;h5&gt;4.4.2 双线性变换法&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;映射&lt;/strong&gt;：$s=\dfrac{2}{T}\cdot\dfrac{1-z^{-1}}{1+z^{-1}}\quad\Longleftrightarrow\quad z=\dfrac{1+(T/2)s}{1-(T/2)s}$&lt;/p&gt;
+&lt;p&gt;（也常写 $s=\dfrac{1-z^{-1}}{1+z^{-1}}$，即取 $T=2$ 归一化。）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;频率关系（预畸变的关键）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+s=j\Omega,\ z=e^{j\omega}\ \Longrightarrow\ j\Omega=\frac{2}{T}\cdot\frac{1-e^{-j\omega}}{1+e^{-j\omega}}=j\frac{2}{T}\tan\frac{\omega}{2}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ \Omega=\frac{2}{T}\tan\frac{\omega}{2}\qquad\Longleftrightarrow\qquad \omega=2\arctan\frac{\Omega T}{2}\ }
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三条优良性质&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;单值映射&lt;/strong&gt;：s 整个虚轴 ↔ z 单位圆一圈，&lt;strong&gt;无混叠&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;稳定&lt;/strong&gt;：s 左半平面 → 单位圆内（$\lvert z\rvert&amp;lt;1$）；&lt;/li&gt;
+&lt;li&gt;有理函数 → 有理函数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;缺点：频率轴非线性畸变&lt;/strong&gt;。$\Omega$ 与 $\omega$ 是 $\tan$ 关系 → 高频段压缩。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;预畸变补偿&lt;/strong&gt;：设计模拟滤波器时，先把&lt;strong&gt;数字指标&lt;/strong&gt;按上式换算成&lt;strong&gt;畸变后的模拟指标&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+\Omega_p=\frac{2}{T}\tan\frac{\omega_p}{2},\qquad \Omega_s=\frac{2}{T}\tan\frac{\omega_s}{2}
+$$&lt;/p&gt;
+&lt;p&gt;再用 $\Omega_p,\Omega_s$ 设计模拟滤波器，映射回数字域后，$\omega_p,\omega_s$ 就准确落在要求位置。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：预畸变后过渡带宽度会被拉伸（$\Omega_s-\Omega_p$ 比 $\omega_s-\omega_p$ 对应的线性值更宽），所以&lt;strong&gt;滤波器阶数可能比冲激响应不变法高&lt;/strong&gt;，但指标精确。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;两种方法对比（表格式考点）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;冲激响应不变法&lt;/th&gt;
+&lt;th&gt;双线性变换法&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;映射&lt;/td&gt;
+&lt;td&gt;$z=e^{sT}$&lt;/td&gt;
+&lt;td&gt;$s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;频率关系&lt;/td&gt;
+&lt;td&gt;$\omega=\Omega T$（线性）&lt;/td&gt;
+&lt;td&gt;$\Omega=\frac2T\tan\frac\omega2$（非线性）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;混叠&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;有&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;无&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;频率畸变&lt;/td&gt;
+&lt;td&gt;无&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;有&lt;/strong&gt;（需预畸变）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;适用&lt;/td&gt;
+&lt;td&gt;LP、BP&lt;/td&gt;
+&lt;td&gt;LP、HP、BP、BS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;阶数&lt;/td&gt;
+&lt;td&gt;较低&lt;/td&gt;
+&lt;td&gt;较高（因预畸变拉伸过渡带）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;时域拟合&lt;/td&gt;
+&lt;td&gt;精确拟合 $h_a(nT)$&lt;/td&gt;
+&lt;td&gt;不保证时域&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;4.4.3 数字巴特沃斯（Butterworth）滤波器&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;模拟原型幅度平方&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\lvert H_a(j\Omega)\rvert^2=\frac{1}{1+\left(\dfrac{\Omega}{\Omega_c}\right)^{2N}}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\Omega=0$：$|H|=1$（最大平坦，前 $2N-1$ 阶导数为 0）；&lt;/li&gt;
+&lt;li&gt;$\Omega=\Omega_c$：$|H|=1/\sqrt2$，即 $-3$ dB（$\Omega_c$ 为 3 dB 截止频率）；&lt;/li&gt;
+&lt;li&gt;$\Omega\to\infty$：$\lvert H\rvert\to0$，衰减 $20N\lg(\Omega/\Omega_c)$ dB/十倍频程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;极点&lt;/strong&gt;（左半平面）&lt;/p&gt;
+&lt;p&gt;$$
+p_k=\Omega_c,e^{j\pi\left(\frac{2k+N+1}{2N}\right)},\qquad k=0,1,\dots,N-1
+$$&lt;/p&gt;
+&lt;p&gt;均匀分布在半径 $\Omega_c$ 的左半圆上（巴特沃斯圆）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阶数公式（作业 4.14 必用）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\lvert H(j\Omega_p)\rvert^2=\frac{1}{1+(\Omega_p/\Omega_c)^{2N}}\ge\frac{1}{1+\delta_1^2},\qquad
+\lvert H(j\Omega_s)\rvert^2=\frac{1}{1+(\Omega_s/\Omega_c)^{2N}}\le\delta_2^2
+$$&lt;/p&gt;
+&lt;p&gt;由两式消去 $\Omega_c$ 得精确式：&lt;/p&gt;
+&lt;p&gt;$$
+N\ge\frac{\lg!\left[\dfrac{1/\delta_2^2-1}{1/\delta_1^2-1}\right]}{2\lg(\Omega_s/\Omega_p)}
+$$&lt;/p&gt;
+&lt;p&gt;用 dB 指标（$\alpha_p=-20\lg(1-\delta_1)$、$\alpha_s=-20\lg\delta_2$）时，上式化为&lt;/p&gt;
+&lt;p&gt;$$
+N\ge\frac{\lg!\big[(10^{\alpha_s/10}-1)/(10^{\alpha_p/10}-1)\big]}{2\lg(\Omega_s/\Omega_p)}
+\qquad\xrightarrow{\ \alpha_p=3\ \mathrm{dB}\ }N\ge\frac{\lg!\big(10^{\alpha_s/10}-1\big)}{2\lg(\Omega_s/\Omega_p)}
+$$&lt;/p&gt;
+&lt;p&gt;（若直接把衰减当作斜率比，可得粗估式 $N\approx\dfrac{\alpha_s-\alpha_p}{20\lg(\Omega_s/\Omega_p)}$，只宜作数量级估计。）&lt;/p&gt;
+&lt;p&gt;取 $N$ 为向上取整的整数，再定 $\Omega_c$（通常取 $\Omega_c=\Omega_p$ 或按阻带调）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;设计流程（作业 4.14 的标准步骤）&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数字指标 → 预畸变 → 模拟 $\Omega_p,\Omega_s$；&lt;/li&gt;
+&lt;li&gt;算阶数 $N$（取整）；&lt;/li&gt;
+&lt;li&gt;由 $\Omega_p$ 或 $\Omega_s$ 算 3 dB 截止 $\Omega_c$；&lt;/li&gt;
+&lt;li&gt;求左半平面 $N$ 个极点 → 组成二阶节（共轭对）；&lt;/li&gt;
+&lt;li&gt;用 $s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}$ 逐节映射为数字二阶节；&lt;/li&gt;
+&lt;li&gt;级联写 $H(z)$，校验 $\lvert H(e^{j\omega_p})\rvert,\lvert H(e^{j\omega_s})\rvert$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 4.8、4.10、4.12、4.14&lt;/strong&gt; 均可用上述流程；4.8/4.10 只做映射对比，4.14 是完整设计题（含预畸变）。详见 §C.3。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.5 IIR 数字滤波器的频率变换&lt;/h4&gt;
+&lt;p&gt;两种路径：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;路径 A（模拟域变换）&lt;/strong&gt;：模拟低通 → 模拟 LP/HP/BP/BS（$s\to$ 各种代换）→ 数字（冲激响应不变或双线性）。
+&lt;strong&gt;路径 B（数字域变换）&lt;/strong&gt;：数字低通原型 $H(v)$ → 直接代换 $v^{-1}=g(z^{-1})$ 得 $H_d(z)$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;要求&lt;/strong&gt;：$v^{-1}=g(z^{-1})$ 必须是 $z^{-1}$ 的&lt;strong&gt;有理函数&lt;/strong&gt;，且把 v 平面的&lt;strong&gt;单位圆内部映射到 z 平面单位圆内部&lt;/strong&gt;（保证稳定、因果性）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四种变换的代换式&lt;/strong&gt;（$\omega_c$ 为原型截止，$\omega_0$ 为目标截止或中心频率）&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目标&lt;/th&gt;
+&lt;th&gt;代换 $v^{-1}=$&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;低通 → 低通&lt;/td&gt;
+&lt;td&gt;$\dfrac{z^{-1}-\alpha}{1-\alpha z^{-1}}$&lt;/td&gt;
+&lt;td&gt;$\alpha=\dfrac{\sin\frac{\omega_c-\omega_0}{2}}{\sin\frac{\omega_c+\omega_0}{2}}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;低通 → 高通&lt;/td&gt;
+&lt;td&gt;$-\dfrac{z^{-1}+\alpha}{1+\alpha z^{-1}}$&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;低通 → 带通&lt;/td&gt;
+&lt;td&gt;$-\dfrac{z^{-2}-\frac{2\alpha k}{k+1}z^{-1}+\frac{k-1}{k+1}}{\frac{k-1}{k+1}z^{-2}-\frac{2\alpha k}{k+1}z^{-1}+1}$&lt;/td&gt;
+&lt;td&gt;二阶代换，阶数加倍&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;低通 → 带阻&lt;/td&gt;
+&lt;td&gt;带通代换的倒数形式&lt;/td&gt;
+&lt;td&gt;阶数加倍&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;考点：&lt;strong&gt;代换后阶数如何变化&lt;/strong&gt;（LP↔LP、LP↔HP 阶数不变；LP↔BP、LP↔BS 阶数加倍）。
+以及：模拟域变换和数字域变换的等价条件（$\Omega_p$ 预畸变的一致性）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.6 FIR 数字滤波器的设计方法&lt;/h4&gt;
+&lt;h5&gt;4.6.1 窗函数法&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：理想滤波器的 $h_d(n)$ 无限长、非因果，用有限长窗 $w(n)$ 截断：&lt;/p&gt;
+&lt;p&gt;$$
+h(n)=h_d(n),w(n),\qquad H(e^{j\omega})=\frac{1}{2\pi}H_d(e^{j\omega})\circledast W(e^{j\omega})
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;理想低通&lt;/strong&gt;（截止 $\omega_c$、线性相位延迟 $\alpha$）&lt;/p&gt;
+&lt;p&gt;$$
+h_d(n)=\frac{\sin\big[\omega_c(n-\alpha)\big]}{\pi(n-\alpha)},\qquad \alpha=\frac{N-1}{2}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加窗的三点影响&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;理想阶跃边缘被主瓣&lt;strong&gt;展宽成过渡带&lt;/strong&gt;，宽度 ≈ 主瓣宽度；&lt;/li&gt;
+&lt;li&gt;通带/阻带出现&lt;strong&gt;吉布斯起伏&lt;/strong&gt;（旁瓣引起）；&lt;/li&gt;
+&lt;li&gt;加窗越长（$N$ 大）→ 过渡带越窄，但&lt;strong&gt;波纹幅度峰值不变&lt;/strong&gt;（由窗形状决定）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;窗函数参数表（与 §A.4.3 一致）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;窗&lt;/th&gt;
+&lt;th&gt;$w(n)$&lt;/th&gt;
+&lt;th&gt;主瓣宽度&lt;/th&gt;
+&lt;th&gt;最小阻带衰减&lt;/th&gt;
+&lt;th&gt;过渡带 $\Delta\omega$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;矩形&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$4\pi/N$&lt;/td&gt;
+&lt;td&gt;$-21$ dB&lt;/td&gt;
+&lt;td&gt;$1.8\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;三角 Bartlett&lt;/td&gt;
+&lt;td&gt;$1-\left\lvert\dfrac{2n}{N-1}-1\right\rvert$&lt;/td&gt;
+&lt;td&gt;$8\pi/N$&lt;/td&gt;
+&lt;td&gt;$-25$ dB&lt;/td&gt;
+&lt;td&gt;$6.1\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;汉宁 Hanning&lt;/td&gt;
+&lt;td&gt;$0.5-0.5\cos\dfrac{2\pi n}{N-1}$&lt;/td&gt;
+&lt;td&gt;$8\pi/N$&lt;/td&gt;
+&lt;td&gt;$-44$ dB&lt;/td&gt;
+&lt;td&gt;$3.1\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;汉明 Hamming&lt;/td&gt;
+&lt;td&gt;$0.54-0.46\cos\dfrac{2\pi n}{N-1}$&lt;/td&gt;
+&lt;td&gt;$8\pi/N$&lt;/td&gt;
+&lt;td&gt;$-53$ dB&lt;/td&gt;
+&lt;td&gt;$3.3\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;布莱克曼&lt;/td&gt;
+&lt;td&gt;$0.42-0.5\cos\dfrac{2\pi n}{N-1}+0.08\cos\dfrac{4\pi n}{N-1}$&lt;/td&gt;
+&lt;td&gt;$12\pi/N$&lt;/td&gt;
+&lt;td&gt;$-74$ dB&lt;/td&gt;
+&lt;td&gt;$5.5\pi/N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;凯塞 Kaiser&lt;/td&gt;
+&lt;td&gt;$I_0\big(\beta\sqrt{1-(2n/(N-1)-1)^2}\big)/I_0(\beta)$&lt;/td&gt;
+&lt;td&gt;可调&lt;/td&gt;
+&lt;td&gt;可调&lt;/td&gt;
+&lt;td&gt;可调&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;两条一般规律（必背）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;窗越长（$N$ 越大）→ 主瓣越窄 → &lt;strong&gt;过渡带越窄&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;最大旁瓣高度（阻带衰减）只取决于窗的种类，与 $N$ 无关&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;设计步骤&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;由阻带衰减选窗的类型（如要求 $-50$ dB → 汉明窗）；&lt;/li&gt;
+&lt;li&gt;由过渡带宽度 $\Delta\omega$ 定窗长：$N\approx\dfrac{C}{\Delta\omega}$（$C$ 见上表，如汉宁 $C=3.1\pi$）；&lt;/li&gt;
+&lt;li&gt;写 $h_d(n)$（低通用 sinc，高通=全通−低通，带通用两个低通相减）；&lt;/li&gt;
+&lt;li&gt;加窗得 $h(n)$，平移使因果（$n=0,\dots,N-1$）；&lt;/li&gt;
+&lt;li&gt;校验 $\lvert H(e^{j\omega})\rvert$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;线性相位与 $\alpha$ 的关系（作业 4.18）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对称 $h(n)=h(N-1-n)$：$\alpha=\dfrac{N-1}{2}$，$\varphi(\omega)=-\alpha\omega$（严格线性相位）；&lt;/li&gt;
+&lt;li&gt;奇对称 $h(n)=-h(N-1-n)$：$\varphi(\omega)=-\alpha\omega+\dfrac{\pi}{2}$（加固定 $90^\circ$，仍是广义线性相位）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;用窗函数设计高通（作业 4.18 的难点）&lt;/strong&gt;
+$$
+h_{hp}(n)=\delta(n-\alpha)-\frac{\sin\big[\omega_c(n-\alpha)\big]}{\pi(n-\alpha)}
+$$
+即&quot;全通（纯延迟）− 低通&quot;。注意：&lt;strong&gt;Ⅱ 类&lt;/strong&gt;（偶对称且 $N$ 为偶数）在 $\omega=\pi$ 处响应被强制为 0，&lt;strong&gt;不能做高通&lt;/strong&gt;；实现高通应使用 &lt;strong&gt;Ⅰ 类&lt;/strong&gt;（$N$ 奇、偶对称）或 &lt;strong&gt;Ⅳ 类&lt;/strong&gt;（$N$ 偶、奇对称，如 4.18 的频移法）。&lt;/p&gt;
+&lt;h5&gt;4.6.2 频率取样法&lt;/h5&gt;
+&lt;p&gt;对理想响应在 $N$ 个等间隔频点取样 $H(k)=\lvert H_d(e^{j2\pi k/N})\rvert e^{j\theta(k)}$，再 IDFT 得 $h(n)$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关键：过渡带取样点的设置&lt;/strong&gt;（决定阻带衰减）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只取 0/1 两个值 → 阻带衰减只有 $-21$ dB 左右（等同矩形窗）；&lt;/li&gt;
+&lt;li&gt;在过渡带内设 1～2 个&lt;strong&gt;优化值&lt;/strong&gt;（如 $0.5,0.39$）可把阻带衰减提高到 $-40\sim-60$ dB；&lt;/li&gt;
+&lt;li&gt;这是&lt;strong&gt;选做题 4.25&lt;/strong&gt; 的核心。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;线性相位约束&lt;/strong&gt;：为保证 $h(n)$ 为实且线性相位，$H(k)$ 必须满足幅度偶对称、相位线性：&lt;/p&gt;
+&lt;p&gt;$$
+H(k)=\lvert H(k)\rvert e^{-j\frac{N-1}{2}\cdot\frac{2\pi k}{N}},\qquad \lvert H(k)\rvert=\lvert H(N-k)\rvert
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两种方法的比较&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;窗函数法&lt;/th&gt;
+&lt;th&gt;频率取样法&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;出发点&lt;/td&gt;
+&lt;td&gt;理想 $h_d(n)$ 截断&lt;/td&gt;
+&lt;td&gt;理想 $H(k)$ 取样&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;过渡带控制&lt;/td&gt;
+&lt;td&gt;由窗型与 $N$ 决定&lt;/td&gt;
+&lt;td&gt;由过渡带取样点优化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;阻带衰减&lt;/td&gt;
+&lt;td&gt;窗型决定（$-21\sim-74$ dB）&lt;/td&gt;
+&lt;td&gt;取样点设计决定&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;优点&lt;/td&gt;
+&lt;td&gt;有闭式公式、简单&lt;/td&gt;
+&lt;td&gt;可直接控制频点响应、便于设计多带&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;缺点&lt;/td&gt;
+&lt;td&gt;不易精确控制截止频率&lt;/td&gt;
+&lt;td&gt;需优化、可能有稳定性/精度问题&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§4.7 FIR 与 IIR 的比较（简答/选择常考）&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;IIR&lt;/th&gt;
+&lt;th&gt;FIR&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;系统函数&lt;/td&gt;
+&lt;td&gt;有理分式（含极点）&lt;/td&gt;
+&lt;td&gt;多项式（无极点）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;结构&lt;/td&gt;
+&lt;td&gt;递归（有反馈）&lt;/td&gt;
+&lt;td&gt;非递归（无反馈）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;稳定性&lt;/td&gt;
+&lt;td&gt;极点须在单位圆内，系数量化可能破坏稳定&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;恒稳定&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;阶数（同指标）&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;低&lt;/strong&gt;（省运算）&lt;/td&gt;
+&lt;td&gt;高（约高一个数量级）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;线性相位&lt;/td&gt;
+&lt;td&gt;一般非线性（需全通相位补偿）&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;可严格线性相位&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;设计方法&lt;/td&gt;
+&lt;td&gt;有模拟原型公式/表格，计算量小&lt;/td&gt;
+&lt;td&gt;窗函数法无闭式波纹公式，计算量大&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;快速算法&lt;/td&gt;
+&lt;td&gt;无&lt;/td&gt;
+&lt;td&gt;可用 FFT（长序列）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;典型应用&lt;/td&gt;
+&lt;td&gt;规格化 LP/HP/BP/BS&lt;/td&gt;
+&lt;td&gt;线性相位系统、微分器、Hilbert 变换器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;作业题解答索引&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;考点&lt;/th&gt;
+&lt;th&gt;本文章节&lt;/th&gt;
+&lt;th&gt;解答&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;4.1&lt;/td&gt;
+&lt;td&gt;由差分方程画方框图/信号流图&lt;/td&gt;
+&lt;td&gt;§4.2.1&lt;/td&gt;
+&lt;td&gt;§C.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.3&lt;/td&gt;
+&lt;td&gt;同一 $H(z)$ 的四种结构&lt;/td&gt;
+&lt;td&gt;§4.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.4(1)&lt;/td&gt;
+&lt;td&gt;直接 Ⅰ / Ⅱ 型实现&lt;/td&gt;
+&lt;td&gt;§4.2.1–4.2.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.6(1)&lt;/td&gt;
+&lt;td&gt;奇对称 FIR 的相位/幅度响应（Ⅲ、Ⅳ 类）&lt;/td&gt;
+&lt;td&gt;§4.3.3&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.8&lt;/td&gt;
+&lt;td&gt;冲激响应不变法 + 双线性变换（$T=0.5$）&lt;/td&gt;
+&lt;td&gt;§4.4.1–4.4.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.10(1)&lt;/td&gt;
+&lt;td&gt;冲激响应不变法（共轭极点，$e^{-at}\cos bt$）&lt;/td&gt;
+&lt;td&gt;§4.4.1&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.12&lt;/td&gt;
+&lt;td&gt;由数字频响反推模拟频响（作图法）&lt;/td&gt;
+&lt;td&gt;§4.4.1–4.4.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.14&lt;/td&gt;
+&lt;td&gt;双线性变换法设计巴特沃斯低通（含预畸变）&lt;/td&gt;
+&lt;td&gt;§4.4.2–4.4.3&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.17&lt;/td&gt;
+&lt;td&gt;循环移位后 DFT 的关系、是否线性相位&lt;/td&gt;
+&lt;td&gt;§4.3.3 + §3.3.2&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.18&lt;/td&gt;
+&lt;td&gt;矩形窗/汉宁窗设计线性相位高通&lt;/td&gt;
+&lt;td&gt;§4.6.1&lt;/td&gt;
+&lt;td&gt;同上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.25&lt;/td&gt;
+&lt;td&gt;选做：频率取样法设计 FIR&lt;/td&gt;
+&lt;td&gt;§4.6.2&lt;/td&gt;
+&lt;td&gt;暂无详解，见 §4.6.2 方法要点&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;本章备考清单&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] 会由 $H(z)$ 画四种结构图并数延迟器/乘法器个数&lt;/li&gt;
+&lt;li&gt;[ ] 记住四种结构对零极点控制与量化敏感度的差别&lt;/li&gt;
+&lt;li&gt;[ ] 记住线性相位 4 类 FIR 的对称条件与能做/不能做的滤波类型&lt;/li&gt;
+&lt;li&gt;[ ] 会冲激响应不变法：$s-p_k\to1-e^{p_kT}z^{-1}$，并说明混叠&lt;/li&gt;
+&lt;li&gt;[ ] 会双线性变换：$s=\frac2T\frac{1-z^{-1}}{1+z^{-1}}$，会做预畸变 $\Omega=\frac2T\tan\frac\omega2$&lt;/li&gt;
+&lt;li&gt;[ ] 记住两种方法的 5 条对比&lt;/li&gt;
+&lt;li&gt;[ ] 会巴特沃斯阶数公式、极点分布、3 dB 截止&lt;/li&gt;
+&lt;li&gt;[ ] 记住窗函数 5 个参数（主瓣宽度、阻带衰减、过渡带）&lt;/li&gt;
+&lt;li&gt;[ ] 会用窗函数法设计 LP/HP（HP = 全通 − LP，$N$ 取奇数）&lt;/li&gt;
+&lt;li&gt;[ ] 知道频率取样法的过渡带取样点对阻带衰减的作用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;常见易错点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;直接 Ⅰ 型与 Ⅱ 型的延迟器个数搞混（Ⅰ 型 $M+N$，Ⅱ 型 $\max(M,N)$）。&lt;/li&gt;
+&lt;li&gt;双线性变换忘记&lt;strong&gt;预畸变&lt;/strong&gt;，直接用 $\Omega=\omega/T$（那是冲激响应不变法的线性关系）。&lt;/li&gt;
+&lt;li&gt;双线性变换后&lt;strong&gt;过渡带被拉伸&lt;/strong&gt;，用原来的过渡带算出的阶数偏小 —— 必须用预畸变后的 $\Omega_p,\Omega_s$ 算。&lt;/li&gt;
+&lt;li&gt;用 Ⅱ 类（偶对称且 $N$ 为偶数）设计高通 —— $\omega=\pi$ 处响应必为 0，高通失效（$N$ 为偶数的奇对称 Ⅳ 类可以）。&lt;/li&gt;
+&lt;li&gt;巴特沃斯极点只取&lt;strong&gt;左半平面&lt;/strong&gt;的 $N$ 个（右半平面不稳定）。&lt;/li&gt;
+&lt;li&gt;窗函数法误以为&quot;加大 $N$ 能提高阻带衰减&quot; —— $N$ 只影响过渡带，阻带衰减由窗型决定。&lt;/li&gt;
+&lt;li&gt;汉宁窗 $w(n)$ 用 $2\pi n/N$ 还是 $2\pi n/(N-1)$ —— 本课程用 $N-1$（$n=0,\dots,N-1$）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;B.5　第5章 离散时间随机信号&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对应讲义：第五章.pptx（49 页，§5.1–§5.7）
+作业题（课件第 2 页）：&lt;strong&gt;5.2、5.4、5.12、5.14、5.19&lt;/strong&gt;
+题面不在课件中，下文把题号对应到知识点并给出解题模板。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.1 引言&lt;/h4&gt;
+&lt;p&gt;离散时间信号分两类：&lt;strong&gt;确定性信号&lt;/strong&gt;（每时刻取值固定）与&lt;strong&gt;随机信号&lt;/strong&gt;（取值不固定，只能用概率密度、均值、方差描述）。&lt;/p&gt;
+&lt;p&gt;本章思路：随机变量（§5.2）→ 随机过程（§5.3）→ 时间平均与遍历性（§5.4）→ 相关序列性质（§5.5）→ 功率谱（§5.6）→ 通过 LSI 系统（§5.7）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.2 随机变量的描述（作业 5.2）&lt;/h4&gt;
+&lt;h5&gt;5.2.1 概率分布函数与密度/质量函数&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;分布函数&lt;/strong&gt;：$F_X(x)=P{X\le x}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率密度函数（连续型）&lt;/strong&gt;：$f_X(x)=\dfrac{dF_X(x)}{dx}$，即 $F_X(x)=\int_{-\infty}^{x}f_X(\xi)d\xi$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;概率质量函数（离散型）&lt;/strong&gt;：$p_X(x_k)=P{X=x_k}$，$F_X(x)=\sum_{x_k\le x}p_X(x_k)$&lt;/p&gt;
+&lt;p&gt;性质：$f_X(x)\ge0$，$\int_{-\infty}^{\infty}f_X(x)dx=1$；$\sum_k p_X(x_k)=1$。&lt;/p&gt;
+&lt;h5&gt;5.2.2 均值（数学期望）&lt;/h5&gt;
+&lt;p&gt;$$
+m_X=E[X]=\int_{-\infty}^{\infty}xf_X(x)dx\quad\text{或}\quad\sum_{k}x_kp_X(x_k)
+$$&lt;/p&gt;
+&lt;p&gt;表示&lt;strong&gt;统计平均（集合平均）&lt;/strong&gt;。&lt;/p&gt;
+&lt;h5&gt;5.2.3 均值的性质&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;$E[aX]=aE[X]$&lt;/li&gt;
+&lt;li&gt;$E[X+Y]=E[X]+E[Y]$&lt;/li&gt;
+&lt;li&gt;若 $X,Y$ &lt;strong&gt;统计独立&lt;/strong&gt;：$E[XY]=E[X]E[Y]$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;5.2.4 方差与均方值&lt;/h5&gt;
+&lt;p&gt;$$
+\sigma_X^2=\mathrm{Var}[X]=E\big[(X-m_X)^2\big]=E[X^2]-m_X^2
+$$&lt;/p&gt;
+&lt;p&gt;其中 $E[X^2]$ 为&lt;strong&gt;均方值&lt;/strong&gt;，有关系&lt;/p&gt;
+&lt;p&gt;$$
+E[X^2]=\sigma_X^2+m_X^2
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;方差反映围绕均值的离散程度（交流功率）；&lt;/li&gt;
+&lt;li&gt;均方值 = 总平均功率（直流 + 交流）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 5.2 模板&lt;/strong&gt;：给 $f_X$ 或 $p_X$ → 先验证归一化 → 算 $E[X]$ → 算 $E[X^2]$ → $\sigma^2=E[X^2]-m^2$。
+例（均匀分布 $f=1/(b-a),a\le x\le b$）：$m=\frac{a+b}{2}$，$\sigma^2=\frac{(b-a)^2}{12}$。
+例（高斯）：$E[X]=m$，$\mathrm{Var}=\sigma^2$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.3 离散随机过程（作业 5.4）&lt;/h4&gt;
+&lt;h5&gt;5.3.1 离散随机过程&lt;/h5&gt;
+&lt;p&gt;由无限多个随机变量构成的时间序列，对每个固定的 $n$，$X(n)$ 是一个随机变量；对一次实验，得到一个取样序列（样本函数）。&lt;/p&gt;
+&lt;h5&gt;5.3.2 联合概率分布&lt;/h5&gt;
+&lt;p&gt;$$
+F_{X(n),X(m)}(x_1,x_2)=P{X(n)\le x_1,\ X(m)\le x_2}
+$$&lt;/p&gt;
+&lt;p&gt;若不同时刻随机变量&lt;strong&gt;统计独立&lt;/strong&gt;：$F(x_1,x_2)=F_{X(n)}(x_1)F_{X(m)}(x_2)$。&lt;/p&gt;
+&lt;h5&gt;5.3.3 数字特征&lt;/h5&gt;
+&lt;p&gt;$$
+m_X(n)=E[X(n)],\qquad \sigma_X^2(n)=E\big[(X(n)-m_X(n))^2\big],\qquad E\big[X^2(n)\big]
+$$&lt;/p&gt;
+&lt;h5&gt;5.3.4–5.3.7 自相关、互相关、自协方差、互协方差&lt;/h5&gt;
+&lt;p&gt;$$
+r_{XX}(n,m)=E\big[X(n)X^&lt;em&gt;(m)\big]\qquad\text{（自相关，&lt;/em&gt; 为复共轭）}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+r_{XY}(n,m)=E\big[X(n)Y^*(m)\big]\qquad\text{（互相关）}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+c_{XX}(n,m)=E\big[(X(n)-m_X(n))(X(m)-m_X(m))^&lt;em&gt;\big]=r_{XX}(n,m)-m_X(n)m_X^&lt;/em&gt;(m)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+c_{XY}(n,m)=r_{XY}(n,m)-m_X(n)m_Y^*(m)
+$$&lt;/p&gt;
+&lt;h5&gt;5.3.8 狭义（严格）平稳&lt;/h5&gt;
+&lt;p&gt;所有阶联合概率密度只与时间差 $m-n$ 有关、与时间起点无关。此时所有数字特征、相关序列都只是时间差的函数：&lt;/p&gt;
+&lt;p&gt;$$
+m_X(n)=m_X,\qquad r_{XX}(n,n-m)=r_{XX}(m)
+$$&lt;/p&gt;
+&lt;h5&gt;5.3.9 广义（宽）平稳（WSS）&lt;/h5&gt;
+&lt;p&gt;只需两条：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;均值是常数（与 $n$ 无关）；&lt;/li&gt;
+&lt;li&gt;自相关只与时间差有关：$r_{XX}(n,m)=r_{XX}(n-m)$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;考试中&quot;判断是否广义平稳&quot;就是检验这两条。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;讲义例 5.5.1（必考题型）&lt;/strong&gt;：$x(n)=A\cos(\omega_0n+\theta)$，$\theta$ 在 $[-\pi,\pi]$ 均匀分布：&lt;/p&gt;
+&lt;p&gt;$$
+E[X(n)]=A,E[\cos(\omega_0n+\theta)]=0\quad(\text{与 }n\text{ 无关})
+$$&lt;/p&gt;
+&lt;p&gt;$$
+r_{XX}(m)=E\big[X(n)X(n+m)\big]=\frac{A^2}{2}\cos(\omega_0m)\quad(\text{只与 }m\text{ 有关})
+$$&lt;/p&gt;
+&lt;p&gt;→ &lt;strong&gt;广义平稳&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;作业 5.4 判平稳模板&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;算 $E[X(n)]$，看是否与 $n$ 无关；&lt;/li&gt;
+&lt;li&gt;算 $r_{XX}(n,n+m)$，看是否只依赖 $m$；&lt;/li&gt;
+&lt;li&gt;两条都满足 → 广义平稳，否则非平稳。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;典型非平稳：$x(n)=An$（均值随 $n$ 变）；$x(n)=A\cos(\omega_0n)$（$\theta$ 固定，自相关随 $n$ 变）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.4 时间平均与遍历性&lt;/h4&gt;
+&lt;h5&gt;5.4.1 遍历性&lt;/h5&gt;
+&lt;p&gt;平稳随机过程若一个取样序列的时间平均 = 集合平均，则称&lt;strong&gt;遍历的（各态历经）&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}x(n)=E[X(n)]
+$$&lt;/p&gt;
+&lt;h5&gt;5.4.2 时间平均&lt;/h5&gt;
+&lt;p&gt;$$
+\hat m_X=\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}x(n),\qquad
+\hat r_{XX}(m)=\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}x(n)x(n+m)
+$$&lt;/p&gt;
+&lt;p&gt;对遍历过程：$\hat m_X=m_X$，$\hat r_{XX}(m)=r_{XX}(m)$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实际工程只取有限长数据估计（这就是第 7 章功率谱估计的出发点）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.5 相关序列与协方差序列的性质（作业 5.12）&lt;/h4&gt;
+&lt;p&gt;设 ${X(n)},{Y(n)}$ 为&lt;strong&gt;实&lt;/strong&gt;平稳过程。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;性质&lt;/th&gt;
+&lt;th&gt;表达式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;偶对称&lt;/td&gt;
+&lt;td&gt;$r_{XX}(m)=r_{XX}(-m)$，$c_{XX}(m)=c_{XX}(-m)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;与均值的关系&lt;/td&gt;
+&lt;td&gt;$r_{XX}(m)=c_{XX}(m)+m_X^2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;均方值最大&lt;/td&gt;
+&lt;td&gt;$r_{XX}(0)=E[X^2(n)]=\sigma_X^2+m_X^2\ge0$，且 $r_{XX}(0)$ 是最大值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;互相关不对称&lt;/td&gt;
+&lt;td&gt;$r_{XY}(m)=r_{YX}(-m)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;有界性&lt;/td&gt;
+&lt;td&gt;$\lvert r_{XX}(m)\rvert\le r_{XX}(0)$，$\lvert r_{XY}(m)\rvert\le\sqrt{r_{XX}(0)r_{YY}(0)}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;去相关&lt;/td&gt;
+&lt;td&gt;$m\to\infty$ 时 $r_{XX}(m)\to m_X^2$（间隔越大相关性越弱）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;功率谱非负&lt;/td&gt;
+&lt;td&gt;$P(e^{j\omega})\ge0$（见 §5.6）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;性质 5 的证明（柯西–施瓦茨）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+E\big[(X(n)+\lambda Y(n+m))^2\big]\ge0\ \Longrightarrow\ r_{XX}(0)+2\lambda r_{XY}(m)+\lambda^2r_{YY}(0)\ge0\quad\forall\lambda
+$$&lt;/p&gt;
+&lt;p&gt;判别式 $\le0$ 即得 $\lvert r_{XY}(m)\rvert\le\sqrt{r_{XX}(0)r_{YY}(0)}$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 5.12 模板&lt;/strong&gt;：给自相关序列 → 用性质 3 求均方值/方差；用性质 1 判偶对称；用性质 6 求均值（$m_X^2=\lim_{m\to\infty}r_{XX}(m)$）；用性质 5 验证有界性。
+例：$r_{XX}(m)=4+9\left(\frac12\right)^{\lvert m\rvert}$ → $m_X^2=4$（$m\to\infty$），$r_{XX}(0)=13=\sigma^2+m^2$ → $\sigma^2=9$，均方值 13。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.6 功率谱（作业 5.14）&lt;/h4&gt;
+&lt;h5&gt;5.6.1 定义（维纳–辛钦定理）&lt;/h5&gt;
+&lt;p&gt;平稳随机过程自相关序列的 Z 变换即功率谱：&lt;/p&gt;
+&lt;p&gt;$$
+P_{XX}(z)=\sum_{m=-\infty}^{\infty}r_{XX}(m)z^{-m},\qquad
+P_{XX}(e^{j\omega})=\sum_{m=-\infty}^{\infty}r_{XX}(m)e^{-j\omega m}
+$$&lt;/p&gt;
+&lt;p&gt;逆变换：&lt;/p&gt;
+&lt;p&gt;$$
+r_{XX}(m)=\frac{1}{2\pi}\int_{-\pi}^{\pi}P_{XX}(e^{j\omega})e^{j\omega m}d\omega
+\qquad\Longrightarrow\qquad r_{XX}(0)=\frac{1}{2\pi}\int_{-\pi}^{\pi}P_{XX}(e^{j\omega})d\omega
+$$&lt;/p&gt;
+&lt;p&gt;即&lt;strong&gt;平均功率 = 功率谱在一个周期内的平均值 = $r_{XX}(0)$&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;零均值时 $P_{XX}(z)=C_{XX}(z)$（协方差谱 = 自相关谱）。&lt;/p&gt;
+&lt;h5&gt;5.6.2 功率谱的三条性质&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;非负&lt;/strong&gt;：$P_{XX}(e^{j\omega})\ge0$（实过程）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实函数&lt;/strong&gt;：$P_{XX}(e^{j\omega})=P_{XX}^*(e^{j\omega})$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;偶函数&lt;/strong&gt;：$P_{XX}(e^{j\omega})=P_{XX}(e^{-j\omega})$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由 $r_{XX}(m)$ 实偶（性质 1）直接推出 2、3。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;5.6.3 互功率谱&lt;/h5&gt;
+&lt;p&gt;$$
+P_{XY}(z)=\sum_m r_{XY}(m)z^{-m},\qquad P_{XY}(e^{j\omega})=P_{YX}^*(e^{j\omega})
+$$&lt;/p&gt;
+&lt;h5&gt;5.6.4 两个典型例子（必记）&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;例 5.6.1（正弦序列）&lt;/strong&gt;：$r_{XX}(m)=\dfrac{A^2}{2}\cos(\omega_0m)$&lt;/p&gt;
+&lt;p&gt;$$
+P_{XX}(e^{j\omega})=\frac{\pi A^2}{2}\big[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\big]
+$$&lt;/p&gt;
+&lt;p&gt;→ 纯正弦的功率谱是&lt;strong&gt;两根冲激&lt;/strong&gt;（$\pm\omega_0$），总功率 $=\dfrac{A^2}{2}$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例 5.6.2（指数型自相关）&lt;/strong&gt;：$r_{XX}(m)=a^{\lvert m\rvert},\ 0&amp;lt;a&amp;lt;1$&lt;/p&gt;
+&lt;p&gt;$$
+P_{XX}(e^{j\omega})=\frac{1-a^2}{1-2a\cos\omega+a^2}
+$$&lt;/p&gt;
+&lt;p&gt;→ 实的、非负的偶函数（低通型谱，$a\to1$ 时谱峰变尖）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 5.14 模板&lt;/strong&gt;：给 $r_{XX}(m)$ → 直接代 $P=\sum r(m)e^{-j\omega m}$，等比级数分 $m\ge0$ 与 $m&amp;lt;0$ 两段求和；结果验证非负、实、偶。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§5.7 离散随机信号通过 LSI 系统（作业 5.19，本章重点）&lt;/h4&gt;
+&lt;p&gt;输入 $x(n)$ 平稳，系统 $h(n)$，输出 $y(n)=x(n)*h(n)$，$Y(z)=H(z)X(z)$。&lt;/p&gt;
+&lt;h5&gt;5.7.1 输出均值&lt;/h5&gt;
+&lt;p&gt;$$
+m_Y=m_X\sum_{n=-\infty}^{\infty}h(n)=m_XH(e^{j0})=m_XH(1)
+$$&lt;/p&gt;
+&lt;p&gt;均值只被&lt;strong&gt;直流增益&lt;/strong&gt; $H(1)$ 放大；零均值输入 → 零均值输出。&lt;/p&gt;
+&lt;h5&gt;5.7.2 输出自相关&lt;/h5&gt;
+&lt;p&gt;$$
+r_{YY}(m)=r_{XX}(m)*r_{hh}(m)=\sum_{k=-\infty}^{\infty}r_{hh}(k),r_{XX}(m-k)
+$$&lt;/p&gt;
+&lt;p&gt;其中 $r_{hh}(m)=h(m)*h(-m)=\sum_k h(k)h(k+m)$ 是系统冲激响应的自相关（确定性序列）。&lt;/p&gt;
+&lt;p&gt;等价形式：$r_{YY}(m)=r_{XY}(m)*h(m)$。&lt;/p&gt;
+&lt;h5&gt;5.7.3 输出功率谱（最重要）&lt;/h5&gt;
+&lt;p&gt;$$
+P_{YY}(z)=P_{XX}(z),H(z)H(z^{-1})
+\qquad\xrightarrow{\ z=e^{j\omega}\ }P_{YY}(e^{j\omega})=P_{XX}(e^{j\omega})\big\lvert H(e^{j\omega})\big\rvert^2
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出功率谱 = 输入功率谱 × 系统频率特性幅度平方。&lt;/strong&gt;&lt;/p&gt;
+&lt;h5&gt;5.7.4 互相关与互功率谱&lt;/h5&gt;
+&lt;p&gt;$$
+r_{XY}(m)=r_{XX}(m)*h(m),\qquad P_{XY}(z)=P_{XX}(z)H(z)
+$$&lt;/p&gt;
+&lt;p&gt;由此可&lt;strong&gt;由互相关/互功率谱反求系统&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=\frac{P_{XY}(z)}{P_{XX}(z)}
+$$&lt;/p&gt;
+&lt;h5&gt;5.7.5 白噪声通过系统&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;白噪声&lt;/strong&gt;：零均值、方差 $\sigma^2$、$r_{XX}(m)=\sigma^2\delta(m)$、$P_{XX}(e^{j\omega})=\sigma^2$。&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ P_{YY}(e^{j\omega})=\sigma^2\big\lvert H(e^{j\omega})\big\rvert^2,\qquad
+r_{YY}(m)=\sigma^2,r_{hh}(m)=\sigma^2\sum_k h(k)h(k+m)\ }
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出方差（平均功率）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$
+\sigma_Y^2=r_{YY}(0)=\sigma^2\sum_{n=-\infty}^{\infty}\lvert h(n)\rvert^2
+=\frac{\sigma^2}{2\pi}\int_{-\pi}^{\pi}\big\lvert H(e^{j\omega})\big\rvert^2d\omega
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;常用结论：$h(n)=a^nu(n)$（$|a|&amp;lt;1$）→ $\lvert H\rvert^2=\dfrac{1}{1+a^2-2a\cos\omega}$，
+$\sum\lvert h(n)\rvert^2=\dfrac{1}{1-a^2}$ → $\sigma_Y^2=\dfrac{\sigma^2}{1-a^2}$，$r_{YY}(m)=\dfrac{\sigma^2a^{\lvert m\rvert}}{1-a^2}$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;系统辨识反问题&lt;/strong&gt;：由 $P_{XY}=P_{XX}H$ 反求 $H(z)$，再由因果稳定条件选&lt;strong&gt;最小相位解&lt;/strong&gt;（极零点都在单位圆内）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;作业 5.19 五步模板&lt;/strong&gt;：
+① $m_Y=m_XH(1)$；
+② $P_{YY}=P_{XX}\lvert H(e^{j\omega})\rvert^2$；
+③ $r_{YY}(m)=\mathrm{IZT}{P_{YY}}$（或 $=\sigma^2h(m)*h(-m)$）；
+④ $\sigma_Y^2=r_{YY}(0)=\sigma^2\sum\lvert h(n)\rvert^2$；
+⑤ 白噪声输入直接套上式；有色噪声先做谱分解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;本章公式速查卡&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;量&lt;/th&gt;
+&lt;th&gt;公式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;方差&lt;/td&gt;
+&lt;td&gt;$\sigma^2=E[X^2]-m^2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;自相关&lt;/td&gt;
+&lt;td&gt;$r_{XX}(m)=E[X(n)X^*(n+m)]$，$r_{XX}(m)=r_{XX}(-m)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;广义平稳&lt;/td&gt;
+&lt;td&gt;均值常数 + 自相关只依赖时间差&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;功率谱&lt;/td&gt;
+&lt;td&gt;$P_{XX}(e^{j\omega})=\sum r_{XX}(m)e^{-j\omega m}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;平均功率&lt;/td&gt;
+&lt;td&gt;$r_{XX}(0)=\frac{1}{2\pi}\int P_{XX}d\omega$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;输出均值&lt;/td&gt;
+&lt;td&gt;$m_Y=m_XH(1)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;输出自相关&lt;/td&gt;
+&lt;td&gt;$r_{YY}=r_{XX}*r_{hh}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;输出功率谱&lt;/td&gt;
+&lt;td&gt;$P_{YY}=P_{XX}\lvert H\rvert^2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;白噪声输出&lt;/td&gt;
+&lt;td&gt;$\sigma_Y^2=\sigma^2\sum\lvert h(n)\rvert^2$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;本章备考清单&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] 会由 $f_X$ / $p_X$ 算 $E[X]$、$E[X^2]$、$\sigma^2$&lt;/li&gt;
+&lt;li&gt;[ ] 会判广义平稳（均值 + 自相关两条）&lt;/li&gt;
+&lt;li&gt;[ ] 会算 $A\cos(\omega_0n+\theta)$（$\theta$ 均匀）的均值与自相关并判平稳&lt;/li&gt;
+&lt;li&gt;[ ] 记住相关序列 6 条性质（偶对称、$r(0)$ 最大、$r(\infty)=m^2$ 等）&lt;/li&gt;
+&lt;li&gt;[ ] 会用维纳–辛钦定理算功率谱（含 $a^{\lvert m\rvert}$ 型）&lt;/li&gt;
+&lt;li&gt;[ ] 记住 $P_{YY}=P_{XX}\lvert H\rvert^2$、$m_Y=m_XH(1)$&lt;/li&gt;
+&lt;li&gt;[ ] 会算白噪声过系统的输出方差 $\sigma^2\sum\lvert h\rvert^2$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;常见易错点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;算方差忘记 $E[X^2]$ 与 $m^2$ 的区别（$\sigma^2=E[X^2]-m^2$）。&lt;/li&gt;
+&lt;li&gt;判平稳只看均值，忘了检验自相关是否只依赖时间差。&lt;/li&gt;
+&lt;li&gt;功率谱逆变换漏掉因子 $1/2\pi$。&lt;/li&gt;
+&lt;li&gt;正弦的功率谱只写 $+\omega_0$ —— 必须同时有 $-\omega_0$（系数 $\pi A^2/2$）。&lt;/li&gt;
+&lt;li&gt;输出均值忘记 $\sum h(n)=H(1)=H(e^{j0})$。&lt;/li&gt;
+&lt;li&gt;白噪声输出方差漏 $\sigma^2$ 因子，或把 $\sum\lvert h\rvert^2$ 算成 $(\sum h)^2$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;B.6　第7章 功率谱估计的经典方法&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对应讲义：第七章功率谱估计.pptx（仅 8 页，公式多在图片中）
+本章无作业题，但第 5 章 §5.6 的功率谱是理论值，本章讲&lt;strong&gt;如何用有限数据估计&lt;/strong&gt;它。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§7.1 概述&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;功率谱估计&lt;/strong&gt;：根据平稳随机过程的&lt;strong&gt;一个取样序列的一段有限长数据&lt;/strong&gt;来估计功率谱。
+前提：假定信号&lt;strong&gt;遍历&lt;/strong&gt;，于是可用&lt;strong&gt;时间平均&lt;/strong&gt;代替集合平均。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;估计目的&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发现时域隐含特征：信号周期性、谱峰识别；&lt;/li&gt;
+&lt;li&gt;滤波、信号分离、识别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;两类方法&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;经典方法（非参数法）&lt;/th&gt;
+&lt;th&gt;现代方法（参数法 / 模型法）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;基础&lt;/td&gt;
+&lt;td&gt;傅里叶变换&lt;/td&gt;
+&lt;td&gt;随机过程的参数模型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;具体方法&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;周期图法&lt;/strong&gt;（直接法）、&lt;strong&gt;Blackman–Tukey 法&lt;/strong&gt;（BT 法，间接法）&lt;/td&gt;
+&lt;td&gt;自回归（AR）模型法、线性预测法、最大熵法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;适用范围&lt;/td&gt;
+&lt;td&gt;数据多、对分辨率要求不高&lt;/td&gt;
+&lt;td&gt;数据少、对分辨率要求高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;缺点&lt;/td&gt;
+&lt;td&gt;加窗 → 频率分辨率下降、&lt;strong&gt;频谱泄漏&lt;/strong&gt;（加窗效应）&lt;/td&gt;
+&lt;td&gt;需正确选模型与阶数，否则有偏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;优劣&lt;/strong&gt;：参数法利用了&quot;随机过程是如何产生的&quot;信息，摈弃了加窗效应，因而分辨率高；非参数法有泄漏、方差大。但参数法依赖模型假设。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;§7.2 功率谱估计的经典方法&lt;/h4&gt;
+&lt;h5&gt;7.2.1 维纳–辛钦（Wiener–Khinchin）定律&lt;/h5&gt;
+&lt;p&gt;零均值广义平稳随机过程的功率谱定义为&lt;strong&gt;自相关序列的傅里叶变换&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+P(e^{j\omega})=\sum_{m=-\infty}^{\infty}r(m)e^{-j\omega m},\qquad
+r(m)=E\big[x(n)x^*(n+m)\big]
+$$&lt;/p&gt;
+&lt;p&gt;$r(m)$ 为&lt;strong&gt;滞后积的数学期望&lt;/strong&gt;。对自相关遍历过程，集合平均可用一个取样序列的&lt;strong&gt;滞后积的时间平均&lt;/strong&gt;代替：&lt;/p&gt;
+&lt;p&gt;$$
+\hat r(m)=\frac{1}{N}\sum_{n=0}^{N-m-1}x(n)x(n+m)
+$$&lt;/p&gt;
+&lt;p&gt;这是&quot;从数据估计谱&quot;的立足点。&lt;/p&gt;
+&lt;h5&gt;7.2.2 周期图法（直接法）&lt;/h5&gt;
+&lt;p&gt;设 $x(n)$ 是零均值广义平稳过程的一个取样序列，取其中一段 $N$ 点数据 $x_N(n)=x(n)w(n)$（$w(n)$ 为矩形窗）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推导&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$r(m)$ 的有偏估计：&lt;/p&gt;
+&lt;p&gt;$$
+\hat r(m)=\frac1N\sum_{n=0}^{N-\lvert m\rvert-1}x_N(n)x_N(n+\lvert m\rvert)
+=\frac1N,x_N(m)*x_N(-m)
+$$&lt;/p&gt;
+&lt;p&gt;即 $\hat r(m)$ 是 $x_N$ 与其反转序列线性卷积再乘 $1/N$。两边取傅里叶变换：&lt;/p&gt;
+&lt;p&gt;$$
+\hat P(e^{j\omega})=\sum_{m}\hat r(m)e^{-j\omega m}
+=\frac1N\Big\lvert X_N(e^{j\omega})\Big\rvert^2
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ \hat P_{per}(e^{j\omega})=\frac{1}{N}\Big\lvert\sum_{n=0}^{N-1}x(n)e^{-j\omega n}\Big\rvert^2\ }
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;$\hat P_{per}$ 称为周期图&lt;/strong&gt;，是 $P(e^{j\omega})$ 的估计。这就是&lt;strong&gt;直接法（周期图法）&lt;/strong&gt;：直接算数据的傅里叶变换取模平方。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实际计算：$\hat P(k)=\dfrac1N\lvert X(k)\rvert^2$，$X(k)$ 用 FFT 算 —— 这就是&quot;用 FFT 做谱分析&quot;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;7.2.3 BT 法（间接法）&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;思路&lt;/strong&gt;：先算自相关估计，再对其作傅里叶变换：&lt;/p&gt;
+&lt;p&gt;$$
+\hat r(m)\ \xrightarrow{\ \text{加窗 }w(m)\ }\ \hat r_w(m)=\hat r(m)w(m),\qquad
+\hat P_{BT}(e^{j\omega})=\sum_{m=-(M-1)}^{M-1}\hat r_w(m)e^{-j\omega m}
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先自相关、后傅里叶 → &lt;strong&gt;间接法&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;窗 $w(m)$ 的宽度 $M$ 控制估计的偏差/方差折衷（$M$ 太小偏差大，$M$ 太大方差大）；&lt;/li&gt;
+&lt;li&gt;当窗为三角窗（Bartlett）时，BT 法与周期图法等价。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;两种方法的对偶关系&lt;/strong&gt;（本质相同、途径不同）&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;周期图法（直接）&lt;/th&gt;
+&lt;th&gt;BT 法（间接）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;途径&lt;/td&gt;
+&lt;td&gt;数据 → FFT → 模平方&lt;/td&gt;
+&lt;td&gt;数据 → 自相关估计 → 加窗 → FFT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;窗作用位置&lt;/td&gt;
+&lt;td&gt;时域数据&lt;/td&gt;
+&lt;td&gt;自相关序列&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;计算量&lt;/td&gt;
+&lt;td&gt;小（一次 FFT）&lt;/td&gt;
+&lt;td&gt;大（先算自相关）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;方差控制&lt;/td&gt;
+&lt;td&gt;需平均/平滑&lt;/td&gt;
+&lt;td&gt;由窗长 $M$ 控制&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;7.2.4 周期图法的两个固有缺陷（重要）&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;方差大、不随 $N$ 减小&lt;/strong&gt;：$\mathrm{Var}[\hat P]\approx P^2$，即使 $N\to\infty$，估计也不会收敛到真值（非一致估计）。原因是 $\hat P$ 相当于对&quot;无限多个频率分量&quot;做了一次随机观测。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分辨率受限于窗长&lt;/strong&gt;：$\Delta\omega\approx2\pi/N$；数据短 → 分辨率差。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;改善方法（考试常问&quot;如何改善周期图&quot;）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方法&lt;/th&gt;
+&lt;th&gt;做法&lt;/th&gt;
+&lt;th&gt;效果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;分段平均（Bartlett 法）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;把数据分成 $K$ 段，各段周期图取平均&lt;/td&gt;
+&lt;td&gt;方差降为 $1/K$，但分辨率变差（每段变短）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;加窗平滑（Welch 法）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;分段 + 加汉宁/汉明窗（重叠 50%）+ 平均&lt;/td&gt;
+&lt;td&gt;方差降低、泄漏减少&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;平滑周期图（Daniel 法）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;频域对周期图做平滑&lt;/td&gt;
+&lt;td&gt;降低方差&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;BT 法 + 窗长选择&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;用 $M$ 控制偏差/方差&lt;/td&gt;
+&lt;td&gt;折衷&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;参数法（AR/最大熵）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;建模型求谱&lt;/td&gt;
+&lt;td&gt;分辨率高、无泄漏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h4&gt;本章要点总结&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;功率谱的定义：自相关序列的傅里叶变换（维纳–辛钦）；估计时用时间平均替代集合平均。&lt;/li&gt;
+&lt;li&gt;两种经典方法：&lt;strong&gt;周期图法（直接）&lt;/strong&gt; 与 &lt;strong&gt;BT 法（间接）&lt;/strong&gt;，本质等价。&lt;/li&gt;
+&lt;li&gt;周期图公式：$\hat P=\frac1N\lvert X_N(e^{j\omega})\rvert^2$（工程上 $\frac1N\lvert\mathrm{FFT}{x}\rvert^2$）。&lt;/li&gt;
+&lt;li&gt;周期图的两个问题：&lt;strong&gt;方差不随 $N$ 减小（非一致估计）&lt;/strong&gt;、&lt;strong&gt;分辨率受窗长限制&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;改善手段：分段平均、加窗平滑、频域平滑、参数法。&lt;/li&gt;
+&lt;li&gt;经典方法适用&quot;数据多、分辨率要求不高&quot;；高分辨率需求用现代（参数）方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h4&gt;与第5章、第3章的衔接&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;概念&lt;/th&gt;
+&lt;th&gt;理论（第5章）&lt;/th&gt;
+&lt;th&gt;估计（第7章）&lt;/th&gt;
+&lt;th&gt;计算工具（第3章）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;自相关&lt;/td&gt;
+&lt;td&gt;$r(m)=E[x(n)x(n+m)]$&lt;/td&gt;
+&lt;td&gt;$\hat r(m)=\frac1N\sum x(n)x(n+m)$&lt;/td&gt;
+&lt;td&gt;—&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;功率谱&lt;/td&gt;
+&lt;td&gt;$P=\sum r(m)e^{-j\omega m}$&lt;/td&gt;
+&lt;td&gt;$\hat P=\frac1N\lvert X(k)\rvert^2$&lt;/td&gt;
+&lt;td&gt;FFT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;分辨率&lt;/td&gt;
+&lt;td&gt;无限长 → 无限分辨率&lt;/td&gt;
+&lt;td&gt;$\Delta f=f_s/N=1/t_p$&lt;/td&gt;
+&lt;td&gt;点数 $N$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;复习提示：第 3 章作业 3.28（补零与分辨率）正好呼应本章&quot;分辨率由数据长度 $t_p$ 决定，补零只加密谱线&quot;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;§C 习题全解&lt;/h2&gt;
+&lt;h3&gt;C.1　第 3 章习题全解（3.6–3.28）&lt;/h3&gt;
+&lt;p&gt;本解析对每道题给出&lt;strong&gt;分析思路、完整推导步骤与结论&lt;/strong&gt;，公式按步展开，便于对照复习。
+题号：3.6、3.8、3.10、3.13、3.16、3.18、3.20、3.22、3.25、3.26、3.28。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.6　计算下列序列的 N 点 DFT&lt;/h4&gt;
+&lt;p&gt;记 $W_N=e^{-j\frac{2\pi}{N}}$，$N$ 点 DFT 为 $X(k)=\sum_{n=0}^{N-1}x(n)W_N^{,nk}$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1)  $x(n)=\delta(n)$&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：直接代入定义，只有 $n=0$ 一项非零。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+X(k)=\sum_{n=0}^{N-1}\delta(n)W_N^{,nk}=\delta(0)W_N^{0}=1,\qquad 0\le k\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2)  $x(n)=\delta((n-n_0))_N\cdot R_N(n),\quad 0&amp;lt;n_0&amp;lt;N$&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：在 $0\le n\le N-1$ 内，序列仅在 $n=n_0$ 处为 1。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+X(k)=\sum_{n=0}^{N-1}\delta(n-n_0)W_N^{,nk}=W_N^{,n_0k}=e^{-j\frac{2\pi n_0}{N}k},\qquad |X(k)|=1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(3)  $x(n)=a^n,\quad 0\le n\le N-1$&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：等比数列求和，公比 $q=aW_N^{k}$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+X(k)=\sum_{n=0}^{N-1}(aW_N^{k})^n=\frac{1-(aW_N^{k})^{N}}{1-aW_N^{k}}
+$$&lt;/p&gt;
+&lt;p&gt;注意 $W_N^{Nk}=e^{-j2\pi k}=1$，故 $(aW_N^{k})^N=a^N$，于是&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=\frac{1-a^{N}}{1-aW_N^{k}},\qquad 0\le k\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;当 $aW_N^{k}=1$（即 $a=1$ 且 $k=0$）时，$X(0)=\sum_{n=0}^{N-1}1=N$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(4)  $x(n)=\cos!\big(\tfrac{2\pi}{N}nm\big),\quad 0\le n\le N-1,\ 0&amp;lt;m&amp;lt;N$&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：用欧拉公式把余弦拆成两个复指数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+\cos!\Big(\tfrac{2\pi}{N}nm\Big)=\tfrac12\big(W_N^{-nm}+W_N^{nm}\big)
+$$&lt;/p&gt;
+&lt;p&gt;而 $\mathrm{DFT}{W_N^{\pm nm}}=\sum_{n=0}^{N-1}W_N^{,n(k\mp m)}=N,\delta(k\mp m)$（$0\le k,m&amp;lt;N$，由正交性）。故&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=\frac{N}{2}\big[\delta(k-m)+\delta\big(k-(N-m)\big)\big],\qquad 0\le k\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(5)  $x(n)=1\ (0\le n\le 7);\ 0\ (\text{其它})$&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：8 点矩形序列，取 $N=8$，是等比序列的特例。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+X(k)=\sum_{n=0}^{7}W_8^{,nk}=\frac{1-W_8^{,8k}}{1-W_8^{,k}}
+$$&lt;/p&gt;
+&lt;p&gt;当 $k=0$ 时 $X(0)=8$；当 $k=1,\dots,7$ 时 $W_8^{8k}=1$ 而分母非零，故 $X(k)=0$。即&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=8,\delta(k)
+$$&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.8　线性卷积与循环卷积&lt;/h4&gt;
+&lt;p&gt;由题图 $x(n)=\delta(n)+2\delta(n-1)+2\delta(n-2)+\delta(n-3)$，即 $x={1,2,2,1}$（$n=0,1,2,3$）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1) 线性卷积&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：逐项做多项式乘法 $x*x$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+y_l(n)=x(n)*x(n)
+$$&lt;/p&gt;
+&lt;p&gt;逐项计算：$y_l(0)=1\cdot1=1$；$y_l(1)=1\cdot2+2\cdot1=4$；$y_l(2)=1\cdot2+2\cdot2+2\cdot1=8$；
+$y_l(3)=1\cdot1+2\cdot2+2\cdot2+1\cdot1=10$；由对称性 $y_l(4)=8,\ y_l(5)=4,\ y_l(6)=1$。故&lt;/p&gt;
+&lt;p&gt;$$
+y_l(n)={1,4,8,10,8,4,1},\qquad 0\le n\le 6,\quad L=7
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2) 4 点循环卷积&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：用 $y_c(n)=\sum_r y_l(n+rN)$，把 $n\ge4$ 的项折叠回主值区间。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$n=0$：$y_l(0)+y_l(4)=1+8=9$；$n=1$：$y_l(1)+y_l(5)=4+4=8$；
+$n=2$：$y_l(2)+y_l(6)=8+1=9$；$n=3$：$y_l(3)+y_l(7)=10+0=10$。故&lt;/p&gt;
+&lt;p&gt;$$
+y_4(n)={9,8,9,10}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(3) 8 点循环卷积&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：$N=8$ 已覆盖 $L=7$，无混叠，循环卷积等于线性卷积。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+y_8(n)={1,4,8,10,8,4,1,0}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：$N$ 点循环卷积是线性卷积以 $N$ 为周期延拓的主值。$N=4&amp;lt;7$ 时发生混叠（结果与原线性卷积不同）；$N=8\ge7$ 时二者相等。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.10　单位圆上 N 等分取样后求 IDFT&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：$x(n)$ 无限长，其 $z$ 变换在单位圆上取样再反变换，等价于把 $x(n)$ 以 $N$ 为周期叠加。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$x(n)=a^nu(n)$，$X(z)=\frac{1}{1-az^{-1}},\ |z|&amp;gt;|a|$。在单位圆 $N$ 等分点取样（取 $z_k=W_N^{-k}=e^{j2\pi k/N}$）：&lt;/p&gt;
+&lt;p&gt;$$
+X(k)=\frac{1}{1-aW_N^{,k}},\qquad 0\le k\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;作 IDFT：&lt;/p&gt;
+&lt;p&gt;$$
+x_N(n)=\frac{1}{N}\sum_{k=0}^{N-1}\frac{W_N^{-nk}}{1-aW_N^{,k}}
+$$&lt;/p&gt;
+&lt;p&gt;把 $\dfrac{1}{1-aW_N^{,k}}=\sum_{l=0}^{\infty}a^{l}W_N^{-lk}$ 代入并交换求和次序：&lt;/p&gt;
+&lt;p&gt;$$
+x_N(n)=\sum_{l=0}^{\infty}a^{l}\Big[\frac{1}{N}\sum_{k=0}^{N-1}W_N^{-(n+l)k}\Big]=\sum_{l=0}^{\infty}a^{l},\delta((n+l)\bmod N)
+$$&lt;/p&gt;
+&lt;p&gt;利用 $\frac1N\sum_{k}W_N^{-mk}=\sum_i\delta(m-iN)$，求和后只剩 $l=n,\ n+N,\ n+2N,\dots$：&lt;/p&gt;
+&lt;p&gt;$$
+x_N(n)=\sum_{i=0}^{\infty}a^{,n+iN}=\frac{a^{,n}}{1-a^{N}},\qquad 0\le n\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;即原序列 $a^nu(n)$ 以 $N$ 为周期的混叠（因 $0&amp;lt;a&amp;lt;1$，混叠项为等比级数，收敛）。
+（数值验证：$N=8,a=0.6$ 时 $x_N={1.017,0.610,0.366,0.220,0.132,0.079,0.047,0.028}$。）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.13　半径 1/2、相位偏移 π/10 圆上的取样&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关键：$X(z)\big|_{z=z_0}=\sum_n x(n)z_0^{-n}$。要在 $z_0=0.5e^{j\phi}$（$\phi=\frac{2\pi k}{10}+\frac{\pi}{10}$）处取样，
+就需要常数因子 $z_0^{-1}=2e^{-j\phi}$ 出现在被变换序列里。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;目标取样点：&lt;/p&gt;
+&lt;p&gt;$$
+z_0=0.5,e^{,j\left[\frac{2\pi k}{10}+\frac{\pi}{10}\right]}=0.5e^{j\frac{\pi}{10}},e^{j\frac{2\pi k}{10}},\qquad k=0,\dots,9
+$$&lt;/p&gt;
+&lt;p&gt;于是&lt;/p&gt;
+&lt;p&gt;$$
+X(z_0)=\sum_{n=0}^{9}x(n),z_0^{-n}=\sum_{n=0}^{9}x(n),\big(2e^{-j\frac{\pi}{10}}\big)^{n},e^{-j\frac{2\pi}{10}nk}
+$$&lt;/p&gt;
+&lt;p&gt;令&lt;/p&gt;
+&lt;p&gt;$$
+x_1(n)=2^{,n},e^{-j\frac{\pi}{10}n},x(n),\qquad n=0,1,\dots,9
+$$&lt;/p&gt;
+&lt;p&gt;则 $x_1(n)$ 的 10 点 DFT 恰为&lt;/p&gt;
+&lt;p&gt;$$
+X_1(k)=\sum_{n=0}^{9}x_1(n),e^{-j\frac{2\pi}{10}nk}=X(z)\Big|_{z=0.5,e^{j(2\pi k/10+\pi/10)}}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：把原序列乘以 $2^{,n}e^{-j\frac{\pi}{10}n}$ 得 $x_1(n)$，再作 10 点 DFT，即得图(b) 半径 $1/2$、起始角 $\pi/10$ 圆周上的等间隔取样。
+（该权值经数值验证：$2^ne^{-j\pi n/10}x(n)$ 的 DFT 与直接在 $z_0$ 处取样完全一致；若误用 $0.5^n$ 会得到相反结果。）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.16　FFT 流程图与各级蝶形运算&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：取 $N=8$（$2^3$），基-2 按时间抽取（DIT），经码位倒置、三级蝶形得 $X(k)$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;输入 $x={0,1,0,1,1,1}$ 补零为 $N=8$：$x={0,1,0,1,1,1,0,0}$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;步骤 1：码位倒置&lt;/strong&gt;（把序号写成 3 位二进制后反转）&lt;/p&gt;
+&lt;p&gt;$$
+0\to000\to0,\ 1\to001\to4,\ 2\to010\to2,\ 3\to011\to6,\ 4\to100\to1,\ 5\to101\to5,\ 6\to110\to3,\ 7\to111\to7
+$$&lt;/p&gt;
+&lt;p&gt;$$
+[\tilde x(m)]=[,x_0,x_4,x_2,x_6,x_1,x_5,x_3,x_7,]=[,0,1,0,0,1,1,1,0,]
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;步骤 2：第 1 级&lt;/strong&gt;（跨度 1，$W_8^0=1$，两两求和/差）&lt;/p&gt;
+&lt;p&gt;$$
+[\tilde x]=[0,1,0,0,1,1,1,0]\ \longrightarrow\ {1,-1,\ 0,0,\ 2,0,\ 1,1}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;步骤 3：第 2 级&lt;/strong&gt;（跨度 2，旋转因子 $W_8^0=1,\ W_8^2=-j$）&lt;/p&gt;
+&lt;p&gt;$$
+{1,-1,\ 1,-1,\ 3,-j,\ 1,j}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;步骤 4：第 3 级&lt;/strong&gt;（跨度 4，旋转因子 $1,W_8^1=e^{-j\pi/4},W_8^2=-j,W_8^3=e^{-j3\pi/4}$）&lt;/p&gt;
+&lt;p&gt;$$
+X(k)={,4,\ -1.7071-0.7071j,\ 1-j,\ -0.2929-0.7071j,\ -2,\ -0.2929+0.7071j,\ 1+j,\ -1.7071+0.7071j,}
+$$&lt;/p&gt;
+&lt;p&gt;（与 MATLAB &lt;code&gt;fft&lt;/code&gt; 结果一致。）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.18　用 FFT 作谱分析的参数&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：频率分辨率 $F=1/t_p$；奈奎斯特限制 $f_s\ge2f_0$ 给出最大取样间隔。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;(1) 最小记录长度&lt;/strong&gt;：由 $F\le5,\mathrm{Hz}$，$F=1/t_p$，故&lt;/p&gt;
+&lt;p&gt;$$
+t_p=\frac1F=\frac15=0.2\ \mathrm{s}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2) 最大取样间隔&lt;/strong&gt;：$f_s\ge2f_0=2500,\mathrm{Hz}$，故&lt;/p&gt;
+&lt;p&gt;$$
+T=\frac{1}{f_s}=\frac{1}{2500}=4\times10^{-4}\ \mathrm{s}=0.4\ \mathrm{ms}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(3) 最少点数&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+N=\frac{t_p}{T}=f_s,t_p=\frac{2f_0}{F}=\frac{2500}{5}=500\ \text{点}
+$$&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.20　用一个复序列 DFT 求两个实序列 DFT&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：对 $g=x_1+jx_2$ 作 DFT 得 $G$。利用 DFT 的共轭对称性，把 $G$ 的偶/奇分量与 $X_1$、$X_2$ 对应起来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;记 $G(k)=G_R(k)+jG_I(k)$，其共轭对称分量为（下标按 $N$ 取模）&lt;/p&gt;
+&lt;p&gt;$$
+G_{ER}(k)=\tfrac12[G_R(k)+G_R((N-k))&lt;em&gt;N],\qquad G&lt;/em&gt;{OR}(k)=\tfrac12[G_R(k)-G_R((N-k))_N]
+$$&lt;/p&gt;
+&lt;p&gt;$$
+G_{EI}(k)=\tfrac12[G_I(k)+G_I((N-k))&lt;em&gt;N],\qquad G&lt;/em&gt;{OI}(k)=\tfrac12[G_I(k)-G_I((N-k))_N]
+$$&lt;/p&gt;
+&lt;p&gt;由 $g=x_1+jx_2$ 得 $G=X_1+jX_2$，因此 $G_R=X_{1R}-X_{2I}$、$G_I=X_{1I}+X_{2R}$。
+又因 $X_1,X_2$ 是&lt;strong&gt;实序列&lt;/strong&gt;的 DFT，其&lt;strong&gt;实部偶对称、虚部奇对称&lt;/strong&gt;，故取偶/奇部后得&lt;/p&gt;
+&lt;p&gt;$$
+G_{ER}=X_{1R},\qquad G_{OR}=-X_{2I},\qquad G_{EI}=X_{2R},\qquad G_{OI}=X_{1I}
+$$&lt;/p&gt;
+&lt;p&gt;代回即得&lt;/p&gt;
+&lt;p&gt;$$
+X_1(k)=G_{ER}(k)+j,G_{OI}(k),\qquad X_2(k)=G_{EI}(k)-j,G_{OR}(k)
+$$&lt;/p&gt;
+&lt;p&gt;等价地，用共轭形式：&lt;/p&gt;
+&lt;p&gt;$$
+X_1(k)=\tfrac12\big[G(k)+G^{&lt;em&gt;}((N-k))_N\big],\qquad X_2(k)=\tfrac{1}{2j}\big[G(k)-G^{&lt;/em&gt;}((N-k))_N\big]
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;意义&lt;/strong&gt;：一次复序列 FFT 即可同时得到两个实序列的 DFT，运算量约减半。（两条公式均经数值验证。）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.22　DTFT 与 4 点 DFT&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：$x={1,1,1,1}$，DTFT 是等比和（$q=e^{-j\omega}$）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+X(e^{j\omega})=\sum_{n=0}^{3}e^{-j\omega n}=\frac{1-e^{-j4\omega}}{1-e^{-j\omega}}=e^{-j\frac32\omega},\frac{\sin(2\omega)}{\sin(\omega/2)}
+$$&lt;/p&gt;
+&lt;p&gt;幅度 $|X|=\left|\dfrac{\sin(2\omega)}{\sin(\omega/2)}\right|$（主瓣旁瓣型），相位为线性 $-1.5\omega$ 加在零点发生的 $\pm\pi$ 跳变。&lt;/p&gt;
+&lt;p&gt;4 点 DFT：取 $\omega=2\pi k/4$，$k=0,1,2,3$，$X(k)={4,0,0,0}$（对应 MATLAB 结果）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.25　序列的循环移位&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：$x((n+m))&lt;em&gt;N$ 表示把 $x$ 循环移位。$(n+4)&lt;/em&gt;{10}$ 使序列循环左移 4 位，$(n-3)_{10}$ 使序列循环右移 3 位。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$x(n)=5(0.6)^n,\ 0\le n\le 9$，即 $x={5,3,1.8,1.08,0.648,0.389,0.233,0.140,0.084,0.0504}$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1)&lt;/strong&gt; $y(n)=x((n+4))&lt;em&gt;{10}R&lt;/em&gt;{10}(n)$：把原序列整体左移 4 位，移出前 4 个值循环补到末尾。&lt;/p&gt;
+&lt;p&gt;$$
+y={0.648,0.389,0.233,0.140,0.084,0.0504,5,3,1.8,1.08}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2)&lt;/strong&gt; $y(n)=x((n-3))&lt;em&gt;{10}R&lt;/em&gt;{10}(n)$：把原序列整体右移 3 位，末 3 个值循环补到前面。&lt;/p&gt;
+&lt;p&gt;$$
+y={0.140,0.084,0.0504,5,3,1.8,1.08,0.648,0.389,0.233}
+$$&lt;/p&gt;
+&lt;p&gt;（图形见 MATLAB 文档 p325.png。）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.26　循环卷积&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：$N$ 点循环卷积 $y(n)=\sum_m x_1(m)x_2((n-m))_N$；当 $N&amp;lt;$ 线性卷积长度时混叠。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$x_1={1,2,2},\ x_2={1,2,3,4}$。先求线性卷积：&lt;/p&gt;
+&lt;p&gt;$$
+x_1*x_2={1,4,9,14,14,8}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1) 5 点循环卷积&lt;/strong&gt;：$N=5&amp;lt;6$，把超出项折叠（$n\ge5$ 的项回到 $n-5$）：
+$y_1(0)=y_l(0)+y_l(5)=1+8=9$；$y_1(1)=y_l(1)=4$；$y_1(2)=y_l(2)=9$；$y_1(3)=y_l(3)=14$；$y_1(4)=y_l(4)=14$。&lt;/p&gt;
+&lt;p&gt;$$
+y_1={9,4,9,14,14}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2) 8 点循环卷积&lt;/strong&gt;：$N=8&amp;gt;6$，无混叠，等于线性卷积（补零）：&lt;/p&gt;
+&lt;p&gt;$$
+x_2*x_2={1,4,10,20,25,24,16},\qquad y_2={1,4,10,20,25,24,16,0}
+$$&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 3.28　补零与提高分辨率&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思路：$F=1/(NT)$。&lt;strong&gt;补零&lt;/strong&gt;只减小频率采样间隔（谱更光滑），不增加物理分辨率；
+&lt;strong&gt;增加样本数 $N$&lt;/strong&gt; 才能提高分辨率、分辨相邻谱峰。信号含 $0.47\pi$ 与 $0.53\pi$ 两个分量。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;(1)&lt;/strong&gt; $0\le n\le10$，$N=11$：两分量在相同频点附近重叠，幅度谱只在 $k=3,8$ 处出现，&lt;strong&gt;两峰不可分&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(2)&lt;/strong&gt; 尾部补 90 个零，$N=101$：$(0.47\pi/2\pi)\cdot101=23.7$，$(0.53\pi/2\pi)\cdot101=26.8$，
+频率采样更密使谱线光滑，但主瓣宽度只由记录长度决定，两峰仍合成一个宽包络，&lt;strong&gt;不可分&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(3)&lt;/strong&gt; 样本数增至 500：&lt;/p&gt;
+&lt;p&gt;$$
+k_1=\frac{0.47}{2}\times500=117.5,\qquad k_2=\frac{0.53}{2}\times500=132.5
+$$&lt;/p&gt;
+&lt;p&gt;记录长度增大使主瓣变窄，两谱峰在 $k=118$ 与 $k=134$ 处清楚分开，&lt;strong&gt;可分辨&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：补零（情形 2）不能分开两峰，增加样本数（情形 3）可以分开——印证&quot;补零提高谱密度、增加样本提高分辨率&quot;。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;C.2　第 3 章 MATLAB 代码与图形（3.22 / 3.25 / 3.26 / 3.28）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本题组的&lt;strong&gt;解题思路与数值结论&lt;/strong&gt;见 §C.1 末尾四小节；本部分给出可直接运行的 MATLAB 代码、运行输出与图像。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;习题 3.22 · MATLAB 实现&lt;/h4&gt;
+&lt;h5&gt;MATLAB 代码&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;clear; clc; close all;
+
+x = [1 1 1 1];              % 0&amp;lt;=n&amp;lt;=3
+N = 4;
+
+%% (1) DTFT:  X(e^{jw}) = sum x(n) e^{-jwn}
+w = linspace(-pi, pi, 2001);
+k = 0:N-1;
+% 利用外积构造 X(e^{jw}) = sum_n x(n) e^{-j w n}
+Xdtft = x * exp(-1j * (k.&apos; * w));
+
+magX = abs(Xdtft);
+angX = angle(Xdtft);
+
+figure(&apos;Color&apos;,&apos;w&apos;,&apos;Position&apos;,[100 100 900 650]);
+subplot(2,1,1);
+plot(w/pi, magX, &apos;LineWidth&apos;, 1.5);
+grid on; xlabel(&apos;\omega / \pi&apos;); ylabel(&apos;|X(e^{j\omega})|&apos;);
+title(&apos;习题3.22  x(n)={1,1,1,1} 的 DTFT 幅度&apos;);
+xlim([-1 1]);
+
+subplot(2,1,2);
+plot(w/pi, angX, &apos;LineWidth&apos;, 1.5);
+grid on; xlabel(&apos;\omega / \pi&apos;); ylabel(&apos;\angle X(e^{j\omega})  (rad)&apos;);
+title(&apos;DTFT 相位&apos;); xlim([-1 1]);
+
+% 解析结果核对: |X| = |sin(2w)/sin(w/2)| ... 直接打印几个点
+fprintf(&apos;--- 3.22 (1) DTFT（解析式 X(e^{jw}) = e^{-j1.5w} * sin(2w)/sin(w/2)）\n&apos;);
+fprintf(&apos;  X(e^{j0})   = %g\n&apos;, real(x*exp(-1j*(k.&apos;*0))));
+fprintf(&apos;  X(e^{jpi})  = %g\n&apos;, real(x*exp(-1j*(k.&apos;*pi))));
+
+%% (2) 4 点 DFT
+Xk = fft(x, N);
+fprintf(&apos;\n--- 3.22 (2) 4 点 DFT 结果 X(k) = ---\n&apos;);
+for kk = 0:N-1
+    fprintf(&apos;  X(%d) = %g %+gi\n&apos;, kk, real(Xk(kk+1)), imag(Xk(kk+1)));
+end
+
+% 再画一张 DFT 的图
+figure(&apos;Color&apos;,&apos;w&apos;,&apos;Position&apos;,[100 100 900 400]);
+subplot(1,2,1);
+stem(0:N-1, abs(Xk), &apos;filled&apos;, &apos;LineWidth&apos;, 1.5); grid on;
+xlabel(&apos;k&apos;); ylabel(&apos;|X(k)|&apos;); title(&apos;4 点 DFT 幅度&apos;);
+
+subplot(1,2,2);
+stem(0:N-1, angle(Xk), &apos;filled&apos;, &apos;LineWidth&apos;, 1.5); grid on;
+xlabel(&apos;k&apos;); ylabel(&apos;\angle X(k) (rad)&apos;); title(&apos;4 点 DFT 相位&apos;);
+
+saveas(gcf, &apos;p322_dft.png&apos;);
+saveas(1, &apos;p322_dtft.png&apos;);
+fprintf(&apos;\n图像已保存: p322_dtft.png , p322_dft.png\n&apos;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;运行结果&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;X(e^{j0})  = 4
+X(e^{jpi}) = 0
+
+4 点 DFT:  X(0)=4,  X(1)=X(2)=X(3)=0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;图像&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/p322_dtft.webp&quot; alt=&quot;3.22 DTFT 幅度与相位&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/p322_dft.webp&quot; alt=&quot;3.22 4 点 DFT&quot; /&gt;&lt;/p&gt;
+&lt;h4&gt;习题 3.25 · MATLAB 实现&lt;/h4&gt;
+&lt;h5&gt;MATLAB 代码&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;clear; clc; close all;
+
+N = 10;
+n = 0:N-1;
+x = 5*(0.6).^n;
+
+% (n+4)_10  -&amp;gt; 相当于向右移 4 个位置(循环左移)
+y1 = x(mod(n+4, N) + 1);
+% (n-3)_10  -&amp;gt; 相当于向左移 3 个位置(循环右移)
+y2 = x(mod(n-3, N) + 1);
+
+figure(&apos;Color&apos;,&apos;w&apos;,&apos;Position&apos;,[100 100 950 650]);
+
+subplot(2,1,1);
+stem(n, x,  &apos;filled&apos;, &apos;LineWidth&apos;,1.5); hold on;
+stem(n, y1, &apos;r&apos;, &apos;LineWidth&apos;,1.5);
+grid on; xlabel(&apos;n&apos;); ylabel(&apos;幅度&apos;);
+legend(&apos;x(n)&apos;, &apos;y(n)=x((n+4)_{10})&apos;, &apos;Location&apos;,&apos;northeast&apos;);
+title(&apos;习题3.25(1)  x(n) 与 y(n)=x((n+4)_{10})R_{10}(n)&apos;);
+xlim([-0.5 9.5]);
+
+subplot(2,1,2);
+stem(n, x,  &apos;filled&apos;, &apos;LineWidth&apos;,1.5); hold on;
+stem(n, y2, &apos;m&apos;, &apos;LineWidth&apos;,1.5);
+grid on; xlabel(&apos;n&apos;); ylabel(&apos;幅度&apos;);
+legend(&apos;x(n)&apos;, &apos;y(n)=x((n-3)_{10})&apos;, &apos;Location&apos;,&apos;northeast&apos;);
+title(&apos;习题3.25(2)  x(n) 与 y(n)=x((n-3)_{10})R_{10}(n)&apos;);
+xlim([-0.5 9.5]);
+
+saveas(gcf, &apos;p325.png&apos;);
+
+fprintf(&apos;--- 3.25 结果 ---\n&apos;);
+fprintf(&apos;n  : &apos;); fprintf(&apos;%8d&apos;, n); fprintf(&apos;\n&apos;);
+fprintf(&apos;x(n): &apos;); fprintf(&apos;%8.4f&apos;, x); fprintf(&apos;\n&apos;);
+fprintf(&apos;(1) y(n)=x((n+4)_10): &apos;); fprintf(&apos;%8.4f&apos;, y1); fprintf(&apos;\n&apos;);
+fprintf(&apos;(2) y(n)=x((n-3)_10): &apos;); fprintf(&apos;%8.4f&apos;, y2); fprintf(&apos;\n&apos;);
+fprintf(&apos;\n图像已保存: p325.png\n&apos;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;运行结果&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;n      :  0      1      2      3      4      5      6      7      8      9
+x(n)   :  5.0000 3.0000 1.8000 1.0800 0.6480 0.3888 0.2333 0.1400 0.0840 0.0504
+(1) y  :  0.6480 0.3888 0.2333 0.1400 0.0840 0.0504 5.0000 3.0000 1.8000 1.0800
+(2) y  :  0.1400 0.0840 0.0504 5.0000 3.0000 1.8000 1.0800 0.6480 0.3888 0.2333
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;图像&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/p325.webp&quot; alt=&quot;3.25 循环移位&quot; /&gt;&lt;/p&gt;
+&lt;h4&gt;习题 3.26 · MATLAB 实现&lt;/h4&gt;
+&lt;h5&gt;MATLAB 代码&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;clear; clc; close all;
+
+x1 = [1 2 2];
+x2 = [1 2 3 4];
+
+N1 = 5;                     % (1) 的循环卷积点数
+N2 = 8;                     % (2) 的循环卷积点数
+
+% 循环卷积函数(自写, 不依赖信号处理工具箱):
+%  先把两个序列补零到 N 点, 再按 y(n)=sum_m x(m) h((n-m)_N) 计算
+cconv_manual = @(x, h, N) cconv_core(x, h, N);
+
+y1 = cconv_manual(x1, x2, N1);
+y2 = cconv_manual(x2, x2, N2);
+
+ylin1 = conv(x1, x2);
+ylin2 = conv(x2, x2);
+
+fprintf(&apos;--- 3.26 结果 ---\n&apos;);
+fprintf(&apos;x1 = &apos;); fprintf(&apos;%d &apos;, x1); fprintf(&apos;\n&apos;);
+fprintf(&apos;x2 = &apos;); fprintf(&apos;%d &apos;, x2); fprintf(&apos;\n&apos;);
+fprintf(&apos;(1) 5 点循环卷积 y1 = &apos;); fprintf(&apos;%g &apos;, y1); fprintf(&apos;\n&apos;);
+fprintf(&apos;    线性卷积 x1*x2  = &apos;); fprintf(&apos;%g &apos;, ylin1); fprintf(&apos;\n&apos;);
+fprintf(&apos;(2) 8 点循环卷积 y2 = &apos;); fprintf(&apos;%g &apos;, y2); fprintf(&apos;\n&apos;);
+fprintf(&apos;    线性卷积 x2*x2  = &apos;); fprintf(&apos;%g &apos;, ylin2); fprintf(&apos;\n&apos;);
+
+figure(&apos;Color&apos;,&apos;w&apos;,&apos;Position&apos;,[100 100 1000 720]);
+
+subplot(3,1,1);
+stem(0:numel(x1)-1, x1, &apos;filled&apos;,&apos;LineWidth&apos;,1.5); hold on;
+stem(0:numel(x2)-1, x2, &apos;r&apos;,&apos;LineWidth&apos;,1.5);
+grid on; xlabel(&apos;n&apos;); ylabel(&apos;幅度&apos;);
+legend(&apos;x_1(n)&apos;,&apos;x_2(n)&apos;); title(&apos;习题3.26(1)  x_1(n) 与 x_2(n)&apos;);
+
+subplot(3,1,2);
+stem(0:N1-1, y1, &apos;m&apos;,&apos;filled&apos;,&apos;LineWidth&apos;,1.5); grid on;
+xlabel(&apos;n&apos;); ylabel(&apos;y_1(n)&apos;);
+title(&apos;y_1(n)=x_1(n) (5) x_2(n)  5 点循环卷积&apos;);
+
+subplot(3,1,3);
+stem(0:N2-1, y2, &apos;b&apos;,&apos;filled&apos;,&apos;LineWidth&apos;,1.5); grid on;
+xlabel(&apos;n&apos;); ylabel(&apos;y_2(n)&apos;);
+title(&apos;y_2(n)=x_2(n) (8) x_2(n)  8 点循环卷积&apos;);
+
+saveas(gcf, &apos;p326.png&apos;);
+fprintf(&apos;\n图像已保存: p326.png\n&apos;);
+
+%% ---------- 局部函数 ----------
+function y = cconv_core(x, h, N)
+    xp = [x(:).&apos; zeros(1, N-numel(x))];
+    hp = [h(:).&apos; zeros(1, N-numel(h))];
+    y  = zeros(1, N);
+    for nn = 0:N-1
+        acc = 0;
+        for m = 0:N-1
+            acc = acc + xp(m+1) * hp(mod(nn - m, N) + 1);
+        end
+        y(nn+1) = acc;
+    end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;运行结果&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;x1 = 1 2 2 ;   x2 = 1 2 3 4
+(1) 5 点循环卷积 y1 = 9 4 9 14 14
+    线性卷积 x1*x2  = 1 4 9 14 14 8
+(2) 8 点循环卷积 y2 = 1 4 10 20 25 24 16 0
+    线性卷积 x2*x2  = 1 4 10 20 25 24 16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;图像&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/p326.webp&quot; alt=&quot;3.26 循环卷积&quot; /&gt;&lt;/p&gt;
+&lt;h4&gt;习题 3.28 · MATLAB 实现&lt;/h4&gt;
+&lt;h5&gt;MATLAB 代码&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;clear; clc; close all;
+
+%% (1) 0&amp;lt;=n&amp;lt;=10, N=11 点
+n1 = 0:10;
+x1 = cos(0.47*pi*n1) + cos(0.53*pi*n1);
+X1 = fft(x1, 11);
+k1 = 0:10;
+
+figure(&apos;Color&apos;,&apos;w&apos;,&apos;Position&apos;,[80 60 1100 900]);
+subplot(2,2,1);
+stem(n1, x1, &apos;filled&apos;,&apos;LineWidth&apos;,1.4); grid on;
+xlabel(&apos;n&apos;); ylabel(&apos;x(n)&apos;); title(&apos;(1) x(n), 0\leqn\leq10&apos;);
+
+subplot(2,2,2);
+stem(k1, abs(X1), &apos;filled&apos;,&apos;LineWidth&apos;,1.4); grid on;
+xlabel(&apos;k&apos;); ylabel(&apos;|X(k)|&apos;); title(&apos;(1) 11 点 FFT 幅度 (stem)&apos;);
+
+%% (2) 尾部补 90 个零 -&amp;gt; 总长 101
+n2 = 0:100;
+x2 = zeros(size(n2));
+idx = (n2&amp;lt;=10);
+x2(idx) = cos(0.47*pi*n2(idx)) + cos(0.53*pi*n2(idx));
+X2 = fft(x2, 101);
+k2 = 0:100;
+
+subplot(2,2,3);
+stem(n2, x2, &apos;filled&apos;,&apos;LineWidth&apos;,1.0); grid on;
+xlabel(&apos;n&apos;); ylabel(&apos;x(n)&apos;); title(&apos;(2) 补零后 x(n), 长度 101 (stem)&apos;);
+
+subplot(2,2,4);
+plot(k2, abs(X2), &apos;LineWidth&apos;,1.4); grid on;
+xlabel(&apos;k&apos;); ylabel(&apos;|X(k)|&apos;); title(&apos;(2) 101 点 FFT 幅度 (plot)&apos;);
+saveas(gcf, &apos;p328_1_2.png&apos;);
+
+%% (3) 样本数增至 500
+n3 = 0:499;
+x3 = cos(0.47*pi*n3) + cos(0.53*pi*n3);
+X3 = fft(x3);
+k3 = 0:499;
+
+figure(&apos;Color&apos;,&apos;w&apos;,&apos;Position&apos;,[80 60 1100 900]);
+subplot(2,2,1);
+stem(n3, x3, &apos;filled&apos;,&apos;LineWidth&apos;,0.7); grid on;
+xlabel(&apos;n&apos;); ylabel(&apos;x(n)&apos;); title(&apos;(3) x(n), 0\leqn\leq499 (stem)&apos;);
+
+subplot(2,2,2);
+plot(k3, abs(X3), &apos;LineWidth&apos;,1.4); grid on;
+xlabel(&apos;k&apos;); ylabel(&apos;|X(k)|&apos;); title(&apos;(3) 500 点 FFT 幅度 (plot)&apos;);
+
+subplot(2,2,[3 4]);
+plot(k3, abs(X3), &apos;LineWidth&apos;,1.6); grid on; hold on;
+xlim([0 250]); xlabel(&apos;k (频率序号)&apos;); ylabel(&apos;|X(k)|&apos;);
+plot(117.5, max(abs(X3))*1.02, &apos;rv&apos;, &apos;MarkerFaceColor&apos;,&apos;r&apos;);
+plot(132.5, max(abs(X3))*1.02, &apos;rv&apos;, &apos;MarkerFaceColor&apos;,&apos;r&apos;);
+title(&apos;(3) 500 点 FFT 幅度: 0.47\pi 与 0.53\pi 附近两谱峰可分辨 (\nabla 为理论位置)&apos;);
+saveas(gcf, &apos;p328_3.png&apos;);
+
+%% 数值核对: 峰值位置
+mag = abs(X3(1:250));
+[pk, loc] = max(mag);                 % 第一主峰
+magC = mag; magC(max(1,loc-15):min(end,loc+15)) = 0;  % 去掉第一峰附近
+[pk2, loc2] = max(magC);              % 第二主峰
+fprintf(&apos;--- 3.28 结果 ---\n&apos;);
+fprintf(&apos;(1) 11 点: 3 个非零谱线对应 w=0.5pi 附近能量集中(0.47pi,0.53pi 不可分)\n&apos;);
+fprintf(&apos;(2) 101 点补零: 频谱变光滑, 但两峰仍合为一个宽包络, 不可分\n&apos;);
+fprintf(&apos;(3) 500 点: 两个谱峰位于 k = %d 与 %d\n&apos;, min(loc,loc2), max(loc,loc2));
+fprintf(&apos;    理论峰值位置 k = 0.47/2*500 = %.1f, 0.53/2*500 = %.1f\n&apos;, ...
+        0.47/2*500, 0.53/2*500);
+fprintf(&apos;\n图像已保存: p328_1_2.png , p328_3.png\n&apos;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;运行结果&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;(1) 11 点：能量集中在 w = 0.5pi 附近，两峰不可分
+(2) 101 点补零：频谱变光滑，但两峰仍合成一个宽包络，不可分
+(3) 500 点：两谱峰位于 k = 118 与 k = 134
+    理论峰值位置 k = 0.47/2*500 = 117.5 ，0.53/2*500 = 132.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;图像&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/p328_1_2.webp&quot; alt=&quot;3.28 (1)(2) 波形与幅度谱&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://luuton.github.io/images/dsp/p328_3.webp&quot; alt=&quot;3.28 (3) 500 点波形与幅度谱&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;C.3　第 4 章习题（4.1–4.18）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;题号：&lt;strong&gt;4.1、4.3、4.4、4.6、4.8、4.10、4.12、4.14、4.17、4.18&lt;/strong&gt;
+约定：$z^{-1}$ 为单位延迟，$T$ 为抽样周期，$\omega$ 为数字角频率（归一化弧度/样值）。
+所有数值结果均已用 &lt;code&gt;numpy&lt;/code&gt; / &lt;code&gt;scipy.signal&lt;/code&gt; 逐点复核。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.1　实现给定差分方程的系统结构&lt;/h4&gt;
+&lt;p&gt;$$
+y(n)-\frac34 y(n-1)+\frac18 y(n-2)=x(n)
+\quad\Longleftrightarrow\quad
+y(n)=x(n)+\frac34 y(n-1)-\frac18 y(n-2)
+$$&lt;/p&gt;
+&lt;p&gt;需要两个单位延迟 $z^{-1}$、两个系数乘法器（$3/4$、$-1/8$）与一个加法器。&lt;/p&gt;
+&lt;h5&gt;(1) 方框图&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;                         ┌────────┐            ┌────────┐
+             ┌──────────►│  z⁻¹   ├───────────►│  z⁻¹   ├───────────┐
+             │           └────────┘            └────────┘           │
+             │             y(n-1)                 y(n-2)            │
+             │               │                      │              │
+             │            ┌──┴───┐              ┌───┴────┐          │
+             │            │ ×3/4 │              │ ×(−1/8)│          │
+             │            └──┬───┘              └───┬────┘          │
+             │               └──────────┬───────────┘               │
+             │                          ▼                           │
+  x(n) ─────►⊕───────────────────────── Σ ◄─────────────────────────┘
+             │
+             ▼
+            y(n)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中 $\Sigma$ 为求和器：$x(n)$ 与两条反馈支路在同一个求和节点相加，得到 $y(n)$。&lt;/p&gt;
+&lt;h5&gt;(2) 信号流图&lt;/h5&gt;
+&lt;p&gt;信号流图把每个信号量画成&lt;strong&gt;节点&lt;/strong&gt;、每个运算画成&lt;strong&gt;有向支路&lt;/strong&gt;，支路增益标在线上：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;支路起点&lt;/th&gt;
+&lt;th&gt;支路终点&lt;/th&gt;
+&lt;th&gt;增益&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$x(n)$ 节点&lt;/td&gt;
+&lt;td&gt;汇点 $\Sigma$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$y(n)$ 节点&lt;/td&gt;
+&lt;td&gt;$y(n-1)$ 节点&lt;/td&gt;
+&lt;td&gt;$z^{-1}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$y(n-1)$ 节点&lt;/td&gt;
+&lt;td&gt;$y(n-2)$ 节点&lt;/td&gt;
+&lt;td&gt;$z^{-1}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$y(n-1)$ 节点&lt;/td&gt;
+&lt;td&gt;汇点 $\Sigma$&lt;/td&gt;
+&lt;td&gt;$3/4$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$y(n-2)$ 节点&lt;/td&gt;
+&lt;td&gt;汇点 $\Sigma$&lt;/td&gt;
+&lt;td&gt;$-1/8$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;                    3/4                                  -1/8
+   x(n) ──►Ⓞ────────────►Ⓞ───────────►Ⓞ───────────►Ⓞ────────►Ⓞ y(n)
+                     ▲ z⁻¹             ▲ z⁻¹          ▲
+                     └──────────────────┴──────────────┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：这是二阶 IIR 系统，直接实现需 2 个延迟单元。&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=\frac{1}{1-\dfrac34 z^{-1}+\dfrac18 z^{-2}}
+=\frac{1}{\left(1-\dfrac12 z^{-1}\right)\left(1-\dfrac14 z^{-1}\right)},\qquad
+h(n)=2\left(\frac12\right)^n-\left(\frac14\right)^n
+$$&lt;/p&gt;
+&lt;p&gt;极点在 $z=1/2,\ 1/4$（单位圆内，稳定）；$h={1,\ 0.75,\ 0.4375,\ 0.234375,\dots}$（已复核）。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.3　四种结构的信号流图&lt;/h4&gt;
+&lt;p&gt;$$
+y(n)-\frac34 y(n-1)+\frac18 y(n-2)=x(n)+\frac13 x(n-1)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=\frac{1+\dfrac13 z^{-1}}{1-\dfrac34 z^{-1}+\dfrac18 z^{-2}}
+=\frac{1+\dfrac13 z^{-1}}{\left(1-\dfrac12 z^{-1}\right)\left(1-\dfrac14 z^{-1}\right)}
+$$&lt;/p&gt;
+&lt;h5&gt;(1) 直接 Ⅰ 型&lt;/h5&gt;
+&lt;p&gt;输入、输出&lt;strong&gt;各用一条延迟链&lt;/strong&gt;，共 $2+2=4$ 个延迟单元。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  x(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┐
+       │        │        │
+       │      x(n-1)   x(n-2)
+       │        │        │
+       └────────┴────────┴────► Σ ──► y(n)
+                              ▲
+  y(n)─┬─►[z⁻¹]─┬─►[z⁻¹]──────┘
+     y(n-1)   y(n-2)
+       │        │
+      ×3/4    ×(−1/8)
+       └────────┴──────────────► Σ（与 x(n)、x(n-1)/3 相加）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;即 $x(n)$ 经 $1$、$\frac13$ 两条前向支路，$y(n)$ 经 $\frac34$、$-\frac18$ 两条反馈支路，
+四路在同一个求和器相加。&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=x(n)+\tfrac13 x(n-1)+\tfrac34 y(n-1)-\tfrac18 y(n-2)
+$$&lt;/p&gt;
+&lt;h5&gt;(2) 直接 Ⅱ 型（规范型）&lt;/h5&gt;
+&lt;p&gt;只保留&lt;strong&gt;一条&lt;/strong&gt;延迟链（中间变量 $w(n)$），共 &lt;strong&gt;2 个延迟单元&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+w(n)=x(n)+\tfrac34 w(n-1)-\tfrac18 w(n-2),\qquad y(n)=w(n)+\tfrac13 w(n-1)
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                        ┌──────┐             ┌──────┐
+              ┌─────────┤ z⁻¹  ├──────┬──────┤ z⁻¹  ├────────┐
+              │         └──────┘      │      └──────┘        │
+              │           w(n-1)      │        w(n-2)       │
+              │             │         │          │          │
+              │           ×3/4        │        ×(−1/8)      │
+              │             │         │          │          │
+  x(n)───►( Σ )──► w(n) ────┴─────────┴──────────┴──────────┘
+             ▲                         （三条反馈支路）
+             └────────────────────────────────────────────────
+             
+  w(n)──►×1────┐
+               ├──►( + )──► y(n)
+  w(n-1)──►×1/3┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;即一条延迟链同时承担前向与反馈的存储，这是&lt;strong&gt;规范型&lt;/strong&gt;（延迟单元最少）的结构。&lt;/p&gt;
+&lt;h5&gt;(3) 级联型（两个一阶节）&lt;/h5&gt;
+&lt;p&gt;$$
+H(z)=\underbrace{\frac{1+\frac13z^{-1}}{1-\frac12z^{-1}}}&lt;em&gt;{H_1(z)}\cdot
+\underbrace{\frac{1}{1-\frac14z^{-1}}}&lt;/em&gt;{H_2(z)}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+x(n)\to\boxed{H_1(z)}\to\boxed{H_2(z)}\to y(n)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+w(n)=x(n)+\tfrac13x(n-1)+\tfrac12w(n-1),\qquad y(n)=w(n)+\tfrac14y(n-1)
+$$&lt;/p&gt;
+&lt;p&gt;级联形式&lt;strong&gt;便于零极点单独调节&lt;/strong&gt;（分子零点 $-1/3$ 与 $H_1$ 的极点 $1/2$ 配在一节）。&lt;/p&gt;
+&lt;h5&gt;(4) 并联型（部分分式）&lt;/h5&gt;
+&lt;p&gt;$$
+\frac{1+\frac13z^{-1}}{\left(1-\frac12z^{-1}\right)\left(1-\frac14z^{-1}\right)}
+=\frac{10/3}{1-\frac12z^{-1}}-\frac{7/3}{1-\frac14z^{-1}}
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                ┌──────────────────────┐
+         ┌─────►│ (10/3)/(1−½z⁻¹)      ├─────┐
+         │      └──────────────────────┘     ▼
+  x(n)───┤                                  (+)───► y(n)
+         │      ┌──────────────────────┐     ▲
+         └─────►│ (−7/3)/(1−¼z⁻¹)      ├─────┘
+                └──────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;$$
+y(n)=\tfrac{10}{3}w_1(n)-\tfrac73w_2(n),\quad
+w_1(n)=x(n)+\tfrac12w_1(n-1),\quad w_2(n)=x(n)+\tfrac14w_2(n-1)
+$$&lt;/p&gt;
+&lt;p&gt;并联形式&lt;strong&gt;便于极点单独调节&lt;/strong&gt;，各支路可并行流水。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;复核&lt;/strong&gt;：四种结构的前 7 个冲激响应值均为
+${1,\ 1.083333,\ 0.6875,\ 0.380208,\ 0.199219,\ 0.101888,\ 0.051514}$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.4　直接 Ⅰ 型与直接 Ⅱ 型实现&lt;/h4&gt;
+&lt;p&gt;$$
+H(z)=\frac{-5+2z^{-1}-0.5z^{-2}}{1+3z^{-1}+3z^{-2}+z^{-3}}
+$$&lt;/p&gt;
+&lt;p&gt;分母 $1+3z^{-1}+3z^{-2}+z^{-3}=(1+z^{-1})^{3}$ ⇒ &lt;strong&gt;三重极点 $z=-1$&lt;/strong&gt;。
+分子零点由 $-5z^{2}+2z-0.5=0$ 得&lt;/p&gt;
+&lt;p&gt;$$
+z=0.2\pm j0.244949=0.2\pm j\frac{\sqrt6}{10},\qquad |z|=0.3162&amp;lt;1
+$$&lt;/p&gt;
+&lt;p&gt;故系统稳定。差分方程&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=-3y(n-1)-3y(n-2)-y(n-3)-5x(n)+2x(n-1)-0.5x(n-2)
+$$&lt;/p&gt;
+&lt;h5&gt;(1) 直接 Ⅰ 型&lt;/h5&gt;
+&lt;p&gt;输入、输出&lt;strong&gt;各用一条 3 级延迟链&lt;/strong&gt; ⇒ 共 &lt;strong&gt;6 个延迟单元&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=-5x(n)+2x(n-1)-0.5x(n-2)-3y(n-1)-3y(n-2)-y(n-3)
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; x(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┬─►[z⁻¹]─┐
+      │        │        │        │
+     ×(−5)    ×2      ×(−0.5)    │
+      │        │        │        │
+      └────────┴────────┴────────┼──► Σ ──► y(n)
+                                 │      ▲
+ y(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┬─►[z⁻¹]─┘      │
+     ×(−3)   ×(−3)    ×(−1)─────────────┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;(2) 直接 Ⅱ 型（规范型）&lt;/h5&gt;
+&lt;p&gt;只留&lt;strong&gt;一条&lt;/strong&gt; 3 级延迟链 $w(n)$ ⇒ &lt;strong&gt;3 个延迟单元&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+w(n)=x(n)-3w(n-1)-3w(n-2)-w(n-3)
+$$
+$$
+y(n)=-5w(n)+2w(n-1)-0.5w(n-2)
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  x(n)─►Σ─►w(n)─┬─►[z⁻¹]─┬─►[z⁻¹]─┬─►[z⁻¹]─┐
+         ▲      │        │        │        │
+       ×(−3)   ×(−3)    ×(−3)    ×(−1)     │
+         │      │        │        │        │
+         └──────┴────────┴────────┴────────┘
+  
+  w(n)─×(−5)─┐   w(n-1)─×2─┐   w(n-2)─×(−0.5)─┐
+             └───────► (+) ◄───────────────────┘ ──► y(n)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;复核&lt;/strong&gt;：直接型 $h={-5,\ 17,\ -36.5,\ 63.5,\ -98,\ 140,\ -189.5,\ 246.5}$；
+用并联展开 $H=\dfrac{-0.5}{1+z^{-1}}+\dfrac{3}{(1+z^{-1})^{2}}-\dfrac{7.5}{(1+z^{-1})^{3}}$
+（即 $A=-1/2,\ B=3,\ C=-15/2$）逐点吻合。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.6　奇对称 FIR 的相位与幅度响应（证明）&lt;/h4&gt;
+&lt;p&gt;设 $h(n)$ 为&lt;strong&gt;实&lt;/strong&gt;序列且 $h(n)=-h(N-1-n)$。&lt;/p&gt;
+&lt;h5&gt;0. 分段线性相位&lt;/h5&gt;
+&lt;p&gt;$$
+H(e^{j\omega})=\sum_{n=0}^{N-1}h(n)e^{-j\omega n}
+;\xrightarrow{,m=N-1-n,};
+\sum_{m=0}^{N-1}h(N-1-m)e^{-j\omega(N-1-m)}
+$$&lt;/p&gt;
+&lt;p&gt;代入 $h(N-1-m)=-h(m)$：&lt;/p&gt;
+&lt;p&gt;$$
+H(e^{j\omega})=-e^{-j\omega(N-1)}\sum_{m=0}^{N-1}h(m)e^{j\omega m}
+=-e^{-j\omega(N-1)}H^{*}(e^{j\omega})
+$$&lt;/p&gt;
+&lt;p&gt;记 $H=|H|e^{j\varphi}$，则 $H^{*}=|H|e^{-j\varphi}$：&lt;/p&gt;
+&lt;p&gt;$$
+|H|e^{j\varphi}=-e^{-j\omega(N-1)}|H|e^{-j\varphi}
+;\Longrightarrow;
+e^{j2\varphi}=e^{j\pi}e^{-j\omega(N-1)}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ \varphi(\omega)=-\omega\frac{N-1}{2}+\frac{\pi}{2}\ }
+$$&lt;/p&gt;
+&lt;p&gt;$\varphi$ 是 $\omega$ 的直线 ⇒ &lt;strong&gt;线性相位&lt;/strong&gt;；多出的 $\pi/2$ 说明奇对称 FIR 属&lt;strong&gt;第 Ⅲ / Ⅳ 类&lt;/strong&gt;。&lt;/p&gt;
+&lt;h5&gt;(1) $N$ 为奇数（第 Ⅲ 类，$N=2M+1$）&lt;/h5&gt;
+&lt;p&gt;$M=(N-1)/2$，中心点 $h(M)=0$。配对 $n=\pm1,\dots,\pm M$：&lt;/p&gt;
+&lt;p&gt;$$
+H=e^{-j\omega M}\sum_{n=1}^{M}h(M-n)\left(e^{j\omega n}-e^{-j\omega n}\right)
+=e^{j\left(-\omega\frac{N-1}{2}+\frac{\pi}{2}\right)}\sum_{n=1}^{M}2h!\left(\frac{N-1}{2}-n\right)\sin(\omega n)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ H(\omega)=\sum_{n=1}^{(N-1)/2}c(n)\sin(\omega n),\qquad
+c(n)=2h!\left(\frac{N-1}{2}-n\right),\quad n=1,2,\dots,\frac{N-1}{2}\ }
+$$&lt;/p&gt;
+&lt;p&gt;$H(\omega)$ 为&lt;strong&gt;实幅度函数&lt;/strong&gt;（可取负值，故曲线穿越 $\omega$ 轴）；
+$\varphi(\omega)=-\omega\frac{N-1}{2}+\frac{\pi}{2}$，故 $\varphi(0)=\frac{\pi}{2}$，
+$\varphi(\pi)=-\frac{N-1}{2}\pi+\frac{\pi}{2}$，$\varphi(2\pi)=-\pi\left(N-\frac32\right)$（与题图 4.6 中相位曲线终点一致）。&lt;/p&gt;
+&lt;h5&gt;(2) $N$ 为偶数（第 Ⅳ 类，$N=2M$）&lt;/h5&gt;
+&lt;p&gt;无中心样点，配对点关于 $M-\frac12$ 对称，令 $u=n-(M-\frac12)$：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ H(\omega)=\sum_{n=1}^{N/2}d(n)\sin!\Big[\omega\Big(n-\frac12\Big)\Big],\qquad
+d(n)=2h!\left(\frac{N}{2}-n\right),\quad n=1,2,\dots,\frac{N}{2}\ }
+$$&lt;/p&gt;
+&lt;p&gt;相位仍为 $\varphi(\omega)=-\omega\frac{N-1}{2}+\frac{\pi}{2}$；
+$\varphi(\pi)=-\frac{N-2}{2}\pi$（$N=8$ 时 $-3\pi$），而 $\varphi(2\pi)=-\pi\left(N-\frac32\right)$（$N=8$ 时 $-6.5\pi$），与题图 4.6 相位曲线终点一致。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;数值复核&lt;/strong&gt;（构造反对称 $h$ 与上两式对比，最大误差 $\sim10^{-15}$）：
+$N=7$（Ⅲ 类）、$N=8$（Ⅳ 类）在 $0&amp;lt;\omega&amp;lt;\pi$ 内均严格满足 $H(e^{j\omega})=A(\omega)e^{j\varphi(\omega)}$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.8　冲激响应不变法与双线性变换法（$T=0.5$）&lt;/h4&gt;
+&lt;p&gt;$$
+H_a(s)=\frac{3s+2}{2s^2+3s+1}=\frac{3s+2}{(2s+1)(s+1)}
+=\frac{0.5}{s+0.5}+\frac{1}{s+1}
+$$&lt;/p&gt;
+&lt;p&gt;极点 $s=-0.5,,-1$；$h_a(t)=0.5e^{-0.5t}+e^{-t}\ (t\ge0)$。&lt;/p&gt;
+&lt;h5&gt;(1) 冲激响应不变法&lt;/h5&gt;
+&lt;p&gt;$$
+h(n)=h_a(nT)=0.5,e^{-0.5nT}+e^{-nT}
+$$&lt;/p&gt;
+&lt;p&gt;映射 $s-p_k\to\frac{1}{1-e^{p_kT}z^{-1}}$：&lt;/p&gt;
+&lt;p&gt;$$
+H(z)=\frac{0.5}{1-e^{-0.5T}z^{-1}}+\frac{1}{1-e^{-T}z^{-1}}
+$$&lt;/p&gt;
+&lt;p&gt;记 $a_1=e^{-0.25}=0.7788007831$，$a_2=e^{-0.5}=0.6065306597$，通分：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ H(z)=\frac{1.5-1.0820669,z^{-1}}{1-1.3853306,z^{-1}+0.4723666,z^{-2}}\ }
+$$&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=1.5x(n)-1.0820669x(n-1)+1.3853306y(n-1)-0.4723666y(n-2)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;复核&lt;/strong&gt;：$h(0)=1.5=h_a(0)$，$h(1)=0.9959311=h_a(0.5)$，$h(2)=0.6711448=h_a(1)$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;(2) 双线性变换法&lt;/h5&gt;
+&lt;p&gt;$$
+s=\frac{2}{T}\cdot\frac{1-z^{-1}}{1+z^{-1}}=4\cdot\frac{1-z^{-1}}{1+z^{-1}}
+$$&lt;/p&gt;
+&lt;p&gt;一阶节 $\dfrac{A}{s+p}\to\dfrac{A(1+z^{-1})}{(4+p)-(4-p)z^{-1}}$：&lt;/p&gt;
+&lt;p&gt;$$
+\frac{0.5}{s+0.5}\to\frac{0.5(1+z^{-1})}{4.5-3.5z^{-1}},\qquad
+\frac{1}{s+1}\to\frac{1(1+z^{-1})}{5-3z^{-1}}
+$$&lt;/p&gt;
+&lt;p&gt;通分相加后&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ H(z)=\frac{0.3111111+0.0888889,z^{-1}-0.2222222,z^{-2}}
+{1-1.3777778,z^{-1}+0.4666667,z^{-2}}\ }
+$$&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=0.3111111x(n)+0.0888889x(n-1)-0.2222222x(n-2)+1.3777778y(n-1)-0.4666667y(n-2)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;与 &lt;code&gt;scipy.signal.bilinear([3,2],[2,3,1],2)&lt;/code&gt; 完全一致。
+校验：$z=1$（即 $\omega=0$）时 $H(1)=\dfrac{0.1777778}{0.0888889}=2=H_a(0)$，直流增益保持正确。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;对比&lt;/strong&gt;：冲激响应不变法保时域采样值但有&lt;strong&gt;混叠&lt;/strong&gt;；双线性变换&lt;strong&gt;无混叠&lt;/strong&gt;但频率轴非线性（需预畸变）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.10　冲激响应不变法（$h(n)=h_a(nT)$）&lt;/h4&gt;
+&lt;p&gt;$$
+H_a(s)=\frac{s+a}{(s+a)^2+b^2};\Longrightarrow;h_a(t)=e^{-at}\cos(bt),\quad t\ge0
+$$&lt;/p&gt;
+&lt;p&gt;$$
+h(n)=e^{-anT}\cos(bnT)=\left(e^{-aT}\right)^{n}\cos(bnT)
+$$&lt;/p&gt;
+&lt;p&gt;用变换对 $\dfrac{1-r\cos\theta,z^{-1}}{\left(1-r\cos\theta z^{-1}\right)^2+\left(r\sin\theta z^{-1}\right)^2}
+\xleftarrow{;z;}r^n\cos(\theta n)$（$r=e^{-aT},\ \theta=bT$），记&lt;/p&gt;
+&lt;p&gt;$$
+A=e^{-aT}\cos(bT),\qquad B=e^{-aT}\sin(bT)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ H(z)=\frac{1-Az^{-1}}{1-2Az^{-1}+\left(A^{2}+B^{2}\right)z^{-2}}\ }
+$$&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=x(n)-Ax(n-1)+2Ay(n-1)-\left(A^{2}+B^{2}\right)y(n-2)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;数值例（$a=2,\ b=3,\ T=1$）&lt;/strong&gt;：$e^{-2}=0.13533528$，
+$A=-0.13398091$，$B=0.01909852$，
+$$
+H(z)=\frac{1+0.13398091z^{-1}}{1+0.26796183z^{-1}+0.01831564z^{-2}}
+$$
+由 $h(n)=e^{-2n}\cos3n$ 得 ${1,\ -0.133981,\ 0.017586,\ -0.002258,\ 0.000283,\dots}$，
+与上式递推结果逐点吻合（已复核）。
+一般情形下 $b(1)=-A\neq0$，仅当 $bT=\pi/2$ 等特殊取值才有 $A=0$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;适用条件&lt;/strong&gt;：要求模拟频响在 $\Omega&amp;gt;\pi/T$ 处可忽略（$\pi/T\gg\sqrt{a^{2}+b^{2}}$），否则有混叠，
+应改用双线性变换法。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.12　由数字频响反推模拟频响（作图法）&lt;/h4&gt;
+&lt;p&gt;数字频响（零相位、偶对称）：$|\omega|\ge2\pi/3$ 时为 0，$|\omega|\le\pi/3$ 时为 $1/4$，
+在 $\pi/3\le|\omega|\le2\pi/3$ 内线性升到 1。&lt;/p&gt;
+&lt;h5&gt;(1) 冲激响应不变法&lt;/h5&gt;
+&lt;p&gt;映射 $\Omega=\omega/T$​，&lt;strong&gt;形状逐点复制、频率轴不伸缩&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$
+|H_a(j\Omega)|=\begin{cases}
+\dfrac14, &amp;amp; 0\le|\Omega|\le\dfrac{\pi}{3T}\[8pt]
+\dfrac14+\dfrac{9}{4\pi}\left(|\Omega|T-\dfrac{\pi}{3}\right), &amp;amp;
+\dfrac{\pi}{3T}\le|\Omega|\le\dfrac{2\pi}{3T}\[8pt]
+0, &amp;amp; \dfrac{2\pi}{3T}\le|\Omega|\le\dfrac{\pi}{T}
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;再以 $2\pi/T$ 为周期延拓（这就是混叠来源）。&lt;/p&gt;
+&lt;h5&gt;(2) 双线性变换法&lt;/h5&gt;
+&lt;p&gt;$$
+\Omega=\frac{2}{T}\tan\frac{\omega}{2}
+$$&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$\omega$&lt;/th&gt;
+&lt;th&gt;$0$&lt;/th&gt;
+&lt;th&gt;$\pi/3$&lt;/th&gt;
+&lt;th&gt;$2\pi/3$&lt;/th&gt;
+&lt;th&gt;$\pi$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Omega$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$\dfrac{1.1547}{T}$&lt;/td&gt;
+&lt;td&gt;$\dfrac{3.4641}{T}$&lt;/td&gt;
+&lt;td&gt;$\infty$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$\Omega$ 区间&lt;/th&gt;
+&lt;th&gt;$\vert H_a\vert$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0\le\Omega\le 1.1547/T$&lt;/td&gt;
+&lt;td&gt;$1/4$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1.1547/T\le\Omega\le 3.4641/T$&lt;/td&gt;
+&lt;td&gt;由 $1/4$ 线性升到 $1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Omega&amp;gt; 3.4641/T$&lt;/td&gt;
+&lt;td&gt;$0$（截止，不再延拓）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;区别&lt;/strong&gt;：冲激不变法 → 沿 $\Omega$ 轴&lt;strong&gt;周期性延拓&lt;/strong&gt;的图形（有混叠）；
+双线性 → &lt;strong&gt;单段有限支撑&lt;/strong&gt;图形，拐点被 $\tan$ 映射拉宽（$\pi/3,2\pi/3$ 的等间隔变为
+$1.1547/T,,3.4641/T$），但&lt;strong&gt;无混叠&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.14　双线性变换法设计巴特沃斯低通滤波器&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;指标&lt;/strong&gt;：$f_s=10$ kHz，$f_p=1$ kHz 处衰减 $\le1.8$ dB，$f_{st}=1.5$ kHz 处衰减 $\ge12$ dB。&lt;/p&gt;
+&lt;h5&gt;1. 数字频率与预畸变&lt;/h5&gt;
+&lt;p&gt;$$
+\omega_p=\frac{2\pi f_p}{f_s}=0.2\pi,\qquad \omega_{st}=\frac{2\pi f_{st}}{f_s}=0.3\pi
+$$&lt;/p&gt;
+&lt;p&gt;$$
+W_p=2f_s\tan\frac{\omega_p}{2}=2\times10^{4}\tan(0.1\pi)=6498.39\ \text{rad/s}
+$$
+$$
+W_{st}=2\times10^{4}\tan(0.15\pi)=10190.51\ \text{rad/s}
+$$&lt;/p&gt;
+&lt;h5&gt;2. 阶数 $N$&lt;/h5&gt;
+&lt;p&gt;$$
+N\ge\frac{\lg!\left(\dfrac{10^{A_s/10}-1}{10^{A_p/10}-1}\right)}{2\lg!\left(\dfrac{W_{st}}{W_p}\right)}
+=\frac{\lg!\left(\dfrac{10^{1.2}-1}{10^{0.18}-1}\right)}{2\lg 1.56816}
+=\frac{1.46110}{0.39078}=3.739;\Longrightarrow;\boxed{N=4}
+$$&lt;/p&gt;
+&lt;h5&gt;3. 3 dB 截止频率（用通带指标预畸变修正）&lt;/h5&gt;
+&lt;p&gt;$$
+W_c=\frac{W_p}{\left(10^{0.1A_p}-1\right)^{1/(2N)}}=\frac{6498.39}{(10^{0.18}-1)^{1/8}}
+=7062.88\ \text{rad/s}
+$$&lt;/p&gt;
+&lt;h5&gt;4. 模拟极点 → 两个二阶节&lt;/h5&gt;
+&lt;p&gt;$$
+Q_1=\frac{1}{2\sin(\pi/8)}=1.30656,\qquad Q_2=\frac{1}{2\sin(3\pi/8)}=0.54120
+$$&lt;/p&gt;
+&lt;h5&gt;5. 数字系统函数&lt;/h5&gt;
+&lt;p&gt;$$
+\boxed{\ H(z)=\frac{0.00627321+0.02509285z^{-1}+0.03763928z^{-2}+0.02509285z^{-3}+0.00627321z^{-4}}
+{1-2.23989938z^{-1}+2.11425498z^{-2}-0.93671474z^{-3}+0.16273056z^{-4}}\ }
+$$&lt;/p&gt;
+&lt;h5&gt;6. 级联（二阶节）实现&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;节&lt;/th&gt;
+&lt;th&gt;分子&lt;/th&gt;
+&lt;th&gt;分母&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1（$Q_1$）&lt;/td&gt;
+&lt;td&gt;$0.08939869,\ 0.17879739,\ 0.08939869$&lt;/td&gt;
+&lt;td&gt;$1,\ -1.25489888,\ 0.61249365$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2（$Q_2$）&lt;/td&gt;
+&lt;td&gt;$0.07017120,\ 0.14034240,\ 0.07017120$&lt;/td&gt;
+&lt;td&gt;$1,\ -0.98500050,\ 0.26568530$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;两节卷积即 4 阶多项式（已复核一致）。&lt;/p&gt;
+&lt;h5&gt;7. 指标校验&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;频率&lt;/th&gt;
+&lt;th&gt;$f_p=1$ kHz&lt;/th&gt;
+&lt;th&gt;$f_{st}=1.5$ kHz&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;衰减&lt;/td&gt;
+&lt;td&gt;$-1.80$ dB ≤ 1.8 dB ✔&lt;/td&gt;
+&lt;td&gt;$-12.96$ dB ≥ 12 dB ✔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;差分方程（直接型）：&lt;/p&gt;
+&lt;p&gt;$$
+y(n)=0.00627321x(n)+0.02509285x(n-1)+0.03763928x(n-2)+0.02509285x(n-3)+0.00627321x(n-4)
+$$
+$$
+\qquad+2.23989938y(n-1)-2.11425498y(n-2)+0.93671474y(n-3)-0.16273056y(n-4)
+$$&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.17　循环移位序列的 DFT 关系&lt;/h4&gt;
+&lt;p&gt;$h_1(n)$ &lt;strong&gt;偶对称&lt;/strong&gt;（$h_1(n)=h_1(N-1-n)$），$N=8$；
+$h_2(n)=h_1((n-4))_8R_8(n)$（四点循环移位，因 $N/2=4$，$h_2$ 仍&lt;strong&gt;偶对称&lt;/strong&gt;）。&lt;/p&gt;
+&lt;h5&gt;(1) DFT 之间的关系&lt;/h5&gt;
+&lt;p&gt;$$
+H_2(k)=W_8^{4k}H_1(k)=e^{-j\pi k}H_1(k)
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ H_2(k)=(-1)^{k}H_1(k),\qquad 0\le k\le7\ }
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ |H_2(k)|=|H_1(k)|\ }
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ \theta_2(k)=\theta_1(k)+k\pi=
+\begin{cases}\theta_1(k), &amp;amp; k\ \text{偶}\[2pt] \theta_1(k)\pm\pi, &amp;amp; k\ \text{奇}\end{cases}\ }
+$$&lt;/p&gt;
+&lt;p&gt;即&lt;strong&gt;幅度谱完全相同；相位谱在偶数点不变、奇数点差 $\pi$&lt;/strong&gt;（差 $\pi$ 等价于该点幅度反号）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$h_1$ 偶对称 ⇒ $H_1(k)$ 为&lt;strong&gt;实数&lt;/strong&gt;，故 $\theta_1(k)$ 只取 $0$ 或 $\pm\pi$。
+例（$h_1={0.05,0.1,0.2,0.4,0.4,0.2,0.1,0.05}$）：
+$|H_1(k)|=|H_2(k)|={1.5,\ 0.723252,\ 0.212132,\ 0.083102,\ 0,\ 0.083102,\ 0.212132,\ 0.723252}$，
+$\theta_1={0,-157.5,45,-112.5,0,112.5,-45,157.5}^\circ$，
+$\theta_2={0,22.5,45,67.5,0,-67.5,-45,-22.5}^\circ$，逐点满足 $\theta_2=\theta_1+k\pi$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;(2) 是否都是线性相位？时延？&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;都是线性相位&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$h_1$ 偶对称、$N=8$ ⇒ &lt;strong&gt;第 Ⅰ 类&lt;/strong&gt;线性相位 FIR；&lt;/li&gt;
+&lt;li&gt;$h_2=h_1$ 循环右移 4 点，因 $N/2=4$ 恰为半周期，$h_2(n)=h_2(N-1-n)$ 仍成立 ⇒ 仍为&lt;strong&gt;第 Ⅰ 类&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两者的群延迟均为&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ \alpha=\frac{N-1}{2}=3.5\ \text{个样点}\ }
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意 $(-1)^k$ 只是在 8 个 DFT 采样点上交替变号，&lt;strong&gt;不改变&lt;/strong&gt;群延迟；
+但 $h_2(n)\ne h_1(n-4)$（那是线性移位），$h_2$ 是回卷后的结果，连续谱形状不同。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;(3) 认为 $h_2$ 也是截止 $\pi/2$ 的低通？&lt;strong&gt;不合理&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;循环移位只保证&lt;strong&gt;采样点 $\omega_k=2\pi k/8$ 上幅度相等&lt;/strong&gt;，点与点之间完全不同：&lt;/p&gt;
+&lt;p&gt;$$
+H_2(e^{j\omega})=e^{-j4\omega}\Big[H_1(e^{j\omega})-2j\sin(4\omega)\sum_{n=0}^{3}h_1(n)e^{-j\omega n}\Big]
+$$&lt;/p&gt;
+&lt;p&gt;（数值验证误差 $\sim10^{-15}$）。除 $\omega=k\pi/4$ 外 $|H_2|\ne|H_1|$。以截止 $\pi/2$ 的 $N=8$ 矩形窗低通为例：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$\omega/\pi$&lt;/th&gt;
+&lt;th&gt;$0$&lt;/th&gt;
+&lt;th&gt;$1/4$&lt;/th&gt;
+&lt;th&gt;$1/2$&lt;/th&gt;
+&lt;th&gt;$3/4$&lt;/th&gt;
+&lt;th&gt;$1$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\vert H_1\vert$&lt;/td&gt;
+&lt;td&gt;$0.892$&lt;/td&gt;
+&lt;td&gt;$1.134$&lt;/td&gt;
+&lt;td&gt;$0.461$&lt;/td&gt;
+&lt;td&gt;$0.050$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\vert H_2\vert$&lt;/td&gt;
+&lt;td&gt;$0.892$&lt;/td&gt;
+&lt;td&gt;$1.134$&lt;/td&gt;
+&lt;td&gt;$0.461$&lt;/td&gt;
+&lt;td&gt;$0.050$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;采样点上确实相等，但在中途：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$\omega/\pi$&lt;/th&gt;
+&lt;th&gt;$1/8$&lt;/th&gt;
+&lt;th&gt;$3/8$&lt;/th&gt;
+&lt;th&gt;$5/8$&lt;/th&gt;
+&lt;th&gt;$7/8$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\vert H_1\vert$&lt;/td&gt;
+&lt;td&gt;$1.007$&lt;/td&gt;
+&lt;td&gt;$0.938$&lt;/td&gt;
+&lt;td&gt;$0.064$&lt;/td&gt;
+&lt;td&gt;$0.015$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\vert H_2\vert$&lt;/td&gt;
+&lt;td&gt;$0.067$&lt;/td&gt;
+&lt;td&gt;$0.866$&lt;/td&gt;
+&lt;td&gt;$0.912$&lt;/td&gt;
+&lt;td&gt;$0.559$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;通带在 $\omega=\pi/8$ 处已近于零，而阻带在 $\omega=5\pi/8$ 反而升到 $0.912$ ——
+$h_2$ &lt;strong&gt;不再是低通滤波器&lt;/strong&gt;，更谈不上截止频率仍为 $\pi/2$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;：只有两序列在&lt;strong&gt;整个频率轴&lt;/strong&gt;上幅度相同（如 $h_2(n)=h_1(n-n_0)$ 的纯延时情形，
+或移位量为 $N$ 的整数倍）才能说对应同一滤波器；循环移位 4 点改变了非采样点的频响，
+故该说法不成立。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;习题 4.18　矩形窗 / 汉宁窗设计线性相位高通滤波器&lt;/h4&gt;
+&lt;p&gt;$$
+H_d(e^{j\omega})=\begin{cases}
+e^{-j(\omega-\pi)\alpha}, &amp;amp; \pi-\omega_c\le\omega\le\pi\[4pt]
+0, &amp;amp; 0\le\omega&amp;lt;\pi-\omega_c
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;（负频段按共轭对称取值，保证 $h(n)$ 为实数。）&lt;/p&gt;
+&lt;h5&gt;(1) 矩形窗：$h(n)$ 与 $\alpha!\sim!N$ 关系&lt;/h5&gt;
+&lt;p&gt;$$
+h_d(n)=\frac{1}{2\pi}\int_{\pi-\omega_c}^{\pi}e^{-j(\omega-\pi)\alpha}e^{j\omega n}d\omega
++\frac{1}{2\pi}\int_{-\pi}^{-\pi+\omega_c}e^{-j(\omega+\pi)\alpha}e^{j\omega n}d\omega
+$$&lt;/p&gt;
+&lt;p&gt;两段积分分别令 $\omega&apos;=\omega\mp\pi$，利用 $e^{\pm j\pi n}=(-1)^n$ 合并得&lt;/p&gt;
+&lt;p&gt;$$
+h_d(n)=\frac{(-1)^{n}}{2\pi}\int_{-\omega_c}^{\omega_c}e^{j\omega&apos;(n-\alpha)}d\omega&apos;
+=\frac{(-1)^{n}\sin\big[\omega_c(n-\alpha)\big]}{\pi(n-\alpha)}
+$$&lt;/p&gt;
+&lt;p&gt;即&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ h(n)=h_d(n)=(-1)^{,n},\frac{\sin\big[\omega_c(n-\alpha)\big]}{\pi(n-\alpha)},\qquad
+0\le n\le N-1\ }
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ \alpha=\frac{N-1}{2}\ }
+$$&lt;/p&gt;
+&lt;p&gt;（当 $n=\alpha$ 时取极限 $h(\alpha)=\dfrac{(-1)^{\alpha}\omega_c}{\pi}$。）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;$\alpha$ 与 $N$ 的关系&lt;/strong&gt;：$\alpha=(N-1)/2$，即群延迟为 $(N-1)/2$ 个样点。
+由 $h(n)=(-1)^n\sin[\omega_c(n-\alpha)]/[\pi(n-\alpha)]$ 可直接验证：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$N$ 为&lt;strong&gt;奇数&lt;/strong&gt;时 $\alpha$ 为整数，$h(n)=h(N-1-n)$，属&lt;strong&gt;第 Ⅰ 类&lt;/strong&gt;（偶对称，可做高通）；&lt;/li&gt;
+&lt;li&gt;$N$ 为&lt;strong&gt;偶数&lt;/strong&gt;时 $\alpha$ 为半整数，$h(n)=-h(N-1-n)$，属&lt;strong&gt;第 Ⅳ 类&lt;/strong&gt;（奇对称，也可做高通）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;校验&lt;/strong&gt;（$N=8,\ \omega_c=\pi/3$，$\alpha=3.5$，已用数值积分核对，误差 $&amp;lt;10^{-6}$）：
+$h_d={-0.0454728,\ -0.0636620,\ 0.2122066,\ -0.3183099,\ 0.3183099,\ -0.2122066,\ 0.0636620,\ 0.0454728}$，
+满足 $h_d(n)=-h_d(N-1-n)$（奇对称，Ⅳ 类）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;(2) 汉宁窗&lt;/h5&gt;
+&lt;p&gt;$$
+w_H(n)=\frac12\Big[1-\cos\frac{2\pi n}{N-1}\Big],\qquad 0\le n\le N-1
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\ h(n)=(-1)^{,n}\frac{\sin\big[\omega_c(n-\alpha)\big]}{\pi(n-\alpha)}\cdot
+\frac12\Big[1-\cos\frac{2\pi n}{N-1}\Big],\qquad 0\le n\le N-1,\quad \alpha=\frac{N-1}{2}\ }
+$$&lt;/p&gt;
+&lt;p&gt;汉宁窗仍关于 $n=(N-1)/2$ 对称，&lt;strong&gt;不改变线性相位与群延迟&lt;/strong&gt;，只是主瓣加宽（约为矩形窗的 2 倍）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;对比&lt;/strong&gt;：汉宁窗旁瓣衰减约 $-31$ dB（矩形窗仅 $-13$ dB），阻带性能更好；
+代价是过渡带变宽，同样指标下须增大 $N$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h4&gt;附：关键结论速查&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;题号&lt;/th&gt;
+&lt;th&gt;关键结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;4.1&lt;/td&gt;
+&lt;td&gt;$H(z)=1/\big[(1-\frac12z^{-1})(1-\frac14z^{-1})\big]$；$h(n)=2(\frac12)^n-(\frac14)^n$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.3&lt;/td&gt;
+&lt;td&gt;直接 Ⅱ 型 2 个延迟；$H=\frac{10/3}{1-\frac12z^{-1}}-\frac{7/3}{1-\frac14z^{-1}}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.4&lt;/td&gt;
+&lt;td&gt;三重极点 $z=-1$；零点 $0.2\pm j0.244949$；直接 Ⅱ 型 3 个延迟&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.6&lt;/td&gt;
+&lt;td&gt;$\varphi(\omega)=-\omega\frac{N-1}{2}+\frac{\pi}{2}$，$N$ 奇：$H=\sum c(n)\sin\omega n$，$N$ 偶：$H=\sum d(n)\sin\omega(n-\frac12)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.8&lt;/td&gt;
+&lt;td&gt;冲激不变：$\frac{1.5-1.0820669z^{-1}}{1-1.3853306z^{-1}+0.4723666z^{-2}}$；双线性：$\frac{0.3111111+0.0888889z^{-1}-0.2222222z^{-2}}{1-1.3777778z^{-1}+0.4666667z^{-2}}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.10&lt;/td&gt;
+&lt;td&gt;$H(z)=\frac{1-Az^{-1}}{1-2Az^{-1}+(A^2+B^2)z^{-2}}$，$A=e^{-aT}\cos bT$，$B=e^{-aT}\sin bT$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.12&lt;/td&gt;
+&lt;td&gt;冲激不变：$\Omega=\omega/T$（形状复制＋周期延拓，有混叠）；双线性：$\Omega=\frac{2}{T}\tan\frac{\omega}{2}$，拐点 $\frac{1.1547}{T},\frac{3.4641}{T}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.14&lt;/td&gt;
+&lt;td&gt;$N=4$，$W_c=7062.88$ rad/s；通带衰减 1.80 dB、阻带衰减 12.96 dB（均达标）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.17&lt;/td&gt;
+&lt;td&gt;$H_2(k)=(-1)^kH_1(k)$，$\lvert H_2\rvert=\lvert H_1\rvert$；均为线性相位（Ⅰ 类），$\alpha=3.5$；$h_2$ 不再是 $\pi/2$ 低通&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4.18&lt;/td&gt;
+&lt;td&gt;$h(n)=(-1)^{n}\frac{\sin[\omega_c(n-\alpha)]}{\pi(n-\alpha)}w(n)$，$\alpha=\frac{N-1}{2}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2&gt;附录 · 使用说明与勘误记录&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;排版约定&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;三大部分用字母编号：§A 课程总览、§B 分章知识点、§C 习题全解；教材章节号仍写作 §3.4、§4.6 等，二者不冲突。&lt;/li&gt;
+&lt;li&gt;文中「作业 x.y」的题面与答案：第 3 章见 §C.1 / §C.2，第 4 章见 §C.3；第 2、5 章讲义未给题面，只在对应知识点小节给出解题模板。&lt;/li&gt;
+&lt;li&gt;行内公式用 &lt;code&gt;$...$&lt;/code&gt;，独立公式用 &lt;code&gt;$$...$$&lt;/code&gt;，网页已用 KaTeX 渲染。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;勘误记录&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;习题 3.20：原文曾写「$G_R=\mathrm{DFT}{x_1}=X_1$」。当 $g=x_1+jx_2$ 时实际 $G_R=X_{1R}-X_{2I}$，已改按「实序列 DFT 实部偶对称、虚部奇对称」推导，结论式不变（已数值验证）。&lt;/li&gt;
+&lt;li&gt;巴特沃斯阶数：粗估式 $(\alpha_s-\alpha_p)/20\lg(\Omega_s/\Omega_p)$ 只宜估数量级，精确式见 §B.4 §4.4.3。&lt;/li&gt;
+&lt;li&gt;作业 3.28 教材 (2) 式一处误印为 $\cos(0.4\pi n)$，按同序列应为 $0.47\pi$；MATLAB 代码按 $0.47\pi$ 实现。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;关于源码&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第 3 章 3.22 / 3.25 / 3.26 / 3.28 的 MATLAB 代码已完整嵌入 §C.2，可直接复制运行；&lt;/li&gt;
+&lt;li&gt;第 4 章各题均给出关键公式、结构图与数值结果；标有「复核」的结论已用 &lt;code&gt;numpy&lt;/code&gt; / &lt;code&gt;scipy.signal&lt;/code&gt; 验证。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;— 全文完 —&lt;/em&gt;&lt;/p&gt;
 </content:encoded></item><item><title>微机原理实验复盘：从 MIPS 汇编到 FPGA 软核</title><link>https://luuton.github.io/posts/microcomputer-principles-labs/</link><guid isPermaLink="true">https://luuton.github.io/posts/microcomputer-principles-labs/</guid><description>微机原理课程四个实验的完整复盘：MIPS 汇编、单周期 CPU、并行 IO 与串行 IO，附关键代码、调试坑点与复现方法。</description><pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;微机原理实验复盘：从 MIPS 汇编到 FPGA 软核&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;仓库地址：&lt;a href=&quot;https://github.com/luuton/microcomputer-principles-labs&quot;&gt;luuton/microcomputer-principles-labs&lt;/a&gt;&lt;/p&gt;
