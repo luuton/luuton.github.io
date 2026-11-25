@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1710" height="795" viewBox="-0.909 -0.741 8.908 4.141">
+<defs><marker id="a" viewBox="0 0 12 12" refX="10.4" refY="6" markerWidth="0.155" markerHeight="0.082" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0,1.3 L 12,6 L 0,10.7 Z" fill="#000000"/></marker></defs>
+<path d="M -0.200,0.000 L 0.890,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="-0.300" y="0.060" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="end"><tspan font-style="italic">x</tspan>(n)</text>
+<circle cx="0.950" cy="0.000" r="0.060" fill="#000000"/>
+<circle cx="2.250" cy="0.000" r="0.060" fill="#000000"/>
+<text x="2.250" y="-0.340" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.135" fill="#000000" text-anchor="middle"><tspan font-style="italic">x</tspan>(n-1)</text>
+<circle cx="3.550" cy="0.000" r="0.060" fill="#000000"/>
+<text x="3.550" y="-0.340" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.135" fill="#000000" text-anchor="middle"><tspan font-style="italic">x</tspan>(n-2)</text>
+<rect x="1.270" y="-0.230" width="0.660" height="0.460" rx="0.05" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="1.600" y="0.054" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="middle"><tspan font-style="italic">z</tspan><tspan dy="-0.34em" font-size="0.62em">-1</tspan><tspan dy="0.34em">​</tspan></text>
+<path d="M 0.950,0.000 L 1.270,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 1.930,0.000 L 2.250,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<rect x="2.570" y="-0.230" width="0.660" height="0.460" rx="0.05" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="2.900" y="0.054" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="middle"><tspan font-style="italic">z</tspan><tspan dy="-0.34em" font-size="0.62em">-1</tspan><tspan dy="0.34em">​</tspan></text>
+<path d="M 2.250,0.000 L 2.570,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 3.230,0.000 L 3.550,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<circle cx="0.950" cy="2.400" r="0.060" fill="#000000"/>
+<circle cx="2.250" cy="2.400" r="0.060" fill="#000000"/>
+<text x="2.250" y="2.760" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.135" fill="#000000" text-anchor="middle"><tspan font-style="italic">y</tspan>(n-1)</text>
+<circle cx="3.550" cy="2.400" r="0.060" fill="#000000"/>
+<text x="3.550" y="2.760" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.135" fill="#000000" text-anchor="middle"><tspan font-style="italic">y</tspan>(n-2)</text>
+<circle cx="4.850" cy="2.400" r="0.060" fill="#000000"/>
+<text x="4.850" y="2.760" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.135" fill="#000000" text-anchor="middle"><tspan font-style="italic">y</tspan>(n-3)</text>
+<rect x="1.270" y="2.170" width="0.660" height="0.460" rx="0.05" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="1.600" y="2.454" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="middle"><tspan font-style="italic">z</tspan><tspan dy="-0.34em" font-size="0.62em">-1</tspan><tspan dy="0.34em">​</tspan></text>
+<path d="M 0.950,2.400 L 1.270,2.400" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 1.930,2.400 L 2.250,2.400" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<rect x="2.570" y="2.170" width="0.660" height="0.460" rx="0.05" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="2.900" y="2.454" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="middle"><tspan font-style="italic">z</tspan><tspan dy="-0.34em" font-size="0.62em">-1</tspan><tspan dy="0.34em">​</tspan></text>
+<path d="M 2.250,2.400 L 2.570,2.400" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 3.230,2.400 L 3.550,2.400" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<rect x="3.870" y="2.170" width="0.660" height="0.460" rx="0.05" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="4.200" y="2.454" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="middle"><tspan font-style="italic">z</tspan><tspan dy="-0.34em" font-size="0.62em">-1</tspan><tspan dy="0.34em">​</tspan></text>
+<path d="M 3.550,2.400 L 3.870,2.400" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 4.530,2.400 L 4.850,2.400" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<text x="0.830" y="2.460" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="end"><tspan font-style="italic">y</tspan>(n)</text>
+<path d="M 6.100,0.300 L 6.100,0.960" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<path d="M 6.100,1.440 L 6.100,2.100" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt"/>
+<circle cx="6.100" cy="1.200" r="0.240" fill="none" stroke="#000000" stroke-width="0.017"/>
+<text x="6.100" y="1.275" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.240" fill="#000000" text-anchor="middle">Σ</text>
+<path d="M 6.340,1.200 L 7.290,1.200" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="7.390" y="1.260" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="start"><tspan font-style="italic">y</tspan>(n)</text>
+<path d="M 0.950,0.060 L 0.950,0.830 L 6.100,0.830" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="3.525" y="0.755" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">-5</text>
+<path d="M 2.250,0.060 L 2.250,0.595 L 6.100,0.595" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="4.175" y="0.520" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">2</text>
+<path d="M 3.550,0.060 L 3.550,0.360 L 6.100,0.360" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="4.825" y="0.285" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">-0.5</text>
+<path d="M 2.250,2.340 L 2.250,1.570 L 6.100,1.570" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="4.175" y="1.495" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">-3</text>
+<path d="M 3.550,2.340 L 3.550,1.805 L 6.100,1.805" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="4.825" y="1.730" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">-3</text>
+<path d="M 4.850,2.340 L 4.850,2.040 L 6.100,2.040" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="5.475" y="1.965" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">-1</text>
+<path d="M 7.290,1.200 L 6.890,1.200 L 6.890,3.100 L 0.950,3.100 L 0.950,2.460" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+</svg>

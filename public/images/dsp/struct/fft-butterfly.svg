@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="381" viewBox="0.139 -0.429 5.207 1.982">
+<defs><marker id="a" viewBox="0 0 12 12" refX="10.4" refY="6" markerWidth="0.155" markerHeight="0.082" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M 0,1.3 L 12,6 L 0,10.7 Z" fill="#000000"/></marker></defs>
+<circle cx="1.250" cy="0.000" r="0.060" fill="#000000"/>
+<circle cx="1.950" cy="1.100" r="0.060" fill="#000000"/>
+<path d="M 0.550,0.000 L 1.250,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<path d="M 1.250,0.000 L 3.550,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<path d="M 0.550,1.100 L 1.950,1.100" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<path d="M 1.950,1.100 L 3.550,1.100" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="0.460" y="0.060" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="end"><tspan font-style="italic">x</tspan><tspan dy="0.20em" font-size="0.62em">1</tspan><tspan dy="-0.20em">​</tspan></text>
+<text x="0.460" y="1.160" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="end"><tspan font-style="italic">x</tspan><tspan dy="0.20em" font-size="0.62em">2</tspan><tspan dy="-0.20em">​</tspan></text>
+<path d="M 1.250,0.000 L 3.530,1.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<path d="M 1.950,1.100 L 3.530,0.100" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<path d="M 3.550,0.000 L 4.500,0.000" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<path d="M 3.550,1.100 L 4.500,1.100" fill="none" stroke="#000000" stroke-width="0.017" stroke-linejoin="miter" stroke-linecap="butt" marker-end="url(#a)"/>
+<text x="4.600" y="0.060" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="start"><tspan font-style="italic">x</tspan><tspan dy="0.20em" font-size="0.62em">1</tspan><tspan dy="-0.20em">​</tspan>+<tspan font-style="italic">W</tspan><tspan font-style="italic">x</tspan><tspan dy="0.20em" font-size="0.62em">2</tspan><tspan dy="-0.20em">​</tspan></text>
+<text x="4.600" y="1.160" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.150" fill="#000000" text-anchor="start"><tspan font-style="italic">x</tspan><tspan dy="0.20em" font-size="0.62em">1</tspan><tspan dy="-0.20em">​</tspan>-<tspan font-style="italic">W</tspan><tspan font-style="italic">x</tspan><tspan dy="0.20em" font-size="0.62em">2</tspan><tspan dy="-0.20em">​</tspan></text>
+<text x="2.500" y="-0.130" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">1</text>
+<text x="2.700" y="1.320" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">-<tspan font-style="italic">W</tspan></text>
+<text x="1.550" y="0.300" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle">1</text>
+<text x="2.250" y="0.800" font-family="'Times New Roman','Cambria Math','STIX Two Text',serif" font-size="0.132" fill="#000000" text-anchor="middle"><tspan font-style="italic">W</tspan></text>
+</svg>

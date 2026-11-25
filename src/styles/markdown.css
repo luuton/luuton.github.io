@@ -124,3 +124,8 @@
 .custom-md .expressive-code ol li::marker {
     @apply text-inherit;
 }
+
+/* 结构图（SVG）在暗色模式下反色，避免纯黑线条看不见 */
+:root.dark .custom-md img[src$=".svg"] {
+    filter: invert(0.88) hue-rotate(180deg);
+}

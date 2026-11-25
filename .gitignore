@@ -37,3 +37,7 @@ public/images/computer-network/*.png
 
 # local Bangumi feed cache
 src/data/bangumi-feed.xml
+
+# DSP 结构图脚本的本地产物
+scripts/dsp/sfg/out/
+__pycache__/
